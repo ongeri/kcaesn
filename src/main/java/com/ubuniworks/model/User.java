@@ -48,6 +48,8 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
+    private Set<Idea> ideas;
+    private Set<Idea> likedIdeas;
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -311,6 +313,24 @@ public class User extends BaseObject implements Serializable, UserDetails {
     @Transient
     public boolean isCredentialsNonExpired() {
         return !credentialsExpired;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<Idea> getIdeas() {
+        return this.ideas;
+    }
+
+    public void setIdeas(Set<Idea> ideas_1) {
+        this.ideas = ideas_1;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "likers")
+    public Set<Idea> getLikedIdeas() {
+        return this.likedIdeas;
+    }
+
+    public void setLikedIdeas(Set<Idea> ideas) {
+        this.likedIdeas = ideas;
     }
 
     /**

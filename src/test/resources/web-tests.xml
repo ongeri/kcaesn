@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload"
+            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,IdeabodyTests,IdeaTests"
             description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -254,4 +254,202 @@
             </steps>
         </webtest>
     </target>
+    <!--Idea-START-->
+    <!-- runs idea-related tests -->
+    <target name="IdeaTests"
+            depends="SearchIdeas,EditIdea,SaveIdea,AddIdea,DeleteIdea"
+            description="Call and executes all idea test cases (targets)">
+        <echo>Successfully ran all Idea UI tests!</echo>
+    </target>
+
+    <!-- Verify the ideas list screen displays without errors -->
+    <target name="SearchIdeas" description="Tests search for and displaying all ideas">
+        <webtest name="searchIdeas">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Idea link" url="/ideas"/>
+                <verifytitle description="we should see the ideaList title"
+                             text=".*${ideaList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the ideaList title"
+                             text=".*${ideaList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit idea screen displays without errors -->
+    <target name="EditIdea" description="Tests editing an existing Idea's information">
+        <webtest name="editIdea">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Idea List" url="/ideas"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the ideaDetail title"
+                             text=".*${ideaDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a idea and then save -->
+    <target name="SaveIdea" description="Tests editing and saving a idea">
+        <webtest name="saveIdea">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Idea link" url="/ideaform?ididea=-1"/>
+                <verifytitle description="we should see the ideaDetail title"
+                             text=".*${ideaDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description"
+                               value="AiLhNwUgWnEjHwFwOqKcBqQaTkYbBwDjKmLbSiKiYsEkAnFyDsBwSxVhUiJaQdNfKlHlRaSlPhCnXuIyOpNkHoHpErUnRkPgIhBdXzEwBtOpTgKfKsLdGsFnZmPoKkSrNvDdBxIhOtYtWbSnYoJfOgQjWiXbQySdIoFxKpBwJdJlEwUkUzQfVyCzTzHeVaLtPlXnStXqYkXcYrSyXzHtToUsMkUdFmQpFlMaHtSbLbFyMgNtXoRtTsRsCzXwJcU"/>
+                <setInputField description="set title" name="title"
+                               value="CgVqIgAnChShZoNzBrVxXzKcMbZcOyLvXsEcDaGrEiZlK"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${ideaDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${idea.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Idea -->
+    <target name="AddIdea" description="Adds a new Idea">
+        <webtest name="addIdea">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/ideaform"/>
+                <verifytitle description="we should see the ideaDetail title"
+                             text=".*${ideaDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description"
+                               value="KiJhXlRaMfMlUhKrOjGcJfReHgDrWxTxRmVrKhNzNpKhRgLaDqKiAdHrXtIlHqItZxRfChXbInSyZdLfMtBmQfUzHtUxPaJqIfExStDwEbEeFiSjUdFoKmFwXvJyNyCaFlNfOmZkGrDkVfLyUlFpFvJjDwRmPpZsKbWqKsTnHkPrVcHaXfZeDgInHyQaSyHqRdYxXxWhFlJyDmXqYuTwMkPzVpKoTtAvBzSxBuGgBzSoRjClMgNaViIdDeMsRpT"/>
+                <setInputField description="set title" name="title"
+                               value="WdTeIxYiCdGaZdDnTeCtBnMpCcPcDoCaHrNsGrIxKlVtY"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Idea List appears if save successful"
+                             text=".*${ideaList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${idea.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing idea -->
+    <target name="DeleteIdea" description="Deletes existing Idea">
+        <webtest name="deleteIdea">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Idea link" url="/ideaform?ididea=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Idea List" text=".*${ideaList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${idea.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Idea-END-->
+    <!--Ideabody-START-->
+    <!-- runs ideabody-related tests -->
+    <target name="IdeabodyTests"
+            depends="SearchIdeabodies,EditIdeabody,SaveIdeabody,AddIdeabody,DeleteIdeabody"
+            description="Call and executes all ideabody test cases (targets)">
+        <echo>Successfully ran all Ideabody UI tests!</echo>
+    </target>
+
+    <!-- Verify the ideabodies list screen displays without errors -->
+    <target name="SearchIdeabodies" description="Tests search for and displaying all ideabodies">
+        <webtest name="searchIdeabodies">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Ideabody link" url="/ideabodies"/>
+                <verifytitle description="we should see the ideabodyList title"
+                             text=".*${ideabodyList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the ideabodyList title"
+                             text=".*${ideabodyList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit ideabody screen displays without errors -->
+    <target name="EditIdeabody" description="Tests editing an existing Ideabody's information">
+        <webtest name="editIdeabody">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Ideabody List" url="/ideabodies"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the ideabodyDetail title"
+                             text=".*${ideabodyDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a ideabody and then save -->
+    <target name="SaveIdeabody" description="Tests editing and saving a ideabody">
+        <webtest name="saveIdeabody">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Ideabody link" url="/ideabodyform?idideabody=-1"/>
+                <verifytitle description="we should see the ideabodyDetail title"
+                             text=".*${ideabodyDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set content" name="content"
+                               value="IgGrVrPbCaRwZaMuWvCaMvGxYtZqEqJpDiFxFoJsIyHgXbVsXuLrAaJvGbYjWcZsUbZkEnUmOeObLvDdZuCfQdBfMyMqIyJgBcXxZoGtZcAdHrApJtMlWoDpDfPrBgIoLxWkVgSgXfRoSuCiGyRiZzAtUuAqWvIhFhLeMjXfPnOcQfZqHoIoIlRnPkDgNoYkUqHcYlNwKoKqNmNtXeSmSoOwIqPgMxUqMzAzRxAaLhAbYgCsHtZeAeWcHeSrWxO"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${ideabodyDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${ideabody.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Ideabody -->
+    <target name="AddIdeabody" description="Adds a new Ideabody">
+        <webtest name="addIdeabody">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/ideabodyform"/>
+                <verifytitle description="we should see the ideabodyDetail title"
+                             text=".*${ideabodyDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set content" name="content"
+                               value="ViTeLsAnWcQyFyMnMaVyTcDcLrEsNrGiYfKhWkKtFzWuHgJuOyUwBeIpQeXlTiPbEiMmLaVpYjRgGbHjMaQkLyCyFwZlIiIqBuXeAzZsLjAvSpCpBsXfZnOuNfJvUlIoFmMbKaUgQvTkAqLlFkQiRgTrJjWwVnCsEhThRxUfDeVoKlSlTiAdDwKpSwWqDoDnJmYzIzUrPuPpRtAtWjYlNaJcSkJxUxQaMhGzQmWmFeKgYkHtEpUvMuFoBxBhLsF"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Ideabody List appears if save successful"
+                             text=".*${ideabodyList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${ideabody.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing ideabody -->
+    <target name="DeleteIdeabody" description="Deletes existing Ideabody">
+        <webtest name="deleteIdeabody">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Ideabody link" url="/ideabodyform?idideabody=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Ideabody List" text=".*${ideabodyList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${ideabody.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Ideabody-END-->
 </project>
+
+

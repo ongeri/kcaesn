@@ -12,6 +12,12 @@
             <menu:displayMenu name="UserMenu"/>
             <menu:displayMenu name="AdminMenu"/>
             <menu:displayMenu name="Logout"/>
+            <!--Idea-START-->
+            <menu:displayMenu name="IdeaMenu"/>
+            <!--Idea-END-->
+            <!--Ideabody-START-->
+            <menu:displayMenu name="IdeabodyMenu"/>
+            <!--Ideabody-END-->
         </ul>
     </div>
 </menu:useMenuDisplayer>

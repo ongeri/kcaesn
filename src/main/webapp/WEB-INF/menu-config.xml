@@ -13,5 +13,13 @@
             <Item name="FileUpload" title="menu.selectFile" page="/fileupload"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
+        <!--Idea-START-->
+        <Menu name="IdeaMenu" title="ideaList.title" page="/ideas"/>
+        <!--Idea-END-->
+        <!--Ideabody-START-->
+        <Menu name="IdeabodyMenu" title="ideabodyList.title" page="/ideabodies"/>
+        <!--Ideabody-END-->
     </Menus>
+
+
 </MenuConfig>

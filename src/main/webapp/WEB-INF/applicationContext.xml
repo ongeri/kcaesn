@@ -14,6 +14,26 @@
 
     <!-- Add new DAOs here -->
 
+    <!--IdeaManager-START-->
+    <bean id="ideaManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Idea"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--IdeaManager-END-->
+
+    <!--IdeabodyManager-START-->
+    <bean id="ideabodyManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Ideabody"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--IdeabodyManager-END-->
+
     <!-- Add new Managers here -->
 
     <!-- Configure and Alternative PasswordTokenManager -->

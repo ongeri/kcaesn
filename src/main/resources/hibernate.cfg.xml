@@ -6,7 +6,11 @@
 
 <hibernate-configuration>
     <session-factory>
+        <!--<property name="connection.url">jdbc:mysql://localhost:3306/kcaesn</property>-->
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
         <mapping class="com.ubuniworks.model.User"/>
         <mapping class="com.ubuniworks.model.Role"/>
+        <mapping class="com.ubuniworks.model.Idea"/>
+        <mapping class="com.ubuniworks.model.Ideabody"/>
     </session-factory>
 </hibernate-configuration>

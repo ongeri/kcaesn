@@ -50,5 +50,22 @@
                 <arg key="user.password"/>
             </field>
         </form>
+        <!--Idea-START-->
+        <form name="idea">
+            <field property="description" depends="required">
+                <arg key="idea.description"/>
+            </field>
+            <field property="title" depends="required">
+                <arg key="idea.title"/>
+            </field>
+        </form>
+        <!--Idea-END-->
+        <!--Ideabody-START-->
+        <form name="ideabody">
+            <field property="content" depends="required">
+                <arg key="ideabody.content"/>
+            </field>
+        </form>
+        <!--Ideabody-END-->
     </formset>
 </form-validation>
