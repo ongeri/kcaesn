@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "ideabody", catalog = "kcaesn")
 public class Ideabody implements java.io.Serializable {
 
-    private int idideabody;
+    private Integer idideabody;
     private String content;
     private Set<Idea> ideas = new HashSet<Idea>(0);
 
@@ -33,11 +33,11 @@ public class Ideabody implements java.io.Serializable {
     @Id
 
     @Column(name = "idideabody", unique = true, nullable = false)
-    public int getIdideabody() {
+    public Integer getIdideabody() {
         return this.idideabody;
     }
 
-    public void setIdideabody(int idideabody) {
+    public void setIdideabody(Integer idideabody) {
         this.idideabody = idideabody;
     }
 
