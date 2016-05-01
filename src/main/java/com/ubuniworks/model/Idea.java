@@ -1,6 +1,9 @@
 package com.ubuniworks.model;
 // Generated May 1, 2016 2:35:49 PM by Hibernate Tools 5.1.0.Alpha1
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -59,7 +62,8 @@ public class Idea implements java.io.Serializable {
         this.appUser = appUser;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @Cascade(CascadeType.ALL)
     @JoinColumn(name = "idideabody")
     public Ideabody getIdeabody() {
         return this.ideabody;

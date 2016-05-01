@@ -4,6 +4,12 @@
     <title><fmt:message key="ideaDetail.title"/></title>
     <meta name="menu" content="IdeaMenu"/>
     <meta name="heading" content="<fmt:message key='ideaDetail.heading'/>"/>
+    <script src='/scripts/tinymce/tinymce.min.js'></script>
+    <script>
+        tinymce.init({
+            selector: 'input#content'
+        });
+    </script>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="ideaList.idea"/></c:set>
@@ -21,6 +27,13 @@
     <form:form commandName="idea" method="post" action="ideaform" cssClass="well"
                id="ideaForm" onsubmit="return validateIdea(this)">
         <form:hidden path="ididea"/>
+        <spring:bind path="idea.title">
+            <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
+        </spring:bind>
+        <appfuse:label key="idea.title" styleClass="control-label"/>
+        <form:input cssClass="form-control" path="title" id="title" maxlength="45"/>
+        <form:errors path="title" cssClass="help-block"/>
+        </div>
         <spring:bind path="idea.description">
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
@@ -28,21 +41,13 @@
         <form:input cssClass="form-control" path="description" id="description" maxlength="255"/>
         <form:errors path="description" cssClass="help-block"/>
         </div>
+        <form:hidden path="ideabody.idideabody"/>
         <spring:bind path="ideabody.content">
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
         <appfuse:label key="ideabody.content" styleClass="control-label"/>
         <form:input cssClass="form-control" path="ideabody.content" id="content" maxlength="255"/>
         <form:errors path="ideabody.content" cssClass="help-block"/>
-        </div>
-        <!-- todo: change this to read the identifier field from the other pojo -->
-        <%--<form:select cssClass="form-control" path="ideabody" items="ideabodyList" itemLabel="label" itemValue="value"/>--%>
-        <spring:bind path="idea.title">
-            <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-        </spring:bind>
-        <appfuse:label key="idea.title" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="title" id="title" maxlength="45"/>
-        <form:errors path="title" cssClass="help-block"/>
         </div>
         <!-- todo: change this to read the identifier field from the other pojo -->
         <%--<form:select cssClass="form-control" path="user" items="userList" itemLabel="label" itemValue="value"/>--%>
@@ -67,7 +72,6 @@
 
 <v:javascript formName="idea" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/scripts/validator.jsp'/>"></script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $("input[type='text']:visible:enabled:first", document.forms['ideaForm']).focus();
