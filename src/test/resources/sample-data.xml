@@ -155,30 +155,7 @@
         </row>
     </table>
     <!--Idea-END-->
-    <!--Ideabody-START-->
-    <table name="ideabody">
-        <column>idideabody</column>
-        <column>content</column>
-        <row>
-            <value description="idideabody">-1</value>
-            <value description="content">
-                NlFvDeNhLyMuIzJoCmHnWoQzMsXjDpKlVoAfDmNpSpLeLsXzWjGnSyYcZmVjMsRvCnNgHfQaDqVvLtTaPaNxIjLaVgSyTaTwDaLyKqKeKoFqIxUqNuBpKyMcNkHrTjHeCtViSdOoBuCrFlHqBiJnAcBcHbUwKaOcZmImRtVzPqTvEnBcAvIdKdNfUkKxDzSfLzMdGdJyJgNmFyEkXdCsMiMzLmEiQzUqWwLcMlHmIqEhOvSfTjKkEbYyZvBnQeK
-            </value>
-        </row>
-        <row>
-            <value description="idideabody">-2</value>
-            <value description="content">
-                YpTtGaYkHdNrQfBbUyUeWrItFcWgPaYgXpUmSeFeWmTcUsMwVlUcYyLeKmAtJkUgWeEsDcOgFwOuYaOgBeGsTrYzUzNdRoRqHbIcIgKtMgPvUbLwLsBsXiZlThFrCnPqHrWtIdJeFhQvCyXvPgYkAkOuLmPrNoHuVtDgIfCkLtDqWxXjIsNkMbLwRaJyNsJnVcWiDcXaGzJsEkFyNhQuMcYdCcXsMfLtPoCfWcAvRwOpDeFqEyXeGsIqRdFrEtT
-            </value>
-        </row>
-        <row>
-            <value description="idideabody">-3</value>
-            <value description="content">
-                WsOmOvVsPuYmLyWeSwNlJqDeQfJbHsFyZxInRmFiDsSdCnVrPiSdAsCbCmZdGnJbMiZiXdSnPoJvFeEcSgUsTaQpTfHcOqKxOyLsDhTvAwMgTlXqBjYkHoGpBpGyIlVkKlVdUrLtZvGfQjMmTxKuXpCqVyEpFhPoFbUfWjMoWoWfRyTeVgRvMfUoUpRxBtOjWvPoKgMuYsAlVuShJnTcEhAtLbBnNtAdOdAlBlJuAbXdQeAgWzXoVaVbHnRpJiT
-            </value>
-        </row>
-    </table>
-    <!--Ideabody-END-->
+
 </dataset>
 
 

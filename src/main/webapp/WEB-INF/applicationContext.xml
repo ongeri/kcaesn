@@ -25,16 +25,6 @@
     </bean>
     <!--IdeaManager-END-->
 
-    <!--IdeabodyManager-START-->
-    <bean id="ideabodyManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
-        <constructor-arg>
-            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
-                <constructor-arg value="com.ubuniworks.model.Ideabody"/>
-                <property name="sessionFactory" ref="sessionFactory"/>
-            </bean>
-        </constructor-arg>
-    </bean>
-    <!--IdeabodyManager-END-->
 
     <!-- Add new Managers here -->
 

@@ -19,7 +19,7 @@
 
 <div class="col-sm-9">
     <c:set var="test" value="${idea.ideabody.content}"/>
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <div><h2>${idea.title}</h2></div>
             <div>${idea.description}</div>

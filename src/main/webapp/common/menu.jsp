@@ -15,9 +15,7 @@
             <!--Idea-START-->
             <menu:displayMenu name="IdeaMenu"/>
             <!--Idea-END-->
-            <!--Ideabody-START-->
-            <menu:displayMenu name="IdeabodyMenu"/>
-            <!--Ideabody-END-->
+
         </ul>
     </div>
 </menu:useMenuDisplayer>
