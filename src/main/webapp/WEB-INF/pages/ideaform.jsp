@@ -22,7 +22,7 @@
     <fmt:message key="ideaDetail.message"/>
 </div>
 
-<div class="col-sm-6">
+<div class="col-sm-9">
     <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
     <form:form commandName="idea" method="post" action="ideaform" cssClass="well"
                id="ideaForm" onsubmit="return validateIdea(this)">

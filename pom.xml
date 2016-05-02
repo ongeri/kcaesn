@@ -59,9 +59,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>net.sourceforge.jwebunit</groupId>
-            <artifactId>jwebunit</artifactId>
-            <version>3.3</version>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootswatch-paper</artifactId>
+            <version>3.3.2</version>
         </dependency>
     </dependencies>
 

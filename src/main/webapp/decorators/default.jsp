@@ -15,25 +15,25 @@
 <body<decorator:getProperty property="body.id" writeEntireProperty="true"/><decorator:getProperty property="body.class"
                                                                                                   writeEntireProperty="true"/>>
 <c:set var="currentMenu" scope="request"><decorator:getProperty property="meta.menu"/></c:set>
-
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="<c:url value='/'/>"><fmt:message key="webapp.name"/></a>
-    </div>
-
-    <%@ include file="/common/menu.jsp" %>
-    <c:if test="${pageContext.request.locale.language ne 'en'}">
-        <div id="switchLocale"><a href="<c:url value='/?locale=en'/>">
-            <fmt:message key="webapp.name"/> in English</a>
+<div class="container">
+    <div class="container navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<c:url value='/'/>"><fmt:message key="webapp.name"/></a>
         </div>
-    </c:if>
-</div>
 
+        <%@ include file="/common/menu.jsp" %>
+        <c:if test="${pageContext.request.locale.language ne 'en'}">
+            <div id="switchLocale"><a href="<c:url value='/?locale=en'/>">
+                <fmt:message key="webapp.name"/> in English</a>
+            </div>
+        </c:if>
+    </div>
+</div>
 <div class="container" id="content">
     <%@ include file="/common/messages.jsp" %>
     <div class="row">
