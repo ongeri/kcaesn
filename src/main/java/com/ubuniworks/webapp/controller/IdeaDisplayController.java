@@ -1,8 +1,8 @@
 package com.ubuniworks.webapp.controller;
 
 import com.ubuniworks.model.Idea;
+import com.ubuniworks.service.GenericManager;
 import org.apache.commons.lang.StringUtils;
-import org.appfuse.service.GenericManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;

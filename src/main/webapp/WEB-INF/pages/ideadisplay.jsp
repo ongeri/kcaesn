@@ -21,7 +21,7 @@
     <c:set var="test" value="${idea.ideabody.content}"/>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <div><h1>${idea.title}</h1></div>
+            <div><h2>${idea.title}</h2></div>
             <div>${idea.description}</div>
         </div>
         <div class="panel-body">

@@ -1,6 +1,6 @@
 package com.ubuniworks.webapp.controller;
 
-import org.appfuse.service.GenericManager;
+import com.ubuniworks.service.GenericManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
