@@ -3,8 +3,12 @@ package com.ubuniworks.model;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +19,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "idea", catalog = "kcaesn")
+@Indexed
+@XmlRootElement
 public class Idea implements java.io.Serializable {
 
     private Integer ididea;
@@ -42,7 +48,7 @@ public class Idea implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
+    @DocumentId
     @Column(name = "ididea", unique = true, nullable = false)
     public Integer getIdidea() {
         return this.ididea;
@@ -74,6 +80,7 @@ public class Idea implements java.io.Serializable {
     }
 
     @Column(name = "description", nullable = false)
+    @Field
     public String getDescription() {
         return this.description;
     }
@@ -83,6 +90,7 @@ public class Idea implements java.io.Serializable {
     }
 
     @Column(name = "title", nullable = false, length = 45)
+    @Field
     public String getTitle() {
         return this.title;
     }

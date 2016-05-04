@@ -1,7 +1,12 @@
 package com.ubuniworks.model;
 // Generated May 1, 2016 2:35:49 PM by Hibernate Tools 5.1.0.Alpha1
 
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +17,8 @@ import static javax.persistence.GenerationType.IDENTITY;
  */
 @Entity
 @Table(name = "ideabody", catalog = "kcaesn")
+@Indexed
+@XmlRootElement
 public class Ideabody implements java.io.Serializable {
 
     private Integer idideabody;
@@ -34,7 +41,7 @@ public class Ideabody implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
+    @DocumentId
     @Column(name = "idideabody", unique = true, nullable = false)
     public Integer getIdideabody() {
         return this.idideabody;
@@ -45,6 +52,7 @@ public class Ideabody implements java.io.Serializable {
     }
 
     @Column(name = "content", nullable = false)
+    @Field
     public String getContent() {
         return this.content;
     }
