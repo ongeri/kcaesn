@@ -28,6 +28,8 @@ public class Idea implements java.io.Serializable {
     private Ideabody ideabody;
     private String description;
     private String title;
+    private Set<Comment> comments = new HashSet<Comment>(0);
+    private Set<Milestone> milestones = new HashSet<Milestone>(0);
     private Set<User> likers = new HashSet<User>(0);
 
     public Idea() {
@@ -97,6 +99,24 @@ public class Idea implements java.io.Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Comment> getComments() {
+        return this.comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Milestone> getMilestones() {
+        return this.milestones;
+    }
+
+    public void setMilestones(Set<Milestone> milestones) {
+        this.milestones = milestones;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)

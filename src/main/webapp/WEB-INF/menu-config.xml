@@ -17,7 +17,15 @@
         <Menu name="IdeaMenu" title="ideaList.title" page="/ideas"/>
         <!--Idea-END-->
 
+        <!--Comment-START-->
+        <Menu name="CommentMenu" title="commentList.title" page="/comments"/>
+        <!--Comment-END-->
+        <!--Milestone-START-->
+        <Menu name="MilestoneMenu" title="milestoneList.title" page="/milestones"/>
+        <!--Milestone-END-->
     </Menus>
+
+
 
 
 </MenuConfig>

@@ -16,6 +16,12 @@
             <menu:displayMenu name="IdeaMenu"/>
             <!--Idea-END-->
 
-        </ul>
+            <!--Comment-START-->
+    <menu:displayMenu name="CommentMenu"/>
+    <!--Comment-END-->
+    <!--Milestone-START-->
+    <menu:displayMenu name="MilestoneMenu"/>
+    <!--Milestone-END-->
+</ul>
     </div>
 </menu:useMenuDisplayer>

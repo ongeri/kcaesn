@@ -26,6 +26,26 @@
     <!--IdeaManager-END-->
 
 
+    <!--CommentManager-START-->
+    <bean id="commentManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Comment"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--CommentManager-END-->
+
+    <!--MilestoneManager-START-->
+    <bean id="milestoneManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Milestone"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--MilestoneManager-END-->
+
     <!-- Add new Managers here -->
 
     <!-- Configure and Alternative PasswordTokenManager -->

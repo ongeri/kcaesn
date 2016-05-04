@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,IdeaTests"
+            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,MilestoneTests,CommentTests,IdeaTests"
             description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -355,6 +355,200 @@
         </webtest>
     </target>    <!--Idea-END-->
 
+    <!--Comment-START-->
+    <!-- runs comment-related tests -->
+    <target name="CommentTests"
+            depends="SearchComments,EditComment,SaveComment,AddComment,DeleteComment"
+            description="Call and executes all comment test cases (targets)">
+        <echo>Successfully ran all Comment UI tests!</echo>
+    </target>
+
+    <!-- Verify the comments list screen displays without errors -->
+    <target name="SearchComments" description="Tests search for and displaying all comments">
+        <webtest name="searchComments">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Comment link" url="/comments"/>
+                <verifytitle description="we should see the commentList title"
+                    text=".*${commentList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the commentList title"
+                    text=".*${commentList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit comment screen displays without errors -->
+    <target name="EditComment" description="Tests editing an existing Comment's information">
+        <webtest name="editComment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Comment List" url="/comments"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the commentDetail title"
+                    text=".*${commentDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a comment and then save -->
+    <target name="SaveComment" description="Tests editing and saving a comment">
+        <webtest name="saveComment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Comment link" url="/commentform?idcomment=-1"/>
+                <verifytitle description="we should see the commentDetail title"
+                    text=".*${commentDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set commenttext" name="commenttext" value="KzPlGyHfTyPoSnNnEuYvXlAvXvKtSfEvCaWkQnGdRiQrTeDoZcHeNzBzZdYhRvTfDsVqSnAnEmVvGeZvZmXuOlFbCrGmBoGwUpJxPeUhIqSuOrMzJgPaHcAoYpCvSpUbFeZzKbBvOcCvBoAdLpSpCfBtUxQeKkZrBtJuAqBcAhKvUaOkDsJjTbEoPhSmGeRcIlLmLtQwIdLtRoAiGoZxQcAiHyDeNfKnIeJwJoJmHkKlRdJyGnCrPmQgFsGgHaW"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${commentDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${comment.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Comment -->
+    <target name="AddComment" description="Adds a new Comment">
+        <webtest name="addComment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/commentform"/>
+                <verifytitle description="we should see the commentDetail title"
+                    text=".*${commentDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set commenttext" name="commenttext" value="PdJbCsSvMgQaMlQpUfQlFlUoPzOxZyBmYcOwNuOeTjBeObNgKzXeVmEsLlEhVhGrJuHjYkYyZfBkXcTxWtWjEmJfVyVqLnKaZwNqBnZbZuLdAaBdTqLwNsKuSxRpCyGrVrYpAvGiSqKrOnHsHsZkXgFwNoYaHfEePpSsItAvHeNvSpCtPfSsTtQsWxViNuVnQaLxGvBxHjZqSiXpOzGcPgTvNcEpMoNjEkMqXbKyKrCdHkDpMdKjEdJtLzUhLwA"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Comment List appears if save successful"
+                    text=".*${commentList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${comment.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing comment -->
+    <target name="DeleteComment" description="Deletes existing Comment">
+        <webtest name="deleteComment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Comment link" url="/commentform?idcomment=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Comment List" text=".*${commentList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${comment.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Comment-END-->
+    <!--Milestone-START-->
+    <!-- runs milestone-related tests -->
+    <target name="MilestoneTests"
+            depends="SearchMilestones,EditMilestone,SaveMilestone,AddMilestone,DeleteMilestone"
+            description="Call and executes all milestone test cases (targets)">
+        <echo>Successfully ran all Milestone UI tests!</echo>
+    </target>
+
+    <!-- Verify the milestones list screen displays without errors -->
+    <target name="SearchMilestones" description="Tests search for and displaying all milestones">
+        <webtest name="searchMilestones">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Milestone link" url="/milestones"/>
+                <verifytitle description="we should see the milestoneList title"
+                    text=".*${milestoneList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the milestoneList title"
+                    text=".*${milestoneList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit milestone screen displays without errors -->
+    <target name="EditMilestone" description="Tests editing an existing Milestone's information">
+        <webtest name="editMilestone">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Milestone List" url="/milestones"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the milestoneDetail title"
+                    text=".*${milestoneDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a milestone and then save -->
+    <target name="SaveMilestone" description="Tests editing and saving a milestone">
+        <webtest name="saveMilestone">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Milestone link" url="/milestoneform?idmilestone=-1"/>
+                <verifytitle description="we should see the milestoneDetail title"
+                    text=".*${milestoneDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set datecreated" name="datecreated" value="05/04/2016"/>
+                <setInputField description="set description" name="description" value="ZzIaDpNhHqUqAuTsFkKqGlTcKlKpXkUtBbHhHoDqRhHgJwLdSeSwWhZtUrXiLhTzVtAaVkZoAuSiZbCsWuImGeTkXgGrMyYsYtYcKkRoShZhLlXvGlRxKdVgWlKwGwSiEySzSqLiYvQlGcIxAyEuWrHxYvIzVzVvFhKxTjYdXiAxJhVlDsVzUeQoAjZyDiFuTxKaHmZvSnJwJfViMxZaNoNdOpTeXtCbZlAwIqZnCsGgKxYnIzHpOpLgLhWcYcK"/>
+                <setInputField description="set duedate" name="duedate" value="05/04/2016"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${milestoneDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${milestone.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Milestone -->
+    <target name="AddMilestone" description="Adds a new Milestone">
+        <webtest name="addMilestone">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/milestoneform"/>
+                <verifytitle description="we should see the milestoneDetail title"
+                    text=".*${milestoneDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set datecreated" name="datecreated" value="05/04/2016"/>
+                <setInputField description="set description" name="description" value="HaPuBeBzFuBiLyPnPeJxOfUsXnCiZxKfYxYrIjGtWsSfJgVeEqKdWfBwPvQyKzNuNqEyTiGeSwXsQlLzAsPbAaLdVtVqJyYmYqGtFvWzPeFfHpHnQgApRrFfPtGxAqTfGeApCwNpZoNjMjNkCuCsLtUgKyCvSkAaQjFjHzRiSpPdNoAbEiMzCsQiKjCzCaIyMiHdLlOsLwJwCdAqPvKgUjSsOzTxKqOzYjYcJzYiAfJtBiDdQlZtSqOwPtAkIhA"/>
+                <setInputField description="set duedate" name="duedate" value="05/04/2016"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Milestone List appears if save successful"
+                    text=".*${milestoneList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${milestone.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing milestone -->
+    <target name="DeleteMilestone" description="Deletes existing Milestone">
+        <webtest name="deleteMilestone">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Milestone link" url="/milestoneform?idmilestone=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Milestone List" text=".*${milestoneList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${milestone.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Milestone-END-->
 </project>
+
+
 
 

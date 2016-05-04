@@ -61,5 +61,25 @@
         </form>
         <!--Idea-END-->
 
+        <!--Comment-START-->
+        <form name="comment">
+            <field property="commenttext" depends="required">
+                <arg key="comment.commenttext"/>
+            </field>
+        </form>
+        <!--Comment-END-->
+        <!--Milestone-START-->
+        <form name="milestone">
+            <field property="datecreated" depends="required">
+                <arg key="milestone.datecreated"/>
+            </field>
+            <field property="description" depends="required">
+                <arg key="milestone.description"/>
+            </field>
+            <field property="duedate" depends="required">
+                <arg key="milestone.duedate"/>
+            </field>
+        </form>
+        <!--Milestone-END-->
     </formset>
 </form-validation>

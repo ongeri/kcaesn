@@ -12,5 +12,7 @@
         <mapping class="com.ubuniworks.model.Role"/>
         <mapping class="com.ubuniworks.model.Idea"/>
         <mapping class="com.ubuniworks.model.Ideabody"/>
+        <mapping class="com.ubuniworks.model.Comment"/>
+        <mapping class="com.ubuniworks.model.Milestone"/>
     </session-factory>
 </hibernate-configuration>

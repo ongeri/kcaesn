@@ -21,12 +21,27 @@
     <c:set var="test" value="${idea.ideabody.content}"/>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div><h2>${idea.title}</h2></div>
+            <div><h3>${idea.title}</h3></div>
             <div>${idea.description}</div>
         </div>
         <div class="panel-body">
-            <%--<div><c:out value="idea.ideabody.content"></c:out></div>--%>
-            <% out.println(StringEscapeUtils.unescapeHtml(String.valueOf(pageContext.getAttribute("test"))));%></div>
+            <ul class="nav nav-tabs" id="myTab" style="border-bottom:1px solid #DDDDDD;">
+                <li class="active"><a data-target="#details" data-toggle="tab">Details</a></li>
+                <li><a data-target="#milestones" data-toggle="tab">Milestones</a></li>
+                <li><a data-target="#comments" data-toggle="tab">Comments</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="details">
+                    <% out.println(StringEscapeUtils.unescapeHtml(String.valueOf(pageContext.getAttribute("test"))));%>
+                </div>
+                <div class="tab-pane" id="milestones">
+                    Message
+                </div>
+                <div class="tab-pane" id="comments">
+                    Comments
+                </div>
+            </div>
+        </div>
         <div class="panel-footer"></div>
     </div>
 </div>
