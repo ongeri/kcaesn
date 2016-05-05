@@ -11,6 +11,8 @@
     <title><decorator:title/> | <fmt:message key="webapp.name"/></title>
     <t:assets type="css"/>
     <decorator:head/>
+    <t:assets type="js"/>
+    <%= (request.getAttribute("scripts") != null) ? request.getAttribute("scripts") : "" %>
 </head>
 <body<decorator:getProperty property="body.id" writeEntireProperty="true"/><decorator:getProperty property="body.class"
                                                                                                   writeEntireProperty="true"/>>
@@ -25,14 +27,12 @@
             </button>
             <a class="navbar-brand" href="<c:url value='/'/>"><fmt:message key="webapp.name"/></a>
         </div>
-        <div class="left">
-            <%@ include file="/common/menu.jsp" %>
-            <c:if test="${pageContext.request.locale.language ne 'en'}">
-                <div id="switchLocale"><a href="<c:url value='/?locale=en'/>">
-                    <fmt:message key="webapp.name"/> in English</a>
-                </div>
-            </c:if>
-        </div>
+        <%@ include file="/common/menu.jsp" %>
+        <c:if test="${pageContext.request.locale.language ne 'en'}">
+            <div id="switchLocale"><a href="<c:url value='/?locale=en'/>">
+                <fmt:message key="webapp.name"/> in English</a>
+            </div>
+        </c:if>
     </div>
 </div>
 <div class="container" id="content">
@@ -61,7 +61,5 @@
                 key="company.name"/></a>
         </span>
 </div>
-<t:assets type="js"/>
-<%= (request.getAttribute("scripts") != null) ? request.getAttribute("scripts") : "" %>
 </body>
 </html>

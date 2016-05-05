@@ -35,7 +35,10 @@
                     <% out.println(StringEscapeUtils.unescapeHtml(String.valueOf(pageContext.getAttribute("test"))));%>
                 </div>
                 <div class="tab-pane" id="milestones">
-                    Message
+                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"
+                            id="addmilestonebtn">Add Milestone
+                    </button>
+                    <div id="milestonescontent"></div>
                 </div>
                 <div class="tab-pane" id="comments">
                     Comments
@@ -45,3 +48,20 @@
         <div class="panel-footer"></div>
     </div>
 </div>
+<!-- Modal<%--#FEFA5A--%>-->
+<div id="myModal" class="modal fade" role="dialog">
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#addmilestonebtn").click(function () {
+            $.ajax({
+                url: '/milestoneform?ajax=true&ididea=${idea.ididea}',
+                success: function (data) {
+                    $('#myModal').html(data)
+                },
+                type: 'GET'
+            });
+        });
+    });
+</script>

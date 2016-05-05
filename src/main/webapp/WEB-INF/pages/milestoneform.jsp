@@ -1,74 +1,92 @@
-<%@ include file="/common/taglibs.jsp"%>
+<%@ include file="/common/taglibs.jsp" %>
 
-<head>
-    <title><fmt:message key="milestoneDetail.title"/></title>
-    <meta name="menu" content="MilestoneMenu"/>
-    <meta name="heading" content="<fmt:message key='milestoneDetail.heading'/>"/>
-</head>
+<%--<c:set var="delObject" scope="request"><fmt:message key="milestoneList.milestone"/></c:set>--%>
+<%--<script type="text/javascript">var msgDelConfirm =--%>
+<%--"<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";--%>
+<%--</script>--%>
 
-<c:set var="delObject" scope="request"><fmt:message key="milestoneList.milestone"/></c:set>
-<script type="text/javascript">var msgDelConfirm =
-   "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
-</script>
+<div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Milestone Details</h4>
+        </div>
+        <form:form commandName="milestone" method="post" action="milestoneform" id="milestoneForm"
+                   onsubmit="return validateMilestone(this)">
+            <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
+            <div class="modal-body">
+                <form:hidden path="idmilestone"/>
+                <form:hidden path="idea"/>
+                <spring:bind path="milestone.name">
+                <div class="form-group row ${(not empty status.errorMessage) ? ' has-error' : ''}">
+                    </spring:bind>
+                    <appfuse:label key="milestone.name" styleClass="control-label col-sm-4"/>
+                    <div class="input-group date col-sm-8"><form:input cssClass="form-control" path="name"
+                                                                       id="name" maxlength="19"/>
+                    </div>
+                    <form:errors path="name" cssClass="help-block"/>
+                </div>
+                <spring:bind path="milestone.description">
+                <div class="form-group row ${(not empty status.errorMessage) ? ' has-error' : ''}">
+                    </spring:bind>
+                    <appfuse:label key="milestone.description" styleClass="control-label col-sm-4"/>
+                    <div class="input-group date col-sm-8">
+                        <form:input cssClass="form-control" path="description" id="description" maxlength="255"/>
+                    </div>
+                    <form:errors path="description" cssClass="help-block"/>
+                </div>
+                <spring:bind path="milestone.duedate">
+                <div class="form-group row ${(not empty status.errorMessage) ? ' has-error' : ''}">
+                    </spring:bind>
+                    <appfuse:label key="milestone.duedate" styleClass="control-label col-sm-4"/>
+                    <div class="input-group date col-sm-8" data-provide="datepicker">
+                        <form:input cssClass="form-control date-picker" path="duedate" id="duedate" maxlength="19"/>
 
-<div class="col-sm-3">
-    <h2><fmt:message key="milestoneDetail.heading"/></h2>
-    <fmt:message key="milestoneDetail.message"/>
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                    <form:errors path="duedate" cssClass="help-block"/>
+                </div>
+                <!-- todo: change this to read the identifier field from the other pojo -->
+                    <%--<form:select cssClass="form-control" path="idea" items="ideaList" itemLabel="label" itemValue="value"/>--%>
+                <!-- todo: change this to read the identifier field from the other pojo -->
+                <div class="form-group row ${(not empty status.errorMessage) ? ' has-error' : ''}">
+                    <appfuse:label key="milestone.parentMilestone" styleClass="control-label col-sm-4"/>
+                    <div class="input-group date col-sm-8">
+                        <form:select cssClass="form-control" path="parentMilestone" items="${otherMilestones}"
+                                     itemLabel="name" itemValue="idmilestone"/>
+                    </div>
+                    <form:errors path="parentMilestone" cssClass="help-block"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-sm" id="save" name="save"
+                        onclick="bCancel=false">
+                    <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
+                </button>
+                <c:if test="${not empty milestone.idmilestone}">
+                    <button type="submit" class="btn btn-danger btn-sm" id="delete" name="delete"
+                            onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
+                        <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
+                    </button>
+                </c:if>
+
+                <button type="submit" class="btn btn-default btn-sm" data-dismiss="modal" id="cancel" name="cancel"
+                        onclick="bCancel=true">
+                    <i class="icon-remove"></i> <fmt:message key="button.cancel"/>
+                </button>
+            </div>
+        </form:form>
+    </div>
 </div>
-
-<div class="col-sm-6">
-<form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-<form:form commandName="milestone" method="post" action="milestoneform" cssClass="well"
-           id="milestoneForm" onsubmit="return validateMilestone(this)">
-<form:hidden path="idmilestone"/>
-    <spring:bind path="milestone.datecreated">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="milestone.datecreated" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="datecreated" id="datecreated"  maxlength="19"/>
-        <form:errors path="datecreated" cssClass="help-block"/>
-    </div>
-    <spring:bind path="milestone.description">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="milestone.description" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="description" id="description"  maxlength="255"/>
-        <form:errors path="description" cssClass="help-block"/>
-    </div>
-    <spring:bind path="milestone.duedate">
-    <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
-    </spring:bind>
-        <appfuse:label key="milestone.duedate" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="duedate" id="duedate"  maxlength="19"/>
-        <form:errors path="duedate" cssClass="help-block"/>
-    </div>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="idea" items="ideaList" itemLabel="label" itemValue="value"/>
-    <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="milestone" items="milestoneList" itemLabel="label" itemValue="value"/>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
-            <i class="icon-ok icon-white"></i> <fmt:message key="button.save"/>
-        </button>
-        <c:if test="${not empty milestone.idmilestone}">
-            <button type="submit" class="btn btn-danger" id="delete" name="delete" onclick="bCancel=true;return confirmMessage(msgDelConfirm)">
-                <i class="icon-trash icon-white"></i> <fmt:message key="button.delete"/>
-            </button>
-        </c:if>
-
-        <button type="submit" class="btn btn-default" id="cancel" name="cancel" onclick="bCancel=true">
-            <i class="icon-remove"></i> <fmt:message key="button.cancel"/>
-        </button>
-    </div>
-</form:form>
-</div>
-
 <v:javascript formName="milestone" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/scripts/validator.jsp'/>"></script>
 
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("input[type='text']:visible:enabled:first", document.forms['milestoneForm']).focus();
+        $(".date-picker").datepicker();
     });
 </script>

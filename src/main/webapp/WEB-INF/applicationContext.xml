@@ -27,20 +27,22 @@
 
 
     <!--CommentManager-START-->
-    <bean id="commentManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="commentManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Comment"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--CommentManager-END-->
 
     <!--MilestoneManager-START-->
-    <bean id="milestoneManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="milestoneManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Milestone"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>

@@ -70,8 +70,8 @@
         <!--Comment-END-->
         <!--Milestone-START-->
         <form name="milestone">
-            <field property="datecreated" depends="required">
-                <arg key="milestone.datecreated"/>
+            <field property="name" depends="required">
+                <arg key="milestone.name"/>
             </field>
             <field property="description" depends="required">
                 <arg key="milestone.description"/>

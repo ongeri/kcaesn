@@ -40,8 +40,10 @@
     <display:column property="ididea" sortable="true" href="ideaform" media="html"
                     paramId="ididea" paramProperty="ididea" titleKey="idea.ididea"/>
     <display:column property="ididea" media="csv excel xml pdf" titleKey="idea.ididea"/>
-    <display:column property="description" sortable="true" titleKey="idea.description"/>
+    <display:column title="Actions"><a class="btn btn-xs btn-link"
+                                       href="ideadisplay/?ididea=${idea.ididea}">Details</a></display:column>
     <display:column property="title" sortable="true" titleKey="idea.title"/>
+    <display:column property="description" sortable="true" titleKey="idea.description"/>
 
     <display:setProperty name="paging.banner.item_name"><fmt:message key="ideaList.idea"/></display:setProperty>
     <display:setProperty name="paging.banner.items_name"><fmt:message key="ideaList.ideas"/></display:setProperty>
