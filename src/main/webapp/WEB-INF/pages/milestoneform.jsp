@@ -12,12 +12,12 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Milestone Details</h4>
         </div>
-        <form:form commandName="milestone" method="post" action="milestoneform" id="milestoneForm"
+        <form:form commandName="milestone" method="post" action="/milestoneform" id="milestoneForm"
                    onsubmit="return validateMilestone(this)">
             <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
             <div class="modal-body">
                 <form:hidden path="idmilestone"/>
-                <form:hidden path="idea"/>
+                <form:hidden path="idea.ididea"/>
                 <spring:bind path="milestone.name">
                 <div class="form-group row ${(not empty status.errorMessage) ? ' has-error' : ''}">
                     </spring:bind>

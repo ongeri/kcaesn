@@ -1,10 +1,8 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import org.appfuse.service.GenericManager;
 import com.ubuniworks.model.Comment;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,14 +20,14 @@ import java.util.Locale;
 public class CommentFormController extends BaseFormController {
     private GenericManager<Comment, Integer> commentManager = null;
 
-    @Autowired
-    public void setCommentManager(@Qualifier("commentManager") GenericManager<Comment, Integer> commentManager) {
-        this.commentManager = commentManager;
-    }
-
     public CommentFormController() {
         setCancelView("redirect:comments");
         setSuccessView("redirect:comments");
+    }
+
+    @Autowired
+    public void setCommentManager(@Qualifier("commentManager") GenericManager<Comment, Integer> commentManager) {
+        this.commentManager = commentManager;
     }
 
     @ModelAttribute

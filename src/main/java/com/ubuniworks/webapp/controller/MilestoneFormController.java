@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyEditorSupport;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -118,6 +119,9 @@ public class MilestoneFormController extends BaseFormController {
             milestoneManager.remove(milestone.getIdmilestone());
             saveMessage(request, getText("milestone.deleted", locale));
         } else {
+            if (isNew) {
+                milestone.setDatecreated(new Date());
+            }
             milestoneManager.save(milestone);
             String key = (isNew) ? "milestone.added" : "milestone.updated";
             saveMessage(request, getText(key, locale));

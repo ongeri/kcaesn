@@ -1,9 +1,8 @@
 package com.ubuniworks.webapp.controller;
 
-import org.appfuse.dao.SearchException;
-import org.appfuse.service.GenericManager;
+import com.ubuniworks.dao.SearchException;
 import com.ubuniworks.model.Milestone;
-
+import com.ubuniworks.service.GenericManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
