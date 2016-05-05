@@ -6,6 +6,7 @@
         <fmt:message key="ideaDetail.title"/></title>
     <meta name="menu" content="IdeaMenu"/>
     <meta name="heading" content="<fmt:message key='ideaDetail.heading'/>"/>
+    <link href='/styles/timelinecss.css' rel='stylesheet' type='text/css'>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="ideaList.idea"/></c:set>
@@ -35,10 +36,47 @@
                     <% out.println(StringEscapeUtils.unescapeHtml(String.valueOf(pageContext.getAttribute("test"))));%>
                 </div>
                 <div class="tab-pane" id="milestones">
-                    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal"
-                            id="addmilestonebtn">Add Milestone
-                    </button>
-                    <div id="milestonescontent"></div>
+                    <div>
+                        <button type="button" class="btn btn-success btn-xs right" data-toggle="modal"
+                                data-target="#myModal"
+                                id="addmilestonebtn">
+                            Add Milestone
+                        </button>
+                    </div>
+                    <div id="milestonescontent">
+                        <%--<%@ include file="/common/timeline.jsp" %>--%>
+                        <ul class="timeline">
+                            <c:forEach items="${idea.milestones}" var="milestone" varStatus="loop">
+                                <li class="${loop.index%2==0 ? '' : 'timeline-inverted'}">
+                                    <div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i>
+                                    </div>
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h4 class="timeline-title">${milestone.name}</h4>
+                                        </div>
+                                        <div>Due Date:${milestone.duedate}</div>
+                                        <div class="timeline-body">
+                                            <p>${milestone.description}</p>
+                                            <hr>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
+                                                        data-toggle="dropdown">
+                                                    <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">Action</a></li>
+                                                    <li><a href="#">Another action</a></li>
+                                                    <li><a href="#">Something else here</a></li>
+                                                    <li class="divider"></li>
+                                                    <li><a href="#">Separated link</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
                 </div>
                 <div class="tab-pane" id="comments">
                     Comments

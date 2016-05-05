@@ -94,7 +94,7 @@ public class Comment implements java.io.Serializable {
         this.commenttext = commenttext;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "comment")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
     public Set<Comment> getComments() {
         return this.comments;
     }

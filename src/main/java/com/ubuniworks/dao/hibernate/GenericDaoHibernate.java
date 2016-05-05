@@ -94,7 +94,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     @SuppressWarnings("unchecked")
     public List<T> getAll() {
         Session sess = getSession();
-        return sess.createCriteria(persistentClass).list();
+        return new ArrayList<T>(new LinkedHashSet<T>(sess.createCriteria(persistentClass).list()));
     }
 
     /**
@@ -102,8 +102,9 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      */
     @SuppressWarnings("unchecked")
     public List<T> getAllDistinct() {
-        Collection<T> result = new LinkedHashSet<T>(getAll());
-        return new ArrayList<T>(result);
+//        Collection<T> result = new LinkedHashSet<T>(getAll());
+//        return new ArrayList<T>(result);
+        return getAll();
     }
 
     /**
