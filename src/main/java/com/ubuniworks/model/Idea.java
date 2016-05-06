@@ -24,7 +24,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Idea implements java.io.Serializable {
 
     private Integer ididea;
-    private User appUser;
+    private User user;
     private Ideabody ideabody;
     private String description;
     private String title;
@@ -40,8 +40,8 @@ public class Idea implements java.io.Serializable {
         this.title = title;
     }
 
-    public Idea(User appUser, Ideabody ideabody, String description, String title, Set<User> likers) {
-        this.appUser = appUser;
+    public Idea(User user, Ideabody ideabody, String description, String title, Set<User> likers) {
+        this.user = user;
         this.ideabody = ideabody;
         this.description = description;
         this.title = title;
@@ -63,11 +63,11 @@ public class Idea implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User getUser() {
-        return this.appUser;
+        return this.user;
     }
 
     public void setUser(User appUser) {
-        this.appUser = appUser;
+        this.user = appUser;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

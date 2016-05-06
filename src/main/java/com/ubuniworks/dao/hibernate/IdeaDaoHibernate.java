@@ -25,6 +25,7 @@ public class IdeaDaoHibernate extends GenericDaoHibernate<Idea, Integer> impleme
         idea = get(id);
         idea.getComments();
         idea.getMilestones();
+        idea.getIdeabody();
         return idea;
     }
 }
