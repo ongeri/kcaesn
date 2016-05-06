@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
 import com.ubuniworks.model.Idea;
-import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/ideadisplay*")
 public class IdeaDisplayController extends BaseFormController {
-    private GenericManager<Idea, Integer> ideaManager = null;
+    private IdeaManager ideaManager = null;
 
     public IdeaDisplayController() {
         setCancelView("redirect:ideas");
@@ -23,7 +22,7 @@ public class IdeaDisplayController extends BaseFormController {
     }
 
     @Autowired
-    public void setIdeaManager(@Qualifier("ideaManager") GenericManager<Idea, Integer> ideaManager) {
+    public void setIdeaManager(IdeaManager ideaManager) {
         this.ideaManager = ideaManager;
     }
 
@@ -34,7 +33,7 @@ public class IdeaDisplayController extends BaseFormController {
         String ididea = request.getParameter("ididea");
 
         if (!StringUtils.isBlank(ididea)) {
-            Idea idea = ideaManager.get(new Integer(ididea));
+            Idea idea = ideaManager.getWithCommentsAndMilestones(new Integer(ididea));
             return idea;
         }
 

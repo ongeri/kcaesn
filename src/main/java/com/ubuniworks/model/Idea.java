@@ -70,7 +70,7 @@ public class Idea implements java.io.Serializable {
         this.appUser = appUser;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @Cascade(CascadeType.ALL)
     @JoinColumn(name = "idideabody")
     public Ideabody getIdeabody() {
@@ -101,7 +101,7 @@ public class Idea implements java.io.Serializable {
         this.title = title;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idea")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
     public Set<Comment> getComments() {
         return this.comments;
     }
@@ -110,7 +110,7 @@ public class Idea implements java.io.Serializable {
         this.comments = comments;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idea")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
     public Set<Milestone> getMilestones() {
         return this.milestones;
     }
