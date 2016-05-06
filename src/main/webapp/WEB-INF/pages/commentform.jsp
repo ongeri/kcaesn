@@ -18,7 +18,7 @@
 
 <div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
-    <form:form commandName="comment" method="post" action="/commentform" cssClass="well"
+    <form:form commandName="comment" method="post" action="commentform" cssClass="well"
                id="commentForm" onsubmit="return validateComment(this)">
 <form:hidden path="idcomment"/>
     <!-- todo: change this to read the identifier field from the other pojo -->

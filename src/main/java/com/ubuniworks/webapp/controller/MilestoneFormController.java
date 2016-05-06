@@ -3,12 +3,15 @@ package com.ubuniworks.webapp.controller;
 import com.ubuniworks.model.Idea;
 import com.ubuniworks.model.Milestone;
 import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.webapp.propertyeditor.IdeaPropertyEditor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,17 +45,6 @@ public class MilestoneFormController extends BaseFormController {
         this.ideaManager = ideaManager;
     }
 
-    @Override
-    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
-        binder.registerCustomEditor(Idea.class, "idea", new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) {
-                Idea type = ideaManager.get(Integer.valueOf(text));
-                setValue(type);
-            }
-        });
-    }
-
     @ModelAttribute("otherMilestones")
     public List<Milestone> getOtherMilestones(HttpServletRequest request) {
         String idmilestone = request.getParameter("idmilestone");
@@ -82,6 +74,23 @@ public class MilestoneFormController extends BaseFormController {
         }
 
         return milestone;
+    }
+
+    @InitBinder
+    public void initBinderAll(WebDataBinder binder) {
+        binder.registerCustomEditor(Idea.class, new IdeaPropertyEditor());
+    }
+
+
+    @Override
+    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
+        binder.registerCustomEditor(Idea.class, "idea", new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                Idea type = ideaManager.get(Integer.valueOf(text));
+                setValue(type);
+            }
+        });
     }
 
     @RequestMapping(method = RequestMethod.POST)

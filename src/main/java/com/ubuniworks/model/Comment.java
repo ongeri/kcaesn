@@ -5,6 +5,7 @@ import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,6 +25,7 @@ public class Comment implements java.io.Serializable {
     private String commenttext;
     private Set<Comment> comments = new HashSet<Comment>(0);
     private String title;
+    private Date datecreated;
 
     public Comment() {
     }
@@ -112,4 +114,17 @@ public class Comment implements java.io.Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "datecreated", length = 19)
+    @Field
+    @Transient
+    public Date getDatecreated() {
+        return this.datecreated;
+    }
+
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
+    }
+
 }

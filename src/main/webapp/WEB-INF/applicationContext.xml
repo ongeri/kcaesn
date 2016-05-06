@@ -15,9 +15,9 @@
     <!-- Add new DAOs here -->
 
     <!--IdeaManager-START-->
-    <bean id="ideaManager" class="com.ubuniworks.service.impl.IdeaManagerImpl">
+    <bean id="ideaManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="com.ubuniworks.dao.hibernate.IdeaDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Idea"/>
                 <property name="sessionFactory" ref="sessionFactory"/>
             </bean>

@@ -9,6 +9,7 @@ import org.hibernate.search.annotations.Indexed;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,13 +25,14 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Idea implements java.io.Serializable {
 
     private Integer ididea;
-    private User user;
+    private User appUser;
     private Ideabody ideabody;
     private String description;
     private String title;
     private Set<Comment> comments = new HashSet<Comment>(0);
     private Set<Milestone> milestones = new HashSet<Milestone>(0);
     private Set<User> likers = new HashSet<User>(0);
+    private Date datecreated;
 
     public Idea() {
     }
@@ -40,8 +42,8 @@ public class Idea implements java.io.Serializable {
         this.title = title;
     }
 
-    public Idea(User user, Ideabody ideabody, String description, String title, Set<User> likers) {
-        this.user = user;
+    public Idea(User appUser, Ideabody ideabody, String description, String title, Set<User> likers) {
+        this.appUser = appUser;
         this.ideabody = ideabody;
         this.description = description;
         this.title = title;
@@ -63,14 +65,14 @@ public class Idea implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User getUser() {
-        return this.user;
+        return this.appUser;
     }
 
     public void setUser(User appUser) {
-        this.user = appUser;
+        this.appUser = appUser;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)
     @JoinColumn(name = "idideabody")
     public Ideabody getIdeabody() {
@@ -101,7 +103,7 @@ public class Idea implements java.io.Serializable {
         this.title = title;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idea")
     public Set<Comment> getComments() {
         return this.comments;
     }
@@ -110,7 +112,7 @@ public class Idea implements java.io.Serializable {
         this.comments = comments;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idea")
     public Set<Milestone> getMilestones() {
         return this.milestones;
     }
@@ -129,6 +131,18 @@ public class Idea implements java.io.Serializable {
 
     public void setLikers(Set<User> appUsers) {
         this.likers = appUsers;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "datecreated", length = 19)
+    @Field
+    @Transient
+    public Date getDatecreated() {
+        return this.datecreated;
+    }
+
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
     }
 
 }
