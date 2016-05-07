@@ -2,6 +2,7 @@ package com.ubuniworks.service;
 
 import com.ubuniworks.model.Comment;
 import com.ubuniworks.model.Idea;
+import com.ubuniworks.model.Milestone;
 
 import java.util.Set;
 
@@ -13,4 +14,8 @@ import java.util.Set;
  */
 public interface IdeaManager extends GenericManager<Idea, Integer> {
     Set<Comment> getTopLevelComments(Idea idea);
+
+    Set<Milestone> getMilestones(Idea idea);
+
+    Idea getWithIdeabody(Integer ididea);
 }

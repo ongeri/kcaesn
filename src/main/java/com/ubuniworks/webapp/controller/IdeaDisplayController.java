@@ -43,6 +43,7 @@ public class IdeaDisplayController extends BaseFormController {
         if (!StringUtils.isBlank(ididea)) {
             Idea idea = ideaManager.get(new Integer(ididea));
             idea.setComments(ideaManager.getTopLevelComments(idea));
+            idea.setMilestones(ideaManager.getMilestones(idea));
             return idea;
         }
 

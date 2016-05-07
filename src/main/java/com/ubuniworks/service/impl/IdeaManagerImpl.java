@@ -3,6 +3,7 @@ package com.ubuniworks.service.impl;
 import com.ubuniworks.dao.IdeaDao;
 import com.ubuniworks.model.Comment;
 import com.ubuniworks.model.Idea;
+import com.ubuniworks.model.Milestone;
 import com.ubuniworks.service.IdeaManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,4 +29,15 @@ public class IdeaManagerImpl extends GenericManagerImpl<Idea, Integer> implement
     public Set<Comment> getTopLevelComments(Idea idea) {
         return ideaDao.getTopLevelComments(idea);
     }
+
+    @Override
+    public Set<Milestone> getMilestones(Idea idea) {
+        return ideaDao.getGetMilestones(idea);
+    }
+
+    @Override
+    public Idea getWithIdeabody(Integer ididea) {
+        return ideaDao.getWithIdeabody(ididea);
+    }
+
 }

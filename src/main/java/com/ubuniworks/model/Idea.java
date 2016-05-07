@@ -103,7 +103,7 @@ public class Idea implements java.io.Serializable {
         this.title = title;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idea")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
     public Set<Comment> getComments() {
         return this.comments;
     }
@@ -112,7 +112,7 @@ public class Idea implements java.io.Serializable {
         this.comments = comments;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "idea")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
     public Set<Milestone> getMilestones() {
         return this.milestones;
     }

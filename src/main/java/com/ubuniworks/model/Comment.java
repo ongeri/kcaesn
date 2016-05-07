@@ -118,7 +118,6 @@ public class Comment implements java.io.Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "datecreated", length = 19)
     @Field
-    @Transient
     public Date getDatecreated() {
         return this.datecreated;
     }

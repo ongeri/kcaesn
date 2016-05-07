@@ -9,7 +9,7 @@
                     aria-expanded="false" aria-controls="collapseExample"><span
                     class="glyphicon glyphicon-minus" aria-hidden="true"></span>
             </button>
-            <span class="label label-info">12314</span> vertu 12 sat once yazmis
+            <span class="label label-info">12314</span> ${comment.title}
         </div>
 
         <div class="panel-collapse collapse in" id="collapse${comment.idcomment}">
