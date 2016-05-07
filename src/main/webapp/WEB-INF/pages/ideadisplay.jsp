@@ -89,21 +89,36 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="comments">
-                    <div>
-                        <div id="commentformbox"></div>
-                        <button type="button" class="btn btn-default btn-xs right" id="addcommentbtn">
-                            Add Comment
-                        </button>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <%--<div id="commentformbox"></div>--%>
+                            <div class="collapse" id="maincommentformbox${idea.ididea}">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="maincommenttitle${idea.ididea}">Title</label>
+                                        <input id="maincommenttitle${idea.ididea}"
+                                               name="maincommenttitle${idea.ididea}"
+                                               class="form-control" value="" maxlength="19"
+                                               type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="maincommenttext${idea.ididea}">Your Comment</label>
+                                                            <textarea name="comment" id="maincommenttext${idea.ididea}"
+                                                                      class="form-control"
+                                                                      rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-xs btn-default">Send
+                                    </button>
+                                </form>
+                            </div>
+                            <a class="btn btn-default btn-xs pull-right" role="button"
+                               data-toggle="collapse"
+                               href="#maincommentformbox${idea.ididea}"
+                               aria-expanded="false"
+                               aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
+                                Add Comment</a>
+                        </div>
                     </div>
-                    Comments
-                    <%--<c:forEach items="${idea.comments}" var="comment" varStatus="loop">--%>
-                    <%--<ul>--%>
-                    <%--<li>${comment.title}</li>--%>
-                    <%--<c:set var="node" value="${comment}" scope="request"/>--%>
-                    <%--<jsp:include page="commentnode.jsp"/>--%>
-                    <%--</ul>--%>
-                    <%--</c:forEach>--%>
-
                     <div class="post-comments">
 
                         <div class="row">
@@ -117,20 +132,20 @@
                                                 aria-expanded="false" aria-controls="collapseExample"><span
                                                 class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                         </button>
-                                        <span class="label label-info">12314</span> ${comment.title}
+                                        <a href="userprofile?userid=${comment.user.id}"> <b>${comment.user.username}</b></a> ${comment.title}
                                     </div>
 
                                     <div class="panel-collapse collapse in" id="collapse${comment.idcomment}">
 
                                         <div class="media-left">
                                             <div class="vote-wrap">
-                                                <div class="save-post">
-                                                    <a href="#"><span class="glyphicon glyphicon-star"
-                                                                      aria-label="Save"></span></a>
-                                                </div>
-                                                <div class="vote up">
-                                                    <i class="glyphicon glyphicon-menu-up"></i>
-                                                </div>
+                                                    <%--<div class="save-post">--%>
+                                                    <%--<a href="#"><span class="glyphicon glyphicon-star"--%>
+                                                    <%--aria-label="Save"></span></a>--%>
+                                                    <%--</div>--%>
+                                                    <%--<div class="vote up">--%>
+                                                    <%--<i class="glyphicon glyphicon-menu-up"></i>--%>
+                                                    <%--</div>--%>
                                                 <div class="vote inactive">
                                                     <i class="glyphicon glyphicon-menu-down"></i>
                                                 </div>
@@ -141,16 +156,34 @@
 
 
                                         <div class="media-body">
-                                            <p>${comment.commenttext}</p>
+                                            <div>${comment.commenttext}</div>
 
                                             <div class="comment-meta">
-                                                <span><a href="#">delete</a></span>
-                                                <span><a href="#">report</a></span>
-                                                <span><a href="#">hide</a></span>
-                            <span>
-                              <a class="" role="button" data-toggle="collapse" href="#reply${comment.idcomment}"
-                                 aria-expanded="false" aria-controls="collapseExample">reply</a>
-                            </span>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="pull-left">
+                        <span>
+                                                  <a class="" role="button"
+                                                     data-toggle="collapse"
+                                                     href="#reply${comment.idcomment}"
+                                                     aria-expanded="false"
+                                                     aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
+                                                      Reply</a>
+                                                </span>
+                                                        </div>
+                                                        <div class="pull-right"> <span><a class="" role="button"
+                                                                                          id="like"><i
+                                                                class="fa fa-thumbs-o-up"></i>Vote
+                                                            Up</a>
+                                                    </span>
+                                                    <span><a class="" role="button" id="dislike"><i
+                                                            class="fa fa-thumbs-o-down"></i>Vote
+                                                        Down</a>
+                                                    </span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
 
                                                 <div class="collapse" id="reply${comment.idcomment}">
                                                     <form>

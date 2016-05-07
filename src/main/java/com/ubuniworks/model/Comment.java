@@ -56,7 +56,7 @@ public class Comment implements java.io.Serializable {
         this.idcomment = idcomment;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "commentorid", nullable = false)
     public User getUser() {
         return this.user;
