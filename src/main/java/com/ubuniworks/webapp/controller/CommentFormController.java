@@ -21,7 +21,7 @@ public class CommentFormController extends BaseFormController {
     private GenericManager<Comment, Integer> commentManager = null;
 
     public CommentFormController() {
-        setCancelView("redirect:comments");
+        setCancelView("redirect:ideas");
         setSuccessView("redirect:comments");
     }
 

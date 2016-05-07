@@ -11,6 +11,7 @@
     <title><decorator:title/> | <fmt:message key="webapp.name"/></title>
     <t:assets type="css"/>
     <link href="/styles/font-awesome-4.6.2/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="/styles/sidemenu.css" rel='stylesheet' type='text/css'>
     <%--<link href="/styles/bootswatch-paper.css" rel='stylesheet' type='text/css'>--%>
     <decorator:head/>
     <t:assets type="js"/>

@@ -18,11 +18,12 @@
 </script>
 
 <div class="col-sm-3">
-    <h2><fmt:message key="ideaDetail.heading"/></h2>
-    <fmt:message key="ideaDetail.message"/>
+    <%@include file="ideasidebar.jsp" %>
 </div>
 
 <div class="col-sm-9">
+    <h2><fmt:message key="ideaDetail.heading"/></h2>
+    <fmt:message key="ideaDetail.message"/>
     <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
     <form:form commandName="idea" method="post" action="ideaform" cssClass="well"
                id="ideaForm" onsubmit="return validateIdea(this)">
@@ -46,7 +47,7 @@
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
         <appfuse:label key="ideabody.content" styleClass="control-label"/>
-        <form:input cssClass="form-control" path="ideabody.content" id="content" maxlength="255"/>
+        <form:input cssClass="form-control" path="ideabody.content" id="content" maxlength="255" rows="10"/>
         <form:errors path="ideabody.content" cssClass="help-block"/>
         </div>
         <!-- todo: change this to read the identifier field from the other pojo -->

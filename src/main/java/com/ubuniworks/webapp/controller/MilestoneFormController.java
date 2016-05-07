@@ -31,7 +31,7 @@ public class MilestoneFormController extends BaseFormController {
     private GenericManager<Idea, Integer> ideaManager = null;
 
     public MilestoneFormController() {
-        setCancelView("redirect:milestones");
+        setCancelView("redirect:ideas");
         setSuccessView("redirect:milestones");
     }
 
