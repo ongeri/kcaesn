@@ -47,13 +47,15 @@
                     <div class="collapse" id="reply${comment.idcomment}">
                         <form>
                             <div class="form-group">
-                                <label for="commentt">Your Comment</label>
-                                                                        <textarea name="comment" id=commentt
-                                                                                  class="form-control"
-                                                                                  rows="3"></textarea>
+                                <label for="commenttitle${comment.idcomment}">Title</label>
+                                <input id="commenttitle${comment.idcomment}" name="commenttitle${comment.idcomment}"
+                                       class="form-control" value="" maxlength="19" type="text">
                             </div>
-                            <button type="submit" class="btn btn-default">Send
-                            </button>
+                            <div class="form-group">
+                                <label for="commentt">Your Comment</label>
+                                <textarea name="comment" id=commentt class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-xs btn-default">Send</button>
                         </form>
                     </div>
                 </div>
