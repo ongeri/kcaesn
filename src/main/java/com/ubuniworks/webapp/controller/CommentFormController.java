@@ -33,7 +33,7 @@ public class CommentFormController extends BaseFormController {
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Comment showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idcomment = request.getParameter("idcomment");
 
         if (!StringUtils.isBlank(idcomment)) {
@@ -46,7 +46,7 @@ public class CommentFormController extends BaseFormController {
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Comment comment, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -73,9 +73,7 @@ public class CommentFormController extends BaseFormController {
             String key = (isNew) ? "comment.added" : "comment.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:commentform?idcomment=" + comment.getIdcomment();
-            }
+            success = "redirect:ideadisplay?ididea=" + comment.getIdea().getIdidea() + "#comments";
         }
 
         return success;

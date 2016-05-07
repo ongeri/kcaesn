@@ -6,23 +6,12 @@
     <meta name="heading" content="<fmt:message key='commentDetail.heading'/>"/>
 </head>
 
-<c:set var="delObject" scope="request"><fmt:message key="commentList.comment"/></c:set>
-<script type="text/javascript">var msgDelConfirm =
-   "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
-</script>
-
-<div class="col-sm-3">
-    <h2><fmt:message key="commentDetail.heading"/></h2>
-    <fmt:message key="commentDetail.message"/>
-</div>
-
-<div class="col-sm-6">
 <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
     <form:form commandName="comment" method="post" action="commentform" cssClass="well"
                id="commentForm" onsubmit="return validateComment(this)">
 <form:hidden path="idcomment"/>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="comment" items="commentList" itemLabel="label" itemValue="value"/>
+        <%--<form:select cssClass="form-control" path="comment" items="commentList" itemLabel="label" itemValue="value"/>--%>
     <spring:bind path="comment.commenttext">
     <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
     </spring:bind>
@@ -31,9 +20,9 @@
         <form:errors path="commenttext" cssClass="help-block"/>
     </div>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="idea" items="ideaList" itemLabel="label" itemValue="value"/>
+        <%--<form:select cssClass="form-control" path="idea" items="ideaList" itemLabel="label" itemValue="value"/>--%>
     <!-- todo: change this to read the identifier field from the other pojo -->
-    <form:select cssClass="form-control" path="user" items="userList" itemLabel="label" itemValue="value"/>
+        <%--<form:select cssClass="form-control" path="user" items="userList" itemLabel="label" itemValue="value"/>--%>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary" id="save" name="save" onclick="bCancel=false">
@@ -50,7 +39,6 @@
         </button>
     </div>
 </form:form>
-</div>
 
 <v:javascript formName="comment" cdata="false" dynamicJavascript="true" staticJavascript="false"/>
 <script type="text/javascript" src="<c:url value='/scripts/validator.jsp'/>"></script>

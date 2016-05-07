@@ -126,9 +126,7 @@ public class MilestoneFormController extends BaseFormController {
             String key = (isNew) ? "milestone.added" : "milestone.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:milestoneform?idmilestone=" + milestone.getIdmilestone();
-            }
+            success = "redirect:ideadisplay?ididea=" + milestone.getIdea().getIdidea() + "#milestones";
         }
 
         return success;

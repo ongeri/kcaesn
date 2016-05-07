@@ -24,7 +24,7 @@ public class CommentController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Model handleRequest(@RequestParam(required = false, value = "q") String query)
-    throws Exception {
+            throws Exception {
         Model model = new ExtendedModelMap();
         try {
             model.addAttribute(commentManager.search(query, Comment.class));

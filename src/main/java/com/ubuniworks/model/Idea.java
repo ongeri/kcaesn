@@ -62,7 +62,7 @@ public class Idea implements java.io.Serializable {
         this.ididea = ididea;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     public User getUser() {
         return this.appUser;

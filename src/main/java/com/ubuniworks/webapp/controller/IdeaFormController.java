@@ -69,13 +69,11 @@ public class IdeaFormController extends BaseFormController {
             ideaManager.remove(idea.getIdidea());
             saveMessage(request, getText("idea.deleted", locale));
         } else {
-            ideaManager.save(idea);
+            idea = ideaManager.save(idea);
             String key = (isNew) ? "idea.added" : "idea.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:ideaform?ididea=" + idea.getIdidea();
-            }
+            success = "redirect:ideadisplay?ididea=" + idea.getIdidea() + "#details";
         }
 
         return success;

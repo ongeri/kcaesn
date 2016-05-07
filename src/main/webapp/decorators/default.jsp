@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="<c:url value="/images/favicon.ico"/>"/>
+    <link rel="icon" href="<c:url value="/images/logo-sm.png"/>"/>
     <title><decorator:title/> | <fmt:message key="webapp.name"/></title>
     <t:assets type="css"/>
     <decorator:head/>
@@ -25,7 +25,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<c:url value='/'/>"><fmt:message key="webapp.name"/></a>
+            <a class="navbar-brand" href="<c:url value='/'/>"><img alt="<fmt:message key="webapp.name"/>"
+                                                                   src="/images/a_proper_logo.png"></a>
         </div>
         <%@ include file="/common/menu.jsp" %>
         <c:if test="${pageContext.request.locale.language ne 'en'}">
