@@ -7,77 +7,8 @@
     <meta name="menu" content="IdeaMenu"/>
     <meta name="heading" content="<fmt:message key='ideaDetail.heading'/>"/>
     <link href='/styles/timelinecss.css' rel='stylesheet' type='text/css'>
-    <style type="text/css">
-        .post-comments {
-            padding-bottom: 9px;
-            margin: 5px 0 5px;
-        }
-
-        .comments-nav {
-            border-bottom: 1px solid #eee;
-            margin-bottom: 5px;
-        }
-
-        .post-comments .comment-meta {
-            border-bottom: 1px solid #eee;
-            margin-bottom: 5px;
-        }
-
-        .post-comments .media {
-            border-left: 1px dotted #000;
-            border-bottom: 1px dotted #000;
-            margin-bottom: 5px;
-            padding-left: 10px;
-        }
-
-        .post-comments .media-heading {
-            font-size: 12px;
-            color: grey;
-        }
-
-        .post-comments .comment-meta a {
-            font-size: 12px;
-            color: grey;
-            font-weight: bolder;
-            margin-right: 5px;
-        }
-    </style>
-    <style type="text/css">
-        .mini-submenu {
-            display: none;
-            background-color: rgba(0, 0, 0, 0);
-            border: 1px solid rgba(0, 0, 0, 0.9);
-            border-radius: 4px;
-            padding: 9px;
-            /*position: relative;*/
-            width: 42px;
-
-        }
-
-        .mini-submenu:hover {
-            cursor: pointer;
-        }
-
-        .mini-submenu .icon-bar {
-            border-radius: 1px;
-            display: block;
-            height: 2px;
-            width: 22px;
-            margin-top: 3px;
-        }
-
-        .mini-submenu .icon-bar {
-            background-color: #000;
-        }
-
-        #slide-submenu {
-            background: rgba(0, 0, 0, 0.45);
-            display: inline-block;
-            padding: 0 8px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+    <link href="/styles/comments.css" rel='stylesheet' type='text/css'>
+    <link href="/styles/sidemenu.css" rel='stylesheet' type='text/css'>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="ideaList.idea"/></c:set>
