@@ -50,14 +50,16 @@ public class CommentFormController extends BaseFormController {
     protected Comment showForm(HttpServletRequest request)
             throws Exception {
         String idcomment = request.getParameter("idcomment");
+        String parentcommentid = request.getParameter("parentcommentid");
         String ididea = request.getParameter("ididea");
         Comment comment = new Comment();
 
         if (!StringUtils.isBlank(idcomment)) {
             comment = commentManager.get(new Integer(idcomment));
         } else if (!StringUtils.isBlank(ididea)) {
-            comment = new Comment();
             comment.setIdea(ideaManager.get(Integer.valueOf(ididea)));
+        } else if (!StringUtils.isBlank(parentcommentid)) {
+            comment.setComment(commentManager.get(Integer.valueOf(parentcommentid)));
         }
 
         return comment;
@@ -65,13 +67,20 @@ public class CommentFormController extends BaseFormController {
 
     @Override
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
-        binder.registerCustomEditor(Idea.class, "idea", new PropertyEditorSupport() {
+        binder.registerCustomEditor(Idea.class, "idea.ididea", new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
                 Idea type = ideaManager.get(Integer.valueOf(text));
                 setValue(type);
             }
         });
+//        binder.registerCustomEditor(Comment.class, "comment.idcomment", new PropertyEditorSupport() {
+//            @Override
+//            public void setAsText(String text) {
+//                Comment comment = commentManager.get(Integer.parseInt(text));
+//                setValue(comment);
+//            }
+//        });
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             public String getAsText() {
                 String date = "";
@@ -124,13 +133,25 @@ public class CommentFormController extends BaseFormController {
                 comment.setUser(getUserUtil().getCurrentUser());
                 comment.setDatecreated(new Date());
             }
-            commentManager.save(comment);
+            if (comment.getComment() != null && comment.getComment().getIdcomment() == null) {
+                comment.setComment(null);
+            }
+            if (comment.getIdea() != null && comment.getIdea().getIdidea() == null) {
+                comment.setIdea(null);
+            }
+            comment = commentManager.save(comment);
             String key = (isNew) ? "comment.added" : "comment.updated";
             saveMessage(request, getText(key, locale));
 
-            success = "redirect:ideadisplay?ididea=" + comment.getIdea().getIdidea() + "#comments";
+            success = "redirect:ideadisplay?ididea=" + getIdea(comment).getIdidea() + "#comments";
         }
 
         return success;
+    }
+
+    private Idea getIdea(Comment comment) {
+        if (comment.getIdea() != null)
+            return comment.getIdea();
+        return getIdea(comment.getComment());
     }
 }

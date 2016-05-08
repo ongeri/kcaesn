@@ -45,9 +45,23 @@
                                                   <a class="" role="button"
                                                      data-toggle="collapse"
                                                      href="#reply${comment.idcomment}"
+                                                     id="replyto${comment.idcomment}"
                                                      aria-expanded="false"
                                                      aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
                                                       Reply</a>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("#replyto${comment.idcomment}").click(function () {
+                                        $.ajax({
+                                            url: '/commentform?ajax=true&parentcommentid=${comment.idcomment}',
+                                            success: function (data) {
+                                                $('#reply${comment.idcomment}').html(data)
+                                            },
+                                            type: 'GET'
+                                        });
+                                    });
+                                });
+                            </script>
                                                 </span>
                             </div>
                             <div class="pull-right"> <span><a class="" role="button"
@@ -65,22 +79,6 @@
                     </div>
 
                     <div class="collapse" id="reply${comment.idcomment}">
-                        <form>
-                            <div class="form-group">
-                                <label for="commenttitle${comment.idcomment}">Title</label>
-                                <input id="commenttitle${comment.idcomment}"
-                                       name="commenttitle${comment.idcomment}"
-                                       class="form-control" value="" maxlength="19"
-                                       type="text">
-                            </div>
-                            <div class="form-group">
-                                <label for="commentt">Your Comment</label>
-                                                            <textarea name="comment" id=commentt class="form-control"
-                                                                      rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-xs btn-default">Send
-                            </button>
-                        </form>
                     </div>
                 </div>
                 <!-- comment-meta -->

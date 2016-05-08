@@ -66,7 +66,7 @@ public class Comment implements java.io.Serializable {
         this.user = user;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idparentcomment")
     public Comment getComment() {
         return this.comment;
@@ -76,8 +76,8 @@ public class Comment implements java.io.Serializable {
         this.comment = comment;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ididea", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ididea")
     public Idea getIdea() {
         return this.idea;
     }

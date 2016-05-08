@@ -6,6 +6,7 @@
     <form:errors path="*" cssClass="alert alert-danger alert-dismissable" element="div"/>
     <form:hidden path="idcomment"/>
     <form:hidden path="idea.ididea"/>
+    <form:hidden path="comment.idcomment"/>
     <form:hidden path="datecreated"/>
     <!-- todo: change this to read the identifier field from the other pojo -->
     <spring:bind path="comment.title">
