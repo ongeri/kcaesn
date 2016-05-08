@@ -88,15 +88,20 @@ public class MilestoneFormController extends BaseFormController {
         binder.registerCustomEditor(Milestone.class, "parentMilestone", new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                Milestone milestone = milestoneManager.get(Integer.parseInt(text));
-                setValue(milestone);
+                try {
+                    Integer id = Integer.parseInt(text);
+                    Milestone milestone = milestoneManager.get(id);
+                    setValue(milestone);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
             public String getAsText() {
                 String date = "";
                 try {
-                    date = new SimpleDateFormat("dd/MM/yyyy").format((Date) getValue());
+                    date = new SimpleDateFormat("MM/dd/yyyy").format((Date) getValue());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -105,7 +110,7 @@ public class MilestoneFormController extends BaseFormController {
 
             public void setAsText(String value) {
                 try {
-                    setValue(new SimpleDateFormat("dd/MM/yyyy").parse(value));
+                    setValue(new SimpleDateFormat("MM/dd/yyyy").parse(value));
                 } catch (ParseException e) {
                     setValue(null);
                 }

@@ -52,8 +52,10 @@
             <div class="form-group row ${(not empty status.errorMessage) ? ' has-error' : ''}">
                 <appfuse:label key="milestone.parentMilestone" styleClass="control-label col-sm-4"/>
                 <div class="input-group col-sm-8">
-                    <form:select cssClass="form-control" path="parentMilestone" items="${otherMilestones}"
-                                 itemLabel="name" itemValue="idmilestone"/>
+                    <form:select cssClass="form-control" path="parentMilestone">
+                        <form:option value="NONE" label="--- Select ---"/>
+                        <form:options itemLabel="name" itemValue="idmilestone" items="${otherMilestones}"/>
+                    </form:select>
                 </div>
                 <form:errors path="parentMilestone" cssClass="help-block"/>
             </div>
@@ -83,6 +85,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("input[type='text']:visible:enabled:first", document.forms['milestoneForm']).focus();
-        $('#duedate').datepicker({format: "dd/MM/yyyy", weekStart: "0"});
+//        $('.date-picker').datepicker({ dateFormat: "dd/mm/yyyy", weekStart: "0"});
+        $('.date-picker').datepicker({format: "mm/dd/yyyy", weekStart: "3"});
+
     });
 </script>
