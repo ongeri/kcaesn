@@ -24,7 +24,9 @@
 <%--<display:setProperty name="export.pdf.filename"><fmt:message key="ideaList.title"/>.pdf</display:setProperty>--%>
 <%--</display:table>--%>
 <div class="row">
-    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+        <%@include file="ideasidebar.jsp" %>
+    </div>
     <div class="col-sm-9">
         <div class="row">
             <div class="col-sm-12">
@@ -60,20 +62,46 @@
                 </div>
             </div>
         </div>
-        <c:forEach items="${ideaList}" var="idea" varStatus="loop">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <a href="ideadisplay?ididea=${idea.ididea}">
-                        <h5>${idea.title}</h5>
-                    </a>
-                </div>
-                <div class="panel-body">
-                    <p>
-                            ${idea.description}
-                    </p>
-                </div>
-                <div class="panel-footer"></div>
-            </div>
-        </c:forEach>
+        <div class="row">
+            <div class="col-sm-12">
+                <display:table name="ideaList" class="table table-condensed table-striped table-hover table-bordered"
+                               requestURI=""
+                               id="ideaList" export="true" pagesize="25">
+                    <display:column property="title" sortable="true" href="ideadisplay" media="html"
+                                    paramId="ididea" paramProperty="ididea" titleKey="idea.title"/>
+                    <display:column property="ididea" media="csv excel xml pdf" titleKey="idea.ididea"/>
+                    <display:column property="title" media="csv excel xml pdf" titleKey="idea.title"/>
+                    <display:column property="description" sortable="true" titleKey="idea.description"/>
+                    <display:column property="datecreated" sortable="true" titleKey="idea.datecreated"/>
+
+                    <display:setProperty name="paging.banner.item_name"><fmt:message
+                            key="ideaList.idea"/></display:setProperty>
+                    <display:setProperty name="paging.banner.items_name"><fmt:message
+                            key="ideaList.ideas"/></display:setProperty>
+
+                    <display:setProperty name="export.excel.filename"><fmt:message
+                            key="ideaList.title"/>.xls</display:setProperty>
+                    <display:setProperty name="export.csv.filename"><fmt:message
+                            key="ideaList.title"/>.csv</display:setProperty>
+                    <display:setProperty name="export.pdf.filename"><fmt:message
+                            key="ideaList.title"/>.pdf</display:setProperty>
+                </display:table></div>
+        </div>
+
+        <%--<c:forEach items="${ideaList}" var="idea" varStatus="loop">--%>
+        <%--<div class="panel panel-default">--%>
+        <%--<div class="panel-heading">--%>
+        <%--<a href="ideadisplay?ididea=${idea.ididea}">--%>
+        <%--<h5>${idea.title}</h5>--%>
+        <%--</a>--%>
+        <%--</div>--%>
+        <%--<div class="panel-body">--%>
+        <%--<p>--%>
+        <%--${idea.description}--%>
+        <%--</p>--%>
+        <%--</div>--%>
+        <%--<div class="panel-footer"></div>--%>
+        <%--</div>--%>
+        <%--</c:forEach>--%>
     </div>
 </div>

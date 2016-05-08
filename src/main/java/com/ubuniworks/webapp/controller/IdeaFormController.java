@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.Locale;
 
 @Controller
@@ -69,6 +70,9 @@ public class IdeaFormController extends BaseFormController {
             ideaManager.remove(idea.getIdidea());
             saveMessage(request, getText("idea.deleted", locale));
         } else {
+            if (isNew) {
+                idea.setDatecreated(new Date());
+            }
             idea = ideaManager.save(idea);
             String key = (isNew) ? "idea.added" : "idea.updated";
             saveMessage(request, getText(key, locale));

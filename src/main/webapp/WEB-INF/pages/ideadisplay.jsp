@@ -28,7 +28,7 @@
                 <div class="col-sm-9"><h3>${idea.title}</h3></div>
                 <div class="col-sm-3">
                     <c:if test="${not empty pageContext.request.remoteUser}">
-                        <a type="button" class="btn btn-sm btn-primary"
+                        <a type="button" class="btn btn-sm btn-primary pull-right"
                            href="/ideaform?ididea=${idea.ididea}">Edit</a>
                     </c:if>
                 </div>
@@ -46,12 +46,21 @@
                     <% out.println(StringEscapeUtils.unescapeHtml(String.valueOf(pageContext.getAttribute("test"))));%>
                 </div>
                 <div class="tab-pane" id="milestones">
-                    <div>
-                        <button type="button" class="btn btn-default btn-xs right" data-toggle="modal"
-                                data-target="#myModal"
-                                id="addmilestonebtn">
-                            Add Milestone
-                        </button>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a class="btn btn-default btn-xs pull-right" role="button"
+                               data-toggle="collapse"
+                               href="#milestoneformbox${idea.ididea}"
+                               id="addmilestonebtn"
+                               aria-expanded="false"
+                               aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
+                                Add Milestone</a>
+
+                            <%--<div id="commentformbox"></div>--%>
+                            <div class="collapse" id="milestoneformbox${idea.ididea}">
+
+                            </div>
+                        </div>
                     </div>
                     <div id="milestonescontent">
                         <%--<%@ include file="/common/timeline.jsp" %>--%>
@@ -91,6 +100,12 @@
                 <div class="tab-pane" id="comments">
                     <div class="row">
                         <div class="col-sm-12">
+                            <a class="btn btn-default btn-xs pull-right" role="button"
+                               data-toggle="collapse"
+                               href="#maincommentformbox${idea.ididea}"
+                               aria-expanded="false"
+                               aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
+                                Add Comment</a>
                             <%--<div id="commentformbox"></div>--%>
                             <div class="collapse" id="maincommentformbox${idea.ididea}">
                                 <form>
@@ -111,12 +126,6 @@
                                     </button>
                                 </form>
                             </div>
-                            <a class="btn btn-default btn-xs pull-right" role="button"
-                               data-toggle="collapse"
-                               href="#maincommentformbox${idea.ididea}"
-                               aria-expanded="false"
-                               aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
-                                Add Comment</a>
                         </div>
                     </div>
                     <div class="post-comments">
@@ -238,7 +247,7 @@
             $.ajax({
                 url: '/milestoneform?ajax=true&ididea=${idea.ididea}',
                 success: function (data) {
-                    $('#myModal').html(data)
+                    $('#milestoneformbox${idea.ididea}').html(data)
                 },
                 type: 'GET'
             });

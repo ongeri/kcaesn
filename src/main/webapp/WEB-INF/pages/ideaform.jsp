@@ -28,6 +28,7 @@
     <form:form commandName="idea" method="post" action="ideaform" cssClass="well"
                id="ideaForm" onsubmit="return validateIdea(this)">
         <form:hidden path="ididea"/>
+        <form:hidden path="datecreated"/>
         <spring:bind path="idea.title">
             <div class="form-group${(not empty status.errorMessage) ? ' has-error' : ''}">
         </spring:bind>
