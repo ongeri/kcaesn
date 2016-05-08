@@ -3,6 +3,7 @@ package com.ubuniworks.webapp.controller;
 import com.ubuniworks.model.Idea;
 import com.ubuniworks.model.Milestone;
 import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
 import com.ubuniworks.webapp.propertyeditor.IdeaPropertyEditor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,16 +20,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.beans.PropertyEditorSupport;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/milestoneform*")
 public class MilestoneFormController extends BaseFormController {
     private GenericManager<Milestone, Integer> milestoneManager = null;
-    private GenericManager<Idea, Integer> ideaManager = null;
+    private IdeaManager ideaManager = null;
 
     public MilestoneFormController() {
         setCancelView("redirect:ideas");
@@ -41,17 +44,17 @@ public class MilestoneFormController extends BaseFormController {
     }
 
     @Autowired
-    public void setIdeaManager(@Qualifier("ideaManager") com.ubuniworks.service.GenericManager<Idea, Integer> ideaManager) {
+    public void setIdeaManager(IdeaManager ideaManager) {
         this.ideaManager = ideaManager;
     }
 
     @ModelAttribute("otherMilestones")
-    public List<Milestone> getOtherMilestones(HttpServletRequest request) {
+    public Set<Milestone> getOtherMilestones(HttpServletRequest request) {
         String idmilestone = request.getParameter("idmilestone");
         String ididea = request.getParameter("ididea");
-        List<Milestone> otherMilestones = new ArrayList<>();
+        Set<Milestone> otherMilestones = new HashSet<>();
         if (ididea != null && !ididea.trim().equals("")) {
-            otherMilestones = milestoneManager.search("ideaid = " + ididea, Milestone.class);
+            otherMilestones = ideaManager.getMilestones(ideaManager.get(Integer.valueOf(ididea)));
         }
         return otherMilestones;
     }
@@ -90,6 +93,33 @@ public class MilestoneFormController extends BaseFormController {
                 Idea type = ideaManager.get(Integer.valueOf(text));
                 setValue(type);
             }
+        });
+        binder.registerCustomEditor(Milestone.class, "parentMilestone", new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                Milestone location = milestoneManager.get(Integer.parseInt(text));
+                setValue(location);
+            }
+        });
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            public String getAsText() {
+                String date = "";
+                try {
+                    date = new SimpleDateFormat("dd/MM/yyyy").format((Date) getValue());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return date;
+            }
+
+            public void setAsText(String value) {
+                try {
+                    setValue(new SimpleDateFormat("dd/MM/yyyy").parse(value));
+                } catch (ParseException e) {
+                    setValue(null);
+                }
+            }
+
         });
     }
 

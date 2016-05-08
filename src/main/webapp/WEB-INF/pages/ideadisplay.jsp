@@ -53,48 +53,57 @@
                                href="#milestoneformbox${idea.ididea}"
                                id="addmilestonebtn"
                                aria-expanded="false"
-                               aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
+                               aria-controls="collapseExample"><i class="fa fa-check-circle-o"> </i>
                                 Add Milestone</a>
-
                             <%--<div id="commentformbox"></div>--%>
-                            <div class="collapse" id="milestoneformbox${idea.ididea}">
-
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="collapse" id="milestoneformbox${idea.ididea}">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div id="milestonescontent">
-                        <%--<%@ include file="/common/timeline.jsp" %>--%>
-                        <ul class="timeline">
-                            <c:forEach items="${idea.milestones}" var="milestone" varStatus="loop">
-                                <li class="${loop.index%2==0 ? '' : 'timeline-inverted'}">
-                                    <div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">${milestone.name}</h4>
-                                        </div>
-                                        <div>Due Date:${milestone.duedate}</div>
-                                        <div class="timeline-body">
-                                            <p>${milestone.description}</p>
-                                            <hr>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-primary btn-sm dropdown-toggle"
-                                                        data-toggle="dropdown">
-                                                    <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a></li>
-                                                    <li><a href="#">Another action</a></li>
-                                                    <li><a href="#">Something else here</a></li>
-                                                    <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a></li>
-                                                </ul>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="milestonescontent">
+                                <%--<%@ include file="/common/timeline.jsp" %>--%>
+                                <ul class="timeline">
+                                    <c:forEach items="${idea.milestones}" var="milestone" varStatus="loop">
+                                        <li class="${loop.index%2==0 ? '' : 'timeline-inverted'}">
+                                            <div class="timeline-badge info"><i
+                                                    class="glyphicon glyphicon-floppy-disk"></i>
                                             </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
-                        </ul>
+                                            <div class="timeline-panel">
+                                                <div class="timeline-heading">
+                                                    <h4 class="timeline-title">${milestone.name}</h4>
+                                                </div>
+                                                <div>Due Date:${milestone.duedate}</div>
+                                                <div class="timeline-body">
+                                                    <p>${milestone.description}</p>
+                                                    <hr>
+                                                    <div class="btn-group">
+                                                        <button type="button"
+                                                                class="btn btn-primary btn-sm dropdown-toggle"
+                                                                data-toggle="dropdown">
+                                                            <i class="glyphicon glyphicon-cog"></i> <span
+                                                                class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <li><a href="#">Action</a></li>
+                                                            <li><a href="#">Another action</a></li>
+                                                            <li><a href="#">Something else here</a></li>
+                                                            <li class="divider"></li>
+                                                            <li><a href="#">Separated link</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="tab-pane" id="comments">
@@ -103,28 +112,12 @@
                             <a class="btn btn-default btn-xs pull-right" role="button"
                                data-toggle="collapse"
                                href="#maincommentformbox${idea.ididea}"
+                               id="addcommentbtn"
                                aria-expanded="false"
                                aria-controls="collapseExample"><i class="fa fa-comment-o"> </i>
                                 Add Comment</a>
                             <%--<div id="commentformbox"></div>--%>
                             <div class="collapse" id="maincommentformbox${idea.ididea}">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="maincommenttitle${idea.ididea}">Title</label>
-                                        <input id="maincommenttitle${idea.ididea}"
-                                               name="maincommenttitle${idea.ididea}"
-                                               class="form-control" value="" maxlength="19"
-                                               type="text">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="maincommenttext${idea.ididea}">Your Comment</label>
-                                                            <textarea name="comment" id="maincommenttext${idea.ididea}"
-                                                                      class="form-control"
-                                                                      rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-xs btn-default">Send
-                                    </button>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -256,7 +249,7 @@
             $.ajax({
                 url: '/commentform?ajax=true&ididea=${idea.ididea}',
                 success: function (data) {
-                    $('#commentformbox').html(data)
+                    $('#maincommentformbox${idea.ididea}').html(data)
                 },
                 type: 'GET'
             });
