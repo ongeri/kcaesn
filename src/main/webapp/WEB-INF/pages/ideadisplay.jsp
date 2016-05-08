@@ -71,32 +71,37 @@
                                 <ul class="timeline">
                                     <c:forEach items="${idea.milestones}" var="milestone" varStatus="loop">
                                         <li class="${loop.index%2==0 ? '' : 'timeline-inverted'}">
-                                            <div class="timeline-badge info"><i
-                                                    class="glyphicon glyphicon-floppy-disk"></i>
+                                            <div class="timeline-badge info">
+                                                <small><i class="fa fa-check-circle-o"></i></small>
                                             </div>
                                             <div class="timeline-panel">
-                                                <div class="timeline-heading">
-                                                    <h4 class="timeline-title">${milestone.name}</h4>
-                                                </div>
-                                                <div>Due Date:${milestone.duedate}</div>
-                                                <div class="timeline-body">
-                                                    <p>${milestone.description}</p>
-                                                    <hr>
-                                                    <div class="btn-group">
-                                                        <button type="button"
-                                                                class="btn btn-primary btn-sm dropdown-toggle"
-                                                                data-toggle="dropdown">
-                                                            <i class="glyphicon glyphicon-cog"></i> <span
-                                                                class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li><a href="#">Action</a></li>
-                                                            <li><a href="#">Another action</a></li>
-                                                            <li><a href="#">Something else here</a></li>
-                                                            <li class="divider"></li>
-                                                            <li><a href="#">Separated link</a></li>
-                                                        </ul>
+                                                <div class="timeline-heading row">
+                                                    <div class="col-sm-12">
+                                                        <h5 class="timeline-title pull-left">${milestone.name}</h5>
+
+                                                        <div class="btn-group pull-right">
+                                                            <button type="button"
+                                                                    class="btn btn-primary btn-sm dropdown-toggle"
+                                                                    data-toggle="dropdown">
+                                                                <i class="fa fa-cogs"></i> <span
+                                                                    class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu" role="menu">
+                                                                <li><a href="#">Action</a></li>
+                                                                <li><a href="#">Another action</a></li>
+                                                                <li><a href="#">Something else here</a></li>
+                                                                <li class="divider"></li>
+                                                                <li><a href="#">Separated link</a></li>
+                                                            </ul>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                                <div><span> <i
+                                                        class="fa fa-calendar-check-o"></i><small
+                                                        class="text-muted">${milestone.duedate}</small></span></span>
+                                                </div>
+                                                <div class="timeline-body">
+                                                        ${milestone.description}
                                                 </div>
                                             </div>
                                         </li>
