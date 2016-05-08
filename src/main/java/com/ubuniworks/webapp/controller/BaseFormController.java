@@ -4,6 +4,7 @@ import com.ubuniworks.Constants;
 import com.ubuniworks.model.User;
 import com.ubuniworks.service.MailEngine;
 import com.ubuniworks.service.UserManager;
+import com.ubuniworks.webapp.util.UserUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +49,20 @@ public class BaseFormController implements ServletContextAware {
     private UserManager userManager = null;
     private MessageSourceAccessor messages;
     private ServletContext servletContext;
+    private UserUtil userUtil;
 
     @Autowired
     public void setMessages(MessageSource messageSource) {
         messages = new MessageSourceAccessor(messageSource);
+    }
+
+    public UserUtil getUserUtil() {
+        return userUtil;
+    }
+
+    @Autowired
+    public void setUserUtil(UserUtil userUtil) {
+        this.userUtil = userUtil;
     }
 
     public UserManager getUserManager() {

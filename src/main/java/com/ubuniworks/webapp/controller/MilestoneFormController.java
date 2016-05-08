@@ -4,15 +4,12 @@ import com.ubuniworks.model.Idea;
 import com.ubuniworks.model.Milestone;
 import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.service.IdeaManager;
-import com.ubuniworks.webapp.propertyeditor.IdeaPropertyEditor;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,13 +72,7 @@ public class MilestoneFormController extends BaseFormController {
         } else {
             milestone = new Milestone();
         }
-
         return milestone;
-    }
-
-    @InitBinder
-    public void initBinderAll(WebDataBinder binder) {
-        binder.registerCustomEditor(Idea.class, new IdeaPropertyEditor());
     }
 
 
@@ -97,8 +88,8 @@ public class MilestoneFormController extends BaseFormController {
         binder.registerCustomEditor(Milestone.class, "parentMilestone", new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                Milestone location = milestoneManager.get(Integer.parseInt(text));
-                setValue(location);
+                Milestone milestone = milestoneManager.get(Integer.parseInt(text));
+                setValue(milestone);
             }
         });
         binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {

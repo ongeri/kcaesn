@@ -71,6 +71,7 @@ public class IdeaFormController extends BaseFormController {
             saveMessage(request, getText("idea.deleted", locale));
         } else {
             if (isNew) {
+                idea.setUser(getUserUtil().getCurrentUser());
                 idea.setDatecreated(new Date());
             }
             idea = ideaManager.save(idea);

@@ -63,6 +63,9 @@
 
         <!--Comment-START-->
         <form name="comment">
+            <field property="title" depends="required">
+                <arg key="comment.title"/>
+            </field>
             <field property="commenttext" depends="required">
                 <arg key="comment.commenttext"/>
             </field>
