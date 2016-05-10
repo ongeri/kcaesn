@@ -139,7 +139,8 @@
                                                 aria-expanded="false" aria-controls="collapseExample"><span
                                                 class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                         </button>
-                                        <a href="userprofile?userid=${comment.user.id}"> <b>${comment.user.username}</b></a> ${comment.title}
+                                        <a href="profile?id=${comment.user.id}">
+                                            <b>${comment.user.username}</b></a> ${comment.title}
                                     </div>
 
                                     <div class="panel-collapse collapse in" id="collapse${comment.idcomment}">
