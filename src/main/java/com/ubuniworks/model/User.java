@@ -50,6 +50,10 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private boolean credentialsExpired;
     private Set<Idea> ideas;
     private Set<Idea> likedIdeas;
+    private Set<Pastproject> pastprojects = new HashSet<Pastproject>(0);
+    private Set<Experience> experiences = new HashSet<Experience>(0);
+    private Set<Biography> biographies = new HashSet<Biography>(0);
+    private String profilepic;
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -331,6 +335,42 @@ public class User extends BaseObject implements Serializable, UserDetails {
 
     public void setLikedIdeas(Set<Idea> ideas) {
         this.likedIdeas = ideas;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<Pastproject> getPastprojects() {
+        return pastprojects;
+    }
+
+    public void setPastprojects(Set<Pastproject> pastprojects) {
+        this.pastprojects = pastprojects;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<Experience> getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(Set<Experience> experiences) {
+        this.experiences = experiences;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    public Set<Biography> getBiographies() {
+        return biographies;
+    }
+
+    public void setBiographies(Set<Biography> biographies) {
+        this.biographies = biographies;
+    }
+
+    @Column(name = "profilepic")
+    public String getProfilepic() {
+        return profilepic;
+    }
+
+    public void setProfilepic(String profilepic) {
+        this.profilepic = profilepic;
     }
 
     /**

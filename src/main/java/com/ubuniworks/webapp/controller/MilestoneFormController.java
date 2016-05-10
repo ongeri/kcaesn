@@ -147,6 +147,7 @@ public class MilestoneFormController extends BaseFormController {
         } else {
             if (isNew) {
                 milestone.setDatecreated(new Date());
+                milestone.setStatus("Waiting");
             }
             milestoneManager.save(milestone);
             String key = (isNew) ? "milestone.added" : "milestone.updated";

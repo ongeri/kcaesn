@@ -24,124 +24,157 @@ import static javax.persistence.GenerationType.IDENTITY;
 @XmlRootElement
 public class Idea implements java.io.Serializable {
 
-    private Integer ididea;
-    private User user;
-    private Ideabody ideabody;
-    private String description;
-    private String title;
-    private Set<Comment> comments = new HashSet<Comment>(0);
-    private Set<Milestone> milestones = new HashSet<Milestone>(0);
-    private Set<User> likers = new HashSet<User>(0);
-    private Date datecreated;
+	private Integer ididea;
+	private User user;
+	private Ideabody ideabody;
+	private String description;
+	private String title;
+	private boolean published;
+	private Set<Comment> comments = new HashSet<Comment>(0);
+	private Set<Milestone> milestones = new HashSet<Milestone>(0);
+	private Set<User> likers = new HashSet<User>(0);
+	private Date datecreated;
+	private Set<Tag> tags = new HashSet<Tag>(0);
 
-    public Idea() {
-    }
+	public Idea() {
+	}
 
-    public Idea(String description, String title) {
-        this.description = description;
-        this.title = title;
-    }
+	public Idea(User user, String description, String title, Date datecreated, boolean published) {
+		this.user = user;
+		this.description = description;
+		this.title = title;
+		this.datecreated = datecreated;
+		this.published = published;
+	}
 
-    public Idea(User user, Ideabody ideabody, String description, String title, Set<User> likers) {
-        this.user = user;
-        this.ideabody = ideabody;
-        this.description = description;
-        this.title = title;
-        this.likers = likers;
-    }
+	public Idea(User user, Ideabody ideabody, String description, String title, Date datecreated,
+			boolean published, Set<Comment> comments, Set<Milestone> milestones, Set<User> likers, Set<Tag> tags) {
+		this.user = user;
+		this.ideabody = ideabody;
+		this.description = description;
+		this.title = title;
+		this.datecreated = datecreated;
+		this.published = published;
+		this.comments = comments;
+		this.milestones = milestones;
+		this.likers = likers;
+		this.tags = tags;
+	}
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
     @DocumentId
-    @Column(name = "ididea", unique = true, nullable = false)
-    public Integer getIdidea() {
-        return this.ididea;
-    }
+	@Column(name = "ididea", unique = true, nullable = false)
+	public Integer getIdidea() {
+		return this.ididea;
+	}
 
-    public void setIdidea(Integer ididea) {
-        this.ididea = ididea;
-    }
+	public void setIdidea(Integer ididea) {
+		this.ididea = ididea;
+	}
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    public User getUser() {
-        return this.user;
-    }
+	public User getUser() {
+		return this.user;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)
-    @JoinColumn(name = "idideabody")
-    public Ideabody getIdeabody() {
-        return this.ideabody;
-    }
+	@JoinColumn(name = "idideabody")
+	public Ideabody getIdeabody() {
+		return this.ideabody;
+	}
 
-    public void setIdeabody(Ideabody ideabody) {
-        this.ideabody = ideabody;
-    }
+	public void setIdeabody(Ideabody ideabody) {
+		this.ideabody = ideabody;
+	}
 
-    @Column(name = "description", nullable = false)
+	@Column(name = "description", nullable = false)
     @Field
-    public String getDescription() {
-        return this.description;
-    }
+	public String getDescription() {
+		return this.description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    @Column(name = "title", nullable = false, length = 45)
+	@Column(name = "title", nullable = false, length = 45)
     @Field
-    public String getTitle() {
-        return this.title;
-    }
+	public String getTitle() {
+		return this.title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
-    public Set<Comment> getComments() {
-        return this.comments;
-    }
+	@Column(name = "published", nullable = false)
+	@Field
+	public boolean isPublished() {
+		return this.published;
+	}
 
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
-    public Set<Milestone> getMilestones() {
-        return this.milestones;
-    }
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+	public Set<Comment> getComments() {
+		return this.comments;
+	}
 
-    public void setMilestones(Set<Milestone> milestones) {
-        this.milestones = milestones;
-    }
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_likes_idea", catalog = "kcaesn", joinColumns = {
-            @JoinColumn(name = "ididea", nullable = false, updatable = false)}, inverseJoinColumns = {
-            @JoinColumn(name = "user_id", nullable = false, updatable = false)})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+	public Set<Milestone> getMilestones() {
+		return this.milestones;
+	}
+
+	public void setMilestones(Set<Milestone> milestones) {
+		this.milestones = milestones;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_likes_idea", catalog = "kcaesn", joinColumns = {
+			@JoinColumn(name = "ididea", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "user_id", nullable = false, updatable = false) })
     public Set<User> getLikers() {
         return this.likers;
-    }
+	}
 
     public void setLikers(Set<User> users) {
         this.likers = users;
-    }
+	}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "datecreated", length = 19)
-    @Field
-    public Date getDatecreated() {
-        return this.datecreated;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "datecreated", length = 19)
+	@Field
+	public Date getDatecreated() {
+		return this.datecreated;
+	}
 
-    public void setDatecreated(Date datecreated) {
-        this.datecreated = datecreated;
-    }
+	public void setDatecreated(Date datecreated) {
+		this.datecreated = datecreated;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "idea_has_tag", catalog = "kcaesn", joinColumns = {
+			@JoinColumn(name = "idea_ididea", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "tag_idtag", nullable = false, updatable = false) })
+	public Set<Tag> getTags() {
+		return this.tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
 
 }

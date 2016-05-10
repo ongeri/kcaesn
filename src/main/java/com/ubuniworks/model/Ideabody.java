@@ -21,53 +21,53 @@ import static javax.persistence.GenerationType.IDENTITY;
 @XmlRootElement
 public class Ideabody implements java.io.Serializable {
 
-    private Integer idideabody;
-    private String content;
-    private Set<Idea> ideas = new HashSet<Idea>(0);
+	private Integer idideabody;
+	private String content;
+	private Set<Idea> ideas = new HashSet<Idea>(0);
 
-    public Ideabody() {
-    }
+	public Ideabody() {
+	}
 
     public Ideabody(int idideabody, String content) {
         this.idideabody = idideabody;
-        this.content = content;
-    }
+		this.content = content;
+	}
 
     public Ideabody(int idideabody, String content, Set<Idea> ideas) {
         this.idideabody = idideabody;
-        this.content = content;
-        this.ideas = ideas;
-    }
+		this.content = content;
+		this.ideas = ideas;
+	}
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
     @DocumentId
-    @Column(name = "idideabody", unique = true, nullable = false)
-    public Integer getIdideabody() {
-        return this.idideabody;
-    }
+	@Column(name = "idideabody", unique = true, nullable = false)
+	public Integer getIdideabody() {
+		return this.idideabody;
+	}
 
-    public void setIdideabody(Integer idideabody) {
-        this.idideabody = idideabody;
-    }
+	public void setIdideabody(Integer idideabody) {
+		this.idideabody = idideabody;
+	}
 
-    @Column(name = "content", nullable = false)
+	@Column(name = "content", nullable = false)
     @Field
-    public String getContent() {
-        return this.content;
-    }
+	public String getContent() {
+		return this.content;
+	}
 
-    public void setContent(String content) {
-        this.content = content;
-    }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "ideabody")
-    public Set<Idea> getIdeas() {
-        return this.ideas;
-    }
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ideabody")
+	public Set<Idea> getIdeas() {
+		return this.ideas;
+	}
 
-    public void setIdeas(Set<Idea> ideas) {
-        this.ideas = ideas;
-    }
+	public void setIdeas(Set<Idea> ideas) {
+		this.ideas = ideas;
+	}
 
 }

@@ -18,112 +18,116 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "comment", catalog = "kcaesn")
 public class Comment implements java.io.Serializable {
 
-    private Integer idcomment;
+	private Integer idcomment;
     private User user;
-    private Comment comment;
-    private Idea idea;
-    private String commenttext;
+	private Comment comment;
+	private Idea idea;
+	private String commenttext;
     private Set<Comment> comments = new HashSet<Comment>(0);
-    private String title;
-    private Date datecreated;
+	private String title;
+	private Date datecreated;
 
-    public Comment() {
-    }
+	public Comment() {
+	}
 
-    public Comment(User user, Idea idea, String commenttext) {
-        this.user = user;
-        this.idea = idea;
-        this.commenttext = commenttext;
-    }
+	public Comment(User user, String commenttext, String title, Date datecreated) {
+		this.user = user;
+		this.commenttext = commenttext;
+		this.title = title;
+		this.datecreated = datecreated;
+	}
 
-    public Comment(User user, Comment comment, Idea idea, String commenttext, Set<Comment> comments) {
-        this.user = user;
-        this.comment = comment;
-        this.idea = idea;
-        this.commenttext = commenttext;
-        this.comments = comments;
-    }
+	public Comment(User user, Comment comment, Idea idea, String commenttext, String title, Date datecreated,
+			Set<Comment> comments) {
+		this.user = user;
+		this.comment = comment;
+		this.idea = idea;
+		this.commenttext = commenttext;
+		this.title = title;
+		this.datecreated = datecreated;
+		this.comments = comments;
+	}
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
     @DocumentId
-    @Column(name = "idcomment", unique = true, nullable = false)
-    public Integer getIdcomment() {
-        return this.idcomment;
-    }
+	@Column(name = "idcomment", unique = true, nullable = false)
+	public Integer getIdcomment() {
+		return this.idcomment;
+	}
 
-    public void setIdcomment(Integer idcomment) {
-        this.idcomment = idcomment;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "commentorid", nullable = false)
-    public User getUser() {
-        return this.user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setIdcomment(Integer idcomment) {
+		this.idcomment = idcomment;
+	}
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idparentcomment")
-    public Comment getComment() {
-        return this.comment;
-    }
+	@JoinColumn(name = "commentorid", nullable = false)
+	public User getUser() {
+		return this.user;
+	}
 
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ididea")
-    public Idea getIdea() {
-        return this.idea;
-    }
+	@JoinColumn(name = "idparentcomment")
+	public Comment getComment() {
+		return this.comment;
+	}
 
-    public void setIdea(Idea idea) {
-        this.idea = idea;
-    }
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
 
-    @Column(name = "commenttext", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "ididea")
+	public Idea getIdea() {
+		return this.idea;
+	}
+
+	public void setIdea(Idea idea) {
+		this.idea = idea;
+	}
+
+	@Column(name = "commenttext", nullable = false)
     @Field
-    public String getCommenttext() {
-        return this.commenttext;
-    }
+	public String getCommenttext() {
+		return this.commenttext;
+	}
 
-    public void setCommenttext(String commenttext) {
-        this.commenttext = commenttext;
-    }
+	public void setCommenttext(String commenttext) {
+		this.commenttext = commenttext;
+	}
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
-    public Set<Comment> getComments() {
-        return this.comments;
-    }
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
+	public Set<Comment> getComments() {
+		return this.comments;
+	}
 
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	@Column(name = "title", nullable = false)
+	@Field
+	public String getTitle() {
+		return this.title;
+	}
 
-    @Column(name = "title", nullable = false)
-    @Field
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "datecreated", length = 19)
-    @Field
-    public Date getDatecreated() {
-        return this.datecreated;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "datecreated", nullable = false, length = 19)
+	public Date getDatecreated() {
+		return this.datecreated;
+	}
 
-    public void setDatecreated(Date datecreated) {
-        this.datecreated = datecreated;
-    }
+	public void setDatecreated(Date datecreated) {
+		this.datecreated = datecreated;
+	}
+
 
 }
