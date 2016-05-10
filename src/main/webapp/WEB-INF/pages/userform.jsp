@@ -13,7 +13,7 @@
 <div class="col-sm-3 sidebar">
     <%@include file="profilesidebar.jsp" %>
 </div>
-<div class="col-sm-7">
+<div class="col-sm-9">
     <div class="row">
         <div class="col-sm-12">
             <h2><fmt:message key="userProfile.heading"/></h2>

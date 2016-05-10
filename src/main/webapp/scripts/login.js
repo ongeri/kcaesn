@@ -1,47 +1,43 @@
 <script type="text/javascript">
-if (getCookie("username") != null) {
-    $("j_username").value = getCookie("username")
-    $("j_password").focus()
+if ($.cookie("username") != null && $.cookie("username") != "") {
+    $("#j_username").val($.cookie("username"));
+    $("#j_password").focus();
 } else {
-    $("j_username").focus()
+    $("#j_username").focus();
 }
 
 function saveUsername(theForm) {
-    var expires = new Date()
-    expires.setTime(expires.getTime() + 24 * 30 * 60 * 60 * 1000) // sets it for approx 30 days.
-    setCookie("username",theForm.j_username.value,expires,"<c:url value="/"/>")
+    $.cookie("username",theForm.j_username.value, { expires: 30, path: "<c:url value="/"/>"});
 }
 
 function validateForm(form) {
-    return validateRequired(form)
+    var valid = validateRequired(form);
+    if (valid == false) {
+        $(".form-group").addClass('error');
+    }
+    return valid;
 }
 
 function passwordHint() {
-    if ($("j_username").value.length == 0) {
-        alert("<s:text name="
-        errors.requiredField
-        "><s:param><s:text name="
-        label.username
-        "/></s:param></s:text>"
-    )
-        $("j_username").focus()
+    if ($("#j_username").val().length == 0) {
+        alert("<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>");
+        $("#j_username").focus();
     } else {
-        location.href="<c:url value="/passwordHint"/>?username=" + $("j_username").value
+        location.href="<c:url value="/passwordHint"/>?username=" + $("#j_username").val();
+    }
+}
+
+function requestRecoveryToken() {
+    if ($("#j_username").val().length == 0) {
+        alert("<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>");
+        $("#j_username").focus();
+    } else {
+        location.href="<c:url value="/requestRecoveryToken"/>?username=" + $("#j_username").val();
     }
 }
 
 function required () {
-    this.aa = ["j_username", "<s:text name="]
-    errors.requiredField
-    "><s:param><s:text name="
-    label.username
-    "/></s:param></s:text>", new Function("varName", " return this[varName]")
-)
-    this.ab = ["j_password", "<s:text name="]
-    errors.requiredField
-    "><s:param><s:text name="
-    label.password
-    "/></s:param></s:text>", new Function("varName", " return this[varName]")
-)
+    this.aa = new Array("j_username", "<fmt:message key="errors.required"><fmt:param><fmt:message key="label.username"/></fmt:param></fmt:message>", new Function ("varName", " return this[varName];"));
+    this.ab = new Array("j_password", "<fmt:message key="errors.required"><fmt:param><fmt:message key="label.password"/></fmt:param></fmt:message>", new Function ("varName", " return this[varName];"));
 }
 </script>
