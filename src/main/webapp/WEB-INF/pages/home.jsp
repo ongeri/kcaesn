@@ -66,7 +66,7 @@
                 <p>This section is coming soon</p>
 
                 <p>
-                    <a href="invest" class="btn btn-primary">Investments</a>
+                    <a href="#" class="btn btn-primary disabled">Investments</a>
                     <!--<a href="#" class="btn btn-default">More Info</a>-->
                 </p>
             </div>
@@ -83,7 +83,7 @@
                 <p>Access to built-up knowledge</p>
 
                 <p>
-                    <a href="#" class="btn btn-primary">Browse</a>
+                    <a href="#" class="btn btn-primary disabled">Browse</a>
                 </p>
             </div>
         </div>

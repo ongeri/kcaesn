@@ -5,7 +5,11 @@
     </Displayers>
     <Menus>
         <Menu name="Home" title="home.title" page="/home" roles="ROLE_ADMIN,ROLE_USER"/>
-        <Menu name="UserMenu" title="menu.user" description="User Menu" page="/userform" roles="ROLE_ADMIN,ROLE_USER"/>
+        <Menu name="UserMenu" title="menu.profile" description="User Menu" page="/userform"
+              roles="ROLE_ADMIN,ROLE_USER">
+            <Item name="ViewProfile" title="menu.viewprofile" page="/profile"/>
+            <Item name="EditProfile" title="menu.editprofile" page="/userform"/>
+        </Menu>
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
             <Item name="ActiveUsers" title="home.activeUsers" page="/admin/activeUsers"/>
@@ -14,7 +18,7 @@
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--Idea-START-->
-        <Menu name="IdeaMenu" title="ideaList.title" page="/ideas"/>
+        <Menu name="IdeaMenu" title="ideaList.title" page="/ideas" roles="ROLE_ADMIN,ROLE_USER"/>
         <!--Idea-END-->
 
         <!--Comment-START-->
@@ -24,8 +28,6 @@
         <!--<Menu name="MilestoneMenu" title="milestoneList.title" page="/milestones"/>-->
         <!--Milestone-END-->
     </Menus>
-
-
 
 
 </MenuConfig>

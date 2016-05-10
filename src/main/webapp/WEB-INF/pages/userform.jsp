@@ -10,18 +10,23 @@
         "<fmt:message key="delete.confirm"><fmt:param value="${delObject}"/></fmt:message>";
 </script>
 
-<div class="col-sm-2">
-    <h2><fmt:message key="userProfile.heading"/></h2>
-    <c:choose>
-        <c:when test="${param.from == 'list'}">
-            <p><fmt:message key="userProfile.admin.message"/></p>
-        </c:when>
-        <c:otherwise>
-            <p><fmt:message key="userProfile.message"/></p>
-        </c:otherwise>
-    </c:choose>
+<div class="col-sm-3 sidebar">
+    <%@include file="profilesidebar.jsp" %>
 </div>
 <div class="col-sm-7">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2><fmt:message key="userProfile.heading"/></h2>
+            <c:choose>
+                <c:when test="${param.from == 'list'}">
+                    <p><fmt:message key="userProfile.admin.message"/></p>
+                </c:when>
+                <c:otherwise>
+                    <p><fmt:message key="userProfile.message"/></p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
     <spring:bind path="user.*">
         <c:if test="${not empty status.errorMessages}">
             <div class="alert alert-danger alert-dismissable">
