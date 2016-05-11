@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,SummaryTests,PastprojectTests,TagTests,BiographyTests,ExperienceTests,MilestoneTests,CommentTests,IdeaTests"
+            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,ResourcesTests,PartnersTests,ValuepropositionTests,RevenuestreamTests,CustomersegmentTests,CustomerrelationshipTests,CoststructureTests,ChannesTests,ActivitiesTests,SummaryTests,PastprojectTests,TagTests,BiographyTests,ExperienceTests,MilestoneTests,CommentTests,IdeaTests"
             description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -937,7 +937,880 @@
             </steps>
         </webtest>
     </target>    <!--Summary-END-->
+    <!--Activities-START-->
+    <!-- runs activities-related tests -->
+    <target name="ActivitiesTests"
+            depends="SearchActivitiess,EditActivities,SaveActivities,AddActivities,DeleteActivities"
+            description="Call and executes all activities test cases (targets)">
+        <echo>Successfully ran all Activities UI tests!</echo>
+    </target>
+
+    <!-- Verify the activitiess list screen displays without errors -->
+    <target name="SearchActivitiess" description="Tests search for and displaying all activitiess">
+        <webtest name="searchActivitiess">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Activities link" url="/activitiess"/>
+                <verifytitle description="we should see the activitiesList title"
+                    text=".*${activitiesList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the activitiesList title"
+                    text=".*${activitiesList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit activities screen displays without errors -->
+    <target name="EditActivities" description="Tests editing an existing Activities's information">
+        <webtest name="editActivities">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Activities List" url="/activitiess"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the activitiesDetail title"
+                    text=".*${activitiesDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a activities and then save -->
+    <target name="SaveActivities" description="Tests editing and saving a activities">
+        <webtest name="saveActivities">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Activities link" url="/activitiesform?idactivities=-1"/>
+                <verifytitle description="we should see the activitiesDetail title"
+                    text=".*${activitiesDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="SlWaSoJrEpCnXoZbWjKuCyCvRtSzHpEeHkAqKzTgEeKyEhXbFxUnTkWbDnUvFzViCqBnRfUeNtIgDlZqRrFgTxCmRnUlErSaZnFpOeQlVvVpZsJuMlZbGnVjSdUvFjSnFrCaBqOhXwNxCzKsFzSgQmViRdOjZcVbTeCbMyOlKdFwWlZwVuIhWmCcYlWlVgBzTyRrYkMfQbPgNiVwRbCqRwPoNqSgMnPwIeGfOoOfRfNhNoGbWtZbAiEuNdEzZoW"/>
+                <setInputField description="set name" name="name" value="FoHaDkIyBpKxKzXdAaGgJyVxNkMcCrQlWwZfKbJnQcHrFiHzOdXgZsPoYwTlYpKlPgOpRfBcEiOdVlFnRpDoAxOjNnKpQgEaPkOeCnIvYaMhBtRfDrMiQdYzInIzBdLiSkMdHzXqCrIcNtGiYgFvPuDrIlAaIdJfSfYbGdWjQiLtIsGbIlXjXbUbEoFiLtWbNaAmBvHsUdJuIuLaVzNiYeFnCiLaVsSvGeVkHeLoQqBxUbRuPnNlVcBkEzKlWxW"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${activitiesDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${activities.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Activities -->
+    <target name="AddActivities" description="Adds a new Activities">
+        <webtest name="addActivities">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/activitiesform"/>
+                <verifytitle description="we should see the activitiesDetail title"
+                    text=".*${activitiesDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="IfAhMbQqUvDuGwEbZeFiMtExHrPxAvJlTwIiDgLfAsYxCsXhLjTcDzGtJtEoLuSiQsPbZtKuToQzLtKcOeHsZuZcHoEmBjUmSuCoQeRrRhTeCzCbBjAuVrIsBfFkOrJkJsOmRwXuNeKaCxLrWcSjMzIjJjXuUzKuDbUhRyUjPxReYgNvJrRlIuFcCvHmAyKjPtWrYuSnGyNoTmBzTuUbStRmAqBmHuWgGvBuBrOlXcUyWbQiTwZmYjKgUcHwBgJ"/>
+                <setInputField description="set name" name="name" value="DbMwMxRaKyIqJoGfQpRvOfVvFeHoCbVkEvHfDwVvLoTaCfBvReGmMgLiFsVyQqPzWbSxCgNqYrEnXhNoQkYrXlVhTfPpPwYdCcYpEbFwVoHoGiDuAaYjWeHwJxGkTnPsUhSoQaJuNfWlEdNrTnSbMkDpQrJyZrDpIsUdBrKbSnOgXlNxGeBzMqQpFnIpPbLaRvGdWvKgXbLmGqJqIrCaJvAtGkEfDlReOrKqWkQyOuIdWsCuQsVfJvTiYaVqOfF"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Activities List appears if save successful"
+                    text=".*${activitiesList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${activities.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing activities -->
+    <target name="DeleteActivities" description="Deletes existing Activities">
+        <webtest name="deleteActivities">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Activities link" url="/activitiesform?idactivities=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Activities List" text=".*${activitiesList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${activities.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Activities-END-->
+    <!--Channes-START-->
+    <!-- runs channes-related tests -->
+    <target name="ChannesTests"
+            depends="SearchChanness,EditChannes,SaveChannes,AddChannes,DeleteChannes"
+            description="Call and executes all channes test cases (targets)">
+        <echo>Successfully ran all Channes UI tests!</echo>
+    </target>
+
+    <!-- Verify the channess list screen displays without errors -->
+    <target name="SearchChanness" description="Tests search for and displaying all channess">
+        <webtest name="searchChanness">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Channes link" url="/channess"/>
+                <verifytitle description="we should see the channesList title"
+                    text=".*${channesList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the channesList title"
+                    text=".*${channesList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit channes screen displays without errors -->
+    <target name="EditChannes" description="Tests editing an existing Channes's information">
+        <webtest name="editChannes">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Channes List" url="/channess"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the channesDetail title"
+                    text=".*${channesDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a channes and then save -->
+    <target name="SaveChannes" description="Tests editing and saving a channes">
+        <webtest name="saveChannes">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Channes link" url="/channesform?idchannes=-1"/>
+                <verifytitle description="we should see the channesDetail title"
+                    text=".*${channesDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="GcNyOrOhLcXsCwWgPmKxXuZmWtOzPtRiQnMuNkLsXcYgYnXaEuLvCkOsVcWrQwJmAmAuTpZrIxEoPxSrPeZcHaGnAlSuPhFdWdUkLyQvFkSwSnYbRbYmMuUdQjQtNeOkIxDxEmDbLtCgYzVpSvToNwCvBrShYkLoOgLlQwAoLpBwTrMtJiDcKiDxGfDoBgNcGyTiOmZmHqFxWaArSrQlYsZsWcGkAvTgHgOwViPnMcOgNtFqWkTlHuIeLvAwPmW"/>
+                <setInputField description="set name" name="name" value="UbWyXcHmFuZoXnRfZjOxBhIxJyDjDaQqRiRyEfWhWdEdDtKtAfHkCrLoJfQbJbOoOcUzOhWpJeVbJzMlPbRlDnXjLgYrEmBwEeGcRxMhTrCwYwYgIlSxWeXvKdDzZpKtViIoTkQrGnImLdQiWpQtJfZtIsElAdQrQlUpVtLyQqYmZzKfNfIhCxCyFdXyFjAeNdRwZhEkRkCpWcYyAsFfSnGkNzBxPkWvUjAeYaFiXiJhRhIuPmIbHhZtCgNmUaL"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${channesDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${channes.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Channes -->
+    <target name="AddChannes" description="Adds a new Channes">
+        <webtest name="addChannes">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/channesform"/>
+                <verifytitle description="we should see the channesDetail title"
+                    text=".*${channesDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="HsRkWbXhAnPuPhApAiSkDwNnTfZcFrEhXpJrVgUgZyOvLfUsYtDpGeRrHdAgSsMrIxXkJoBrMaReXpTkGrGfCqCqLnSfUbHiKsWcYnYcIxJeAsZwPdSpRmVhYpKgObOmMmYxFgZdSdSzNmKgJxXqYjOjQaTkHfMdUxZlOjPeRvOsFsNmTzAcYaYrOlKfWbRlDdWdMnCfOdXwFtBlDiXmYiFjYzAvZoSpWiAkNtVtOeKcPpWiQcTeWkYqRmNlLqK"/>
+                <setInputField description="set name" name="name" value="SzFlMlRpGcWgEnUjHvWqLbFbWvBkTqYaFrCdFmGiSsHhEcBwGyHhGiEhOpCpUkXdCbDnGzMcHuEgAbViEdUlUaImYnJjEzAeYyPeMgQdQgRkBfJmDyUdUqJrMrKlIhKwUeVzPqLiYoIlDoPwJiXhLmGwBlCrCoOgGzYfDwBbQyLkTgWnSpQsHpVpXhSmNbOrIuEeMsKvFzLeQdLmBqAgTeAhGbXaCdBiVzHcIsTqFhUzIjKcNsZbGtTdUdCiYlE"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Channes List appears if save successful"
+                    text=".*${channesList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${channes.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing channes -->
+    <target name="DeleteChannes" description="Deletes existing Channes">
+        <webtest name="deleteChannes">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Channes link" url="/channesform?idchannes=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Channes List" text=".*${channesList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${channes.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Channes-END-->
+    <!--Coststructure-START-->
+    <!-- runs coststructure-related tests -->
+    <target name="CoststructureTests"
+            depends="SearchCoststructures,EditCoststructure,SaveCoststructure,AddCoststructure,DeleteCoststructure"
+            description="Call and executes all coststructure test cases (targets)">
+        <echo>Successfully ran all Coststructure UI tests!</echo>
+    </target>
+
+    <!-- Verify the coststructures list screen displays without errors -->
+    <target name="SearchCoststructures" description="Tests search for and displaying all coststructures">
+        <webtest name="searchCoststructures">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Coststructure link" url="/coststructures"/>
+                <verifytitle description="we should see the coststructureList title"
+                    text=".*${coststructureList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the coststructureList title"
+                    text=".*${coststructureList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit coststructure screen displays without errors -->
+    <target name="EditCoststructure" description="Tests editing an existing Coststructure's information">
+        <webtest name="editCoststructure">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Coststructure List" url="/coststructures"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the coststructureDetail title"
+                    text=".*${coststructureDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a coststructure and then save -->
+    <target name="SaveCoststructure" description="Tests editing and saving a coststructure">
+        <webtest name="saveCoststructure">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Coststructure link" url="/coststructureform?idcoststructure=-1"/>
+                <verifytitle description="we should see the coststructureDetail title"
+                    text=".*${coststructureDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="BmAyReEvPjWxDeGfLuNtWzOwCxIiRdJvTdKvKoTfFcDlVxNaUsNtRzHaLoVsKrVfWbLmYvWbQyDpAnMeMpIgUxUdNvGlPuWwWaIlYpYmVgCeZnBoWpCmPnFmVcSnUlMdEeYgUxBaJzOfXtPtMkQdPcViNqTkSvUyJkIjEeBsJhXhVmNzQvWpJjVgQgCbJxOiVfFoWoTrNmUtBuHvYtLiGxClDjArPoJuJqSsVhQpKvGpWbLsFgRsPxQuJcSmTkV"/>
+                <setInputField description="set name" name="name" value="FjMhOnRoQcCjHgYyCqUqCgZtSxRfVrWaCzYhVhAyWbYfCbKxOeBsBeKyOgDaLcFhUpDfTjTxHcWuJiZmKeTaTiIqBjItAxDfDsHqMvIzWtBkJzJuEhPpXxRtGvBdCzMyHyVgEwOxCwYjEsMnWoWhPtWnIrKfDeBpWdZaBjYqNlOtWvFmCxYkTbAxCkPxQnBcFcNxSsWpXrLnZzZkLrEeKeJwMaTlBwGbDgQlXvCmYjRuEnIeHnAtQxXdGqEwJiB"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${coststructureDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${coststructure.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Coststructure -->
+    <target name="AddCoststructure" description="Adds a new Coststructure">
+        <webtest name="addCoststructure">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/coststructureform"/>
+                <verifytitle description="we should see the coststructureDetail title"
+                    text=".*${coststructureDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="FqQhYiNmVgIdPgMqDvTiJoWeBcDuOeNdSdEtQtWfDkMeNhNfUgJbTmDqZxDuKdQxBrIeJkGuHoRiYcOvOdBeRmIyJjBoXjDtXpQsEsEvZwCiLxEbAiWpAfOmWsVuRmFyOmWuNaUqPoYnCiMhFvJuWvZmYsIcEmYlHbJmKuFhIaFlSpIrIbDeWfLaFzPpQcNgDtJhBcMaIjQkPzQoNgJdXrLoWqVrLmStWeWgPbOoMwGwCkYdBjQcCnGiIzXmGxO"/>
+                <setInputField description="set name" name="name" value="MjZsAbXqAaAtKcLiAsViVwCiOgNcDdWlBzAtLvZqZsSmOzRmQkYrFhBbKpGbMgMgNiPjIaFcNfNkNnUcKzGqYxAoLfJyAdXwOiHiJfSbCjPoDkSlJkKuToCzFkVyBhGzLlLsKtPrXkHlGuCiXgYhUmZyIxOaDtUxWcQfYsGiJtOcJeWbBdSlEvHaKcPqVdXcEoVrYrQuYiHwGhOxRqEiUgAvMmUgLuChVvZtRiXeAhXdDtXrAmHoQuEfXhMqLkL"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Coststructure List appears if save successful"
+                    text=".*${coststructureList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${coststructure.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing coststructure -->
+    <target name="DeleteCoststructure" description="Deletes existing Coststructure">
+        <webtest name="deleteCoststructure">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Coststructure link" url="/coststructureform?idcoststructure=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Coststructure List" text=".*${coststructureList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${coststructure.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Coststructure-END-->
+    <!--Customerrelationship-START-->
+    <!-- runs customerrelationship-related tests -->
+    <target name="CustomerrelationshipTests"
+            depends="SearchCustomerrelationships,EditCustomerrelationship,SaveCustomerrelationship,AddCustomerrelationship,DeleteCustomerrelationship"
+            description="Call and executes all customerrelationship test cases (targets)">
+        <echo>Successfully ran all Customerrelationship UI tests!</echo>
+    </target>
+
+    <!-- Verify the customerrelationships list screen displays without errors -->
+    <target name="SearchCustomerrelationships" description="Tests search for and displaying all customerrelationships">
+        <webtest name="searchCustomerrelationships">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Customerrelationship link" url="/customerrelationships"/>
+                <verifytitle description="we should see the customerrelationshipList title"
+                    text=".*${customerrelationshipList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the customerrelationshipList title"
+                    text=".*${customerrelationshipList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit customerrelationship screen displays without errors -->
+    <target name="EditCustomerrelationship" description="Tests editing an existing Customerrelationship's information">
+        <webtest name="editCustomerrelationship">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Customerrelationship List" url="/customerrelationships"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the customerrelationshipDetail title"
+                    text=".*${customerrelationshipDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a customerrelationship and then save -->
+    <target name="SaveCustomerrelationship" description="Tests editing and saving a customerrelationship">
+        <webtest name="saveCustomerrelationship">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Customerrelationship link" url="/customerrelationshipform?idcustomerrelationship=-1"/>
+                <verifytitle description="we should see the customerrelationshipDetail title"
+                    text=".*${customerrelationshipDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="BdWaNkXkJyTvYhPnSlChRzEaRyLgShVgZsVxMqOiLuOzLgCjFdNlAfOxGsCkWsQrMeBzGfQxPtEqSbFzTbBqSdNnYlTrBtRdWvFeWbTnQcJvJlTbDcOqOsYfJlLmQdBwPhXuUuOgFpKtRiMgXxSxNjOpRqEuFnFlXeQaGxXwPlCyFhJpToJsHjSeDcOqAyXaVtXoVvWyBnKuRvZpCoLnSbExZuAiGsJtIiNpDrKdErAfApOkSbUiAqJgOrYaYcV"/>
+                <setInputField description="set name" name="name" value="SoGdAaVdToMgTvCzYxIlOsXoJqXkYyPbUrXiRwWiPaDgTbHyXqMdHjMsNzNsPdMnCsCnFbDbEnQkVqVwKgKcHxCjWfZsTzKjGqRhZuYyTuAaRwJlEzCuSyJnIvMyScIdNwIfDhKsGaIeArAtBiAlVnMjYsAdCoTdLxTmExNhUvFaTdHtMzXjEzOqBmAcQvFsJdXdLvJzBmJcRoBrOrQrUiSsKqFuGnTgWeTjGxPeLhTzAmXwBpPgTkDoSiMmLwF"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${customerrelationshipDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${customerrelationship.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Customerrelationship -->
+    <target name="AddCustomerrelationship" description="Adds a new Customerrelationship">
+        <webtest name="addCustomerrelationship">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/customerrelationshipform"/>
+                <verifytitle description="we should see the customerrelationshipDetail title"
+                    text=".*${customerrelationshipDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="RoAxGzMgYpLgJkAvZwVaFaVkIbXfKyCbCaYyJlAsCmVsZjOuGqHvBnRhWlMaOnFdZeHpCpMyJeLbFmPaZsMnOhXiNhSfQdYcAvOkYoCbDlQqTjVgLfDkVeRiLnXaLgDoVhYpBrNzZfAxKoPfAlGdJrAlAsJzJnYfPnYdGzEoUkIlJuMoKqMiRvTaEqBeFqCfXlFdWwRuZzPyNlCyGrNrYpTgSxIhGjFwDgRiLbSfCjUsHiJfXjAaAlJoBwCmMbU"/>
+                <setInputField description="set name" name="name" value="UuKeCaTfWlZjLkQtBqUoZtDbTyYbUcByTdNvJeYjCeDfWcFyWwZtMeTiWuAmOnVwKiUaFbJoYpZcDpAtRtSeYqZyUwFwJfUfWnGtEuCwOpYwEsXdPyXsKmSkPdQdWaXyQgTsHcAgClIhItOqJwQvXlVmYxXyFuFdVfZfDbBxLvAbEuTdEtCxJaFjNhJfPdOmRhQyFgYsWzTwXzVkOoKmNgErBeVdZmAoAnXdMfBeEmHaNhOnZkRjAsWyLhSbDgY"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Customerrelationship List appears if save successful"
+                    text=".*${customerrelationshipList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${customerrelationship.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing customerrelationship -->
+    <target name="DeleteCustomerrelationship" description="Deletes existing Customerrelationship">
+        <webtest name="deleteCustomerrelationship">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Customerrelationship link" url="/customerrelationshipform?idcustomerrelationship=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Customerrelationship List" text=".*${customerrelationshipList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${customerrelationship.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Customerrelationship-END-->
+    <!--Customersegment-START-->
+    <!-- runs customersegment-related tests -->
+    <target name="CustomersegmentTests"
+            depends="SearchCustomersegments,EditCustomersegment,SaveCustomersegment,AddCustomersegment,DeleteCustomersegment"
+            description="Call and executes all customersegment test cases (targets)">
+        <echo>Successfully ran all Customersegment UI tests!</echo>
+    </target>
+
+    <!-- Verify the customersegments list screen displays without errors -->
+    <target name="SearchCustomersegments" description="Tests search for and displaying all customersegments">
+        <webtest name="searchCustomersegments">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Customersegment link" url="/customersegments"/>
+                <verifytitle description="we should see the customersegmentList title"
+                    text=".*${customersegmentList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the customersegmentList title"
+                    text=".*${customersegmentList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit customersegment screen displays without errors -->
+    <target name="EditCustomersegment" description="Tests editing an existing Customersegment's information">
+        <webtest name="editCustomersegment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Customersegment List" url="/customersegments"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the customersegmentDetail title"
+                    text=".*${customersegmentDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a customersegment and then save -->
+    <target name="SaveCustomersegment" description="Tests editing and saving a customersegment">
+        <webtest name="saveCustomersegment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Customersegment link" url="/customersegmentform?idcustomersegment=-1"/>
+                <verifytitle description="we should see the customersegmentDetail title"
+                    text=".*${customersegmentDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="SlIjRnXyKgYdUwIzUkPvRrLoWaQkVnIdCuGoWyDnNiUrDgRqUhHuOqXvMuOtFnNbSgStHeWjFjLnRnUxIjJgBrHrFkSvShRfTwBeMcRcUwGkCiGiHfKpJbZlAxVuTiNzWjEbTfFiLoFnCtHeZjBjJjSkSyIcTiYvSyJkAcHsPpWkCjYeCvSpEhWyNxXwHyPuRnWoXbYrNdKbBdQeFuNcZkOlRoFxWdNmWdHmAkAwCvElXyVkIrOfYlNvMsVkOmW"/>
+                <setInputField description="set name" name="name" value="GkKmYwNxKwZcZtBlKtIfVnPrXfPoNhEjQuOqFpMjUgKtNtYmBdNyOaIpPzRaPaNoWuJmUaUxViFkLcLiUbVfBgYhQwTfCiTkBiUyOiMfVkHjBcDwIjJrZuFnIlGrPiWhDsIaAlJvDcHsGpTcFhHpPyHyTjWrBsXhIgDrYzKgWvTbKaHvBhEoJmWuZhEuHdMgYvViEoVzVdStKvWvTrSkCjOtWcYnRrIwDzGiSyVbTpDhGeEzBcXlSsMaTjFkItM"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${customersegmentDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${customersegment.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Customersegment -->
+    <target name="AddCustomersegment" description="Adds a new Customersegment">
+        <webtest name="addCustomersegment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/customersegmentform"/>
+                <verifytitle description="we should see the customersegmentDetail title"
+                    text=".*${customersegmentDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="GcDuTyYzXyXbVkBaAiKaWiCiRrZaGeFgGrDiQlBvEtCsFzGeCoTjLgCjErZdRsRyWrWlAnVnXsCxYqCoWvBxNsAzKhYbTmAkXeItSmEaHuQuSdTlZqMeDfAePsGoDgJyUkXkExYdZtFrYwUdHuKuMsEnUpTxGhAuXgSdHgXhMaHjRvPtXmNqRvFmIoVxTvXgUzOgZpWeAoEmSqSjDoCvNeEnUtLaLuAtZeReRtEuIdKgZbShRbTpXeLzCsQjCwM"/>
+                <setInputField description="set name" name="name" value="MvUdVaQcVaXcGgOwThXfPcVbXuMfQvUkVtOkRcVyYyXfVvFuRpFkJpDeErZnQoUiTnXvTrIgWdHyKxViUzIxDuNwZrPwMtKtPyNuFtTxDkJrCuKwXzKnTnGeKwAuYmKcWxUzSlMcOzGaVoQvPuJeXgUhIyJsVoEpQjDuJbKaToKbJzYdBaUyTuSgRrNaZgDtXxPcZfTbRpWvWqNmCvFmOiHkRxVzGuQxLgYgHrZgAnEkLhSjMaVqSrCvQoVnTpU"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Customersegment List appears if save successful"
+                    text=".*${customersegmentList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${customersegment.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing customersegment -->
+    <target name="DeleteCustomersegment" description="Deletes existing Customersegment">
+        <webtest name="deleteCustomersegment">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Customersegment link" url="/customersegmentform?idcustomersegment=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Customersegment List" text=".*${customersegmentList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${customersegment.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Customersegment-END-->
+    <!--Revenuestream-START-->
+    <!-- runs revenuestream-related tests -->
+    <target name="RevenuestreamTests"
+            depends="SearchRevenuestreams,EditRevenuestream,SaveRevenuestream,AddRevenuestream,DeleteRevenuestream"
+            description="Call and executes all revenuestream test cases (targets)">
+        <echo>Successfully ran all Revenuestream UI tests!</echo>
+    </target>
+
+    <!-- Verify the revenuestreams list screen displays without errors -->
+    <target name="SearchRevenuestreams" description="Tests search for and displaying all revenuestreams">
+        <webtest name="searchRevenuestreams">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Revenuestream link" url="/revenuestreams"/>
+                <verifytitle description="we should see the revenuestreamList title"
+                    text=".*${revenuestreamList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the revenuestreamList title"
+                    text=".*${revenuestreamList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit revenuestream screen displays without errors -->
+    <target name="EditRevenuestream" description="Tests editing an existing Revenuestream's information">
+        <webtest name="editRevenuestream">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Revenuestream List" url="/revenuestreams"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the revenuestreamDetail title"
+                    text=".*${revenuestreamDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a revenuestream and then save -->
+    <target name="SaveRevenuestream" description="Tests editing and saving a revenuestream">
+        <webtest name="saveRevenuestream">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Revenuestream link" url="/revenuestreamform?idrevenuestream=-1"/>
+                <verifytitle description="we should see the revenuestreamDetail title"
+                    text=".*${revenuestreamDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="UcUfBoSfOmYcZyPoWtJlXxUuJnXrKbOlUkObKsCzHvLcYsUyDiNjVcBvHbEpQiOmPiVmRuVpAmKjSrKdPiVwHaJtEvEwOmYzGdMvLwYsPoQbNdTjBrTiKoGxUoUhFoOiOeKjFtIiPkKcDcDoKtIaPpYmTgHuJoIpIeSzTnVnPtQtJnMvRaFnUgJsIbZtSlOmTtBhMhYmWvZrCgCkWiJjInGpYbZlHoHxZzJbQoPoRbGsHsTnHdScOaOvUkFxJcE"/>
+                <setInputField description="set name" name="name" value="PePoPyNyVcTdSmJcWgDcHqXeQpWvTkAhZqCuQgSxYuHcSjZgYqHsDfGsKvKsPhFlKfGtNzXrXqGoFrOnYbRiCxPrCzGfKxQnLwXlHaEgIrElZiZsWgBhVpOaFgWjMvAmRuXqLqOuBjEqSwMePkLjJcZoVhOaFkRxPmJrTaHrTeCeKaZtQbYzOhFcWlAqMaOpQdCcCrDcVdTgKqWfVgVxWdOmWzJuEmRuShNxEkEvXwPtNuXtIoZtDdAyUuGnVzQ"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${revenuestreamDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${revenuestream.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Revenuestream -->
+    <target name="AddRevenuestream" description="Adds a new Revenuestream">
+        <webtest name="addRevenuestream">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/revenuestreamform"/>
+                <verifytitle description="we should see the revenuestreamDetail title"
+                    text=".*${revenuestreamDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="CvWjWqEkHzAiVjFjByZmCzFnWzEhLtZiEbGfFfTiUkJcAxWsXsJkTzMxPrAtKeKhGoQuMsXvBqXwEpYbFqUcFrLpSmBmHvKvIdXtNgOkArPrDdUgWrPkLfQlHjPdZtWqCvIuCwRkWlUuHhPcHdCfTsBoQoImWcMsVuXrHlQwHlMmObVuXeFpHtItFdIeDpEjMoRvNoVeAvFnNzApXnUqFvVxRkOrWyJnLjJcOzLlOoBpVxHtPoOxUpCyLwLlXrX"/>
+                <setInputField description="set name" name="name" value="KwVlUzEpVhZsFcPgXnPwDcWpPgHrFeYcHaXfTuEoCtLdPpJcHaMoZlAqXzDjWiAvQgYdAdMlPcGdGmUdPhHtFtWoQaYhHnSeLmFqJsQaJxAnGjYcZiKjCkMhYlKsNkZdQbOaPxOqQgAcDxWnBfToUgKvRuKcEnEsFpEnKmMuHyZlCqYkNvKoOtCjIbGeExDaCfYvHlZnYaBjZkCyXsJtQlPoUoKjQsUaNzStVfJgWpZcFoSxJzNuQzNrBqHkAmU"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Revenuestream List appears if save successful"
+                    text=".*${revenuestreamList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${revenuestream.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing revenuestream -->
+    <target name="DeleteRevenuestream" description="Deletes existing Revenuestream">
+        <webtest name="deleteRevenuestream">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Revenuestream link" url="/revenuestreamform?idrevenuestream=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Revenuestream List" text=".*${revenuestreamList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${revenuestream.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Revenuestream-END-->
+    <!--Valueproposition-START-->
+    <!-- runs valueproposition-related tests -->
+    <target name="ValuepropositionTests"
+            depends="SearchValuepropositions,EditValueproposition,SaveValueproposition,AddValueproposition,DeleteValueproposition"
+            description="Call and executes all valueproposition test cases (targets)">
+        <echo>Successfully ran all Valueproposition UI tests!</echo>
+    </target>
+
+    <!-- Verify the valuepropositions list screen displays without errors -->
+    <target name="SearchValuepropositions" description="Tests search for and displaying all valuepropositions">
+        <webtest name="searchValuepropositions">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Valueproposition link" url="/valuepropositions"/>
+                <verifytitle description="we should see the valuepropositionList title"
+                    text=".*${valuepropositionList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the valuepropositionList title"
+                    text=".*${valuepropositionList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit valueproposition screen displays without errors -->
+    <target name="EditValueproposition" description="Tests editing an existing Valueproposition's information">
+        <webtest name="editValueproposition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Valueproposition List" url="/valuepropositions"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the valuepropositionDetail title"
+                    text=".*${valuepropositionDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a valueproposition and then save -->
+    <target name="SaveValueproposition" description="Tests editing and saving a valueproposition">
+        <webtest name="saveValueproposition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Valueproposition link" url="/valuepropositionform?idvalueproposition=-1"/>
+                <verifytitle description="we should see the valuepropositionDetail title"
+                    text=".*${valuepropositionDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="IkJyGcCeInPtFgVcDcQoWpOuAhImSxSqFpAdDlGcIxHmXkZuPoTxKmPoBoIrNrEoArUxPsGuWyQhGeXkIiNdQjKrNwFwHkClStZyPjDqGsLsFjOwMtYjMoJkZtGqSvKbNpLuWnWrGcQiNsQcHhHkEfRhIoTlAbVqQjYfYxWkXhKwGiYkZzNlNgRaUeXoNbWeKcWxWsSrPxJiJgLxBoFpTrXkBdPmIoIyNiIgBhDvNzGiSpAbPnQcLzBpYvOkNaU"/>
+                <setInputField description="set name" name="name" value="MsXaNhNfYgKjVcNyYcWaHtZlQaBtCfYwOlBbDeXvSpPaDsWiBgKdHuUnFqXaViOwLxUjJpMlEvMfVsQaEfEdTlAuTfPxTcNvRpKvBqJeWvLwOhCmRzIpQiLwOpXuMjApRmNkYqHsHwBuHqZfXfVyQwMvMzSmUoBeZfXlWpOeLnKmQlSgYwWvQxNxLuQmTmAoOvZsKrZoWqFpToKxKrIdKjWeUxFfZaPmGhMySaOxQvXfUuNzYnKyPfKuGgDyEaS"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${valuepropositionDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${valueproposition.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Valueproposition -->
+    <target name="AddValueproposition" description="Adds a new Valueproposition">
+        <webtest name="addValueproposition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/valuepropositionform"/>
+                <verifytitle description="we should see the valuepropositionDetail title"
+                    text=".*${valuepropositionDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="SuZcKtXwHvYaZsDeUiYqWzRiIpLtFzSvItKuBmCyPeCyOdHsXoGcTwRfImVxQzGpPyKxKpKoBvUrNkZbWjPzGaNcDgUxKaJsQxKzJiMlFtBeFfEbGwMdDmZbDjCuXrNtUxXoOoXbGvIpEcChZqKdKwLbYyTbRgAuWuIbRgQiKtFzNlRtUsUnCtFvBjYcInSsZnCkDxLuUrOhRsBoAiEfVpNdWlIpFkReIpZmEpXdCoXiPtRqThPfFpGjKpMoTcF"/>
+                <setInputField description="set name" name="name" value="OkAoAyZiPhMcMuLkFcFiSuYhDdLrXtHgMlFaQxQfAoGbAwVtAnNwExIxMeNuIyVsAaPiGqUuUmJzFmCtDyCyVjQkWjGsHzHiYbVlOuAvKsBtMbBsVpUbJqAjXjJsFoLuJwZwCdNtBkWlTiVjVgNfBzZmBxFdDrYwLsInCeIbKoZhCrSkRzItVgAgMjSoLmQyOiXsYsCtTuLsRwMaMtBoRoItOwGyWaMyLyYnWyShOhDtXeQtVoUnPiRiBbAcViM"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Valueproposition List appears if save successful"
+                    text=".*${valuepropositionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${valueproposition.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing valueproposition -->
+    <target name="DeleteValueproposition" description="Deletes existing Valueproposition">
+        <webtest name="deleteValueproposition">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Valueproposition link" url="/valuepropositionform?idvalueproposition=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Valueproposition List" text=".*${valuepropositionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${valueproposition.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Valueproposition-END-->
+    <!--Partners-START-->
+    <!-- runs partners-related tests -->
+    <target name="PartnersTests"
+            depends="SearchPartnerss,EditPartners,SavePartners,AddPartners,DeletePartners"
+            description="Call and executes all partners test cases (targets)">
+        <echo>Successfully ran all Partners UI tests!</echo>
+    </target>
+
+    <!-- Verify the partnerss list screen displays without errors -->
+    <target name="SearchPartnerss" description="Tests search for and displaying all partnerss">
+        <webtest name="searchPartnerss">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Partners link" url="/partnerss"/>
+                <verifytitle description="we should see the partnersList title"
+                    text=".*${partnersList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the partnersList title"
+                    text=".*${partnersList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit partners screen displays without errors -->
+    <target name="EditPartners" description="Tests editing an existing Partners's information">
+        <webtest name="editPartners">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Partners List" url="/partnerss"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the partnersDetail title"
+                    text=".*${partnersDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a partners and then save -->
+    <target name="SavePartners" description="Tests editing and saving a partners">
+        <webtest name="savePartners">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Partners link" url="/partnersform?idpartners=-1"/>
+                <verifytitle description="we should see the partnersDetail title"
+                    text=".*${partnersDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set name" name="name" value="XiNxKmUsBoIgUxKzMzReVqHqCoBwBfMuBvCwIbHlSxErEwGuRjFiVeHsHuIuHjKdJxBqDoTeElWgAeGyErAzCxIwVpDpPtNhBoVrIyTnNdKtGdUpBvLqYcHeIfMvNaVcMeXfVwRwNeDmPkPxKrCsZdYaHdGiPxKkEiNgDfJxDuMuBjMyDjYeWsKyGdWwEiXzMyFxNdZkPvZmIsRlFyQlZiMcGxWuMnLrIeXaGxEdFxQzOnHnBfFqObMxOoUaZyT"/>
+                <setInputField description="set role" name="role" value="XgDeUnQlAyQiZgJvRdUvYyPhSrOlHeRiBrPoChQwTxDwKrVlAxMyIdJnClXfReXcPkVnLiLvGbXtLgDwXzWrKsHfZsPwHcXgDmYfWyXfVqToWiAaNpFiStGhHtEhIiUiWdIwNkOyJeGqTeFqFbMjAgHxYnSuFcHmEbKfSyFlRgAqJhLfJwSlDoUnQrYmElTdMbLdLcYmHgUuBsOfGtQvSjAjLeUaYgQtMqCwPxCoLpGbXbEqQbNwMnUkGxUjTsW"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${partnersDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${partners.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Partners -->
+    <target name="AddPartners" description="Adds a new Partners">
+        <webtest name="addPartners">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/partnersform"/>
+                <verifytitle description="we should see the partnersDetail title"
+                    text=".*${partnersDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set name" name="name" value="XnFoXcSvBdXiTdFaNvNgZsRqFrSeBoVuPgGmXtEnAtSwGbVhAyBsTvLwDaLcRpLdZkXwYnHwWuFiFfRkOmYiFiOgCuTuIaElXdShWgYvToNvPrJxHbGzOaTqBcLnWyAqFfRlKjMdWrUiLrNtXiMbVkBaFrRhSsSrBwMtOxVxZlYlPmWmIlKvGlMvGsEbPiUvJnClLvNmKmMwSnTiDmKzIgRiSmMeYfQvRbOtHqDoGrQuOuYuYdPqTpEnXsYcZgX"/>
+                <setInputField description="set role" name="role" value="OjBwIpBcOnOmVpHpAdXsGyBmZwLoBxXbVtRkAoGnIbPxUuCnFtFzZkWuFrGbQdWjJwGmWzZiZhWbKnKpGrAdNySuFvJqSeQvFeUxGeFyZhHtHbVqUeOyRiZpAeLnNkQtJqBhKaXpPjLpKaCjHpHvNdHfAuIwGiJhLdIdFuCqLlKrJdXoNdJuWvXaWhCeMzYiUxKlApDmMgCkKiZqHjYmTfXoGjLmImVmWmNlBlIaAdQoIaNkJhBsJvGrOpFlJdU"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Partners List appears if save successful"
+                    text=".*${partnersList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${partners.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing partners -->
+    <target name="DeletePartners" description="Deletes existing Partners">
+        <webtest name="deletePartners">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Partners link" url="/partnersform?idpartners=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Partners List" text=".*${partnersList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${partners.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Partners-END-->
+    <!--Resources-START-->
+    <!-- runs resources-related tests -->
+    <target name="ResourcesTests"
+            depends="SearchResourcess,EditResources,SaveResources,AddResources,DeleteResources"
+            description="Call and executes all resources test cases (targets)">
+        <echo>Successfully ran all Resources UI tests!</echo>
+    </target>
+
+    <!-- Verify the resourcess list screen displays without errors -->
+    <target name="SearchResourcess" description="Tests search for and displaying all resourcess">
+        <webtest name="searchResourcess">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Resources link" url="/resourcess"/>
+                <verifytitle description="we should see the resourcesList title"
+                    text=".*${resourcesList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the resourcesList title"
+                    text=".*${resourcesList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit resources screen displays without errors -->
+    <target name="EditResources" description="Tests editing an existing Resources's information">
+        <webtest name="editResources">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Resources List" url="/resourcess"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the resourcesDetail title"
+                    text=".*${resourcesDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a resources and then save -->
+    <target name="SaveResources" description="Tests editing and saving a resources">
+        <webtest name="saveResources">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Resources link" url="/resourcesform?idresources=-1"/>
+                <verifytitle description="we should see the resourcesDetail title"
+                    text=".*${resourcesDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="TdIsKfWgSzEcHoNlUkIlInPtBtBsWqCjHoWsLjGeOuYzPsRiMqJaOoOcSpTuEcSdRlJmQmZhQvBlWfUtCrRoPyLaGbLhTcZgPlOcIpUxCdDrBsNfUiLjHdOvJkLvPpRxXgNkEhCpQyCiFtKmQvBmVjAcTjCtJjSmEgJmWsFpLvUiNzJbPyUzIuBpDoUyDrPjBoCxMxAqJiDzDjDdRzBtLwTuObAzXcBvIhDtPeLxGsGgZzDoMdRhRaTqToTpDtX"/>
+                <setInputField description="set name" name="name" value="GqXiKaZsMmZeKeMlLrClSdNnGcIgKiXkRiAbYpZkQaHnPbOfKeByIjQsGmRtVjOmJkNaMiDzWoJnHfYfQfMtDxZqAoRtGoKoAyPkErKrQsIgFbJmAuYrTlGhMjDjMhZmRoHmWhKgDtWiEkYpImFiNqBjZzQaMuIoNlIgSsMmCqJlTlPvYfQzXgYtLqAhGdKeJdAiLqWmKvPnIvFuQoUtCeBzRuCaZsHiRcKiCaKkHaIbPcIfQgDuWzNgEwNxPmF"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${resourcesDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${resources.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Resources -->
+    <target name="AddResources" description="Adds a new Resources">
+        <webtest name="addResources">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/resourcesform"/>
+                <verifytitle description="we should see the resourcesDetail title"
+                    text=".*${resourcesDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="SvDyCfZbSlOqLxMtXbRnYsQoJxWyWiAfSoJeSyKeCvHyAcNbEmAbPhPjJrKnFvIoYtAoEoFpDyXsUuQiLsJgUzUtVfZnQcIyYeEwTfQfAnDhXlEjWzEiJsJrCcLhPdJpBbVsLaWtPfLtEzGzNfZuWhGcZnXhDqVtRgFbRdTrMoYlSrQkPrGlDmDfNoOtOsLgOcMmGlDtPlMhDeAmFuTjLvTtIlYeSiItPiHfOfCeBmCvSuFiVgVhXpJsRiRhLoR"/>
+                <setInputField description="set name" name="name" value="PvLdQaBmPyUnCwDxAqHfHaRmFiDyHcLnPkYkExIxDsCeZcVtYsKxNmCuNeUrClTuMeEhBcKrMpDiSwQgRqDlLgRjSuNtHzInZiJgSpSiOjUiUxTiCfDfCbUhAfNmTcJkZiSjHpLdGiJlXvKaUoNhTsQgXdAkAzGtBcYkEoZzIrGmHsPhLnNjUeKoEeGjSgMiAlYsEzLjYtJfGkGhVaHuUoGiHrYoBjRrBsXqTrHxWzRpBmMrTbYgWmRbCkZgZvG"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Resources List appears if save successful"
+                    text=".*${resourcesList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${resources.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing resources -->
+    <target name="DeleteResources" description="Deletes existing Resources">
+        <webtest name="deleteResources">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Resources link" url="/resourcesform?idresources=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Resources List" text=".*${resourcesList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${resources.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Resources-END-->
 </project>
+
+
+
+
+
+
+
+
+
 
 
 

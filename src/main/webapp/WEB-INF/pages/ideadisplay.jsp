@@ -8,6 +8,7 @@
     <meta name="heading" content="<fmt:message key='ideaDetail.heading'/>"/>
     <link href='/styles/timelinecss.css' rel='stylesheet' type='text/css'>
     <link href="/styles/comments.css" rel='stylesheet' type='text/css'>
+    <link href="/styles/canvas.css" rel='stylesheet' type='text/css'>
 </head>
 
 <c:set var="delObject" scope="request"><fmt:message key="ideaList.idea"/></c:set>
@@ -38,12 +39,71 @@
         <div class="panel-body">
             <ul class="nav nav-tabs" id="myTab" style="border-bottom:1px solid #DDDDDD;">
                 <li class="active"><a data-target="#details" data-toggle="tab">Details</a></li>
+                <li><a data-target="#bizcanvastab" data-toggle="tab">Business Canvas</a></li>
                 <li><a data-target="#milestones" data-toggle="tab">Milestones</a></li>
                 <li><a data-target="#comments" data-toggle="tab">Comments</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="details">
                     <% out.println(StringEscapeUtils.unescapeHtml(String.valueOf(pageContext.getAttribute("test"))));%>
+                </div>
+                <div class="tab-pane" id="bizcanvastab">
+                    <!-- Canvas -->
+                    <table id="bizcanvas" cellspacing="0" border="1">
+                        <!-- Upper part -->
+                        <tr>
+                            <td colspan="2" rowspan="2">
+                                <h4>Key Partners</h4>
+                                </p>
+                            </td>
+                            <td colspan="2">
+                                <h4>Key Activities</h4>
+
+                                <p>...</p>
+                            </td>
+                            <td colspan="2" rowspan="2">
+                                <h4>Value Proposition</h4>
+
+                                <p>...</p>
+                            </td>
+                            <td colspan="2">
+                                <h4>Customer Relationship</h4>
+
+                                <p>...</p>
+                            </td>
+                            <td colspan="2" rowspan="2">
+                                <h4>Customer Segments</h4>
+
+                                <p>...</p>
+                            </td>
+                        </tr>
+
+                        <!-- Lower part -->
+                        <tr>
+                            <td colspan="2">
+                                <h4>Key Resources</h4>
+
+                                <p>...</p>
+                            </td>
+                            <td colspan="2">
+                                <h4>Channels</h4>
+
+                                <p>...</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                <h4>Cost Structure</h4>
+
+                                <p>...</p>
+                            </td>
+                            <td colspan="5">
+                                <h4>Revenue Streams</h4>
+
+                                <p>...</p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="tab-pane" id="milestones">
                     <div class="row">

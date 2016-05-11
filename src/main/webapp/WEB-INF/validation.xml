@@ -132,5 +132,95 @@
             </field>
         </form>
         <!--Summary-END-->
+        <!--Activities-START-->
+        <form name="activities">
+            <field property="description" depends="required">
+                <arg key="activities.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="activities.name"/>
+            </field>
+        </form>
+        <!--Activities-END-->
+        <!--Channes-START-->
+        <form name="channes">
+            <field property="description" depends="required">
+                <arg key="channes.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="channes.name"/>
+            </field>
+        </form>
+        <!--Channes-END-->
+        <!--Coststructure-START-->
+        <form name="coststructure">
+            <field property="description" depends="required">
+                <arg key="coststructure.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="coststructure.name"/>
+            </field>
+        </form>
+        <!--Coststructure-END-->
+        <!--Customerrelationship-START-->
+        <form name="customerrelationship">
+            <field property="description" depends="required">
+                <arg key="customerrelationship.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="customerrelationship.name"/>
+            </field>
+        </form>
+        <!--Customerrelationship-END-->
+        <!--Customersegment-START-->
+        <form name="customersegment">
+            <field property="description" depends="required">
+                <arg key="customersegment.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="customersegment.name"/>
+            </field>
+        </form>
+        <!--Customersegment-END-->
+        <!--Revenuestream-START-->
+        <form name="revenuestream">
+            <field property="description" depends="required">
+                <arg key="revenuestream.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="revenuestream.name"/>
+            </field>
+        </form>
+        <!--Revenuestream-END-->
+        <!--Valueproposition-START-->
+        <form name="valueproposition">
+            <field property="description" depends="required">
+                <arg key="valueproposition.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="valueproposition.name"/>
+            </field>
+        </form>
+        <!--Valueproposition-END-->
+        <!--Partners-START-->
+        <form name="partners">
+            <field property="name" depends="required">
+                <arg key="partners.name"/>
+            </field>
+            <field property="role" depends="required">
+                <arg key="partners.role"/>
+            </field>
+        </form>
+        <!--Partners-END-->
+        <!--Resources-START-->
+        <form name="resources">
+            <field property="description" depends="required">
+                <arg key="resources.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="resources.name"/>
+            </field>
+        </form>
+        <!--Resources-END-->
     </formset>
 </form-validation>

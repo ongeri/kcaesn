@@ -334,7 +334,254 @@
     </row>
     </table>
     <!--Summary-END-->
+    <!--Activities-START-->
+    <table name="activities">
+        <column>idactivities</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idactivities">-1</value>
+        <value description="description">LsBlQqOyBeElHpJcNeAbDgQrLcRoAeGhGoOrVmSkYwLwYvGlRrDsYrXgOeTbStZxQrPoAaQmOuAxGiRoXtUcLpPdVbWcEzYiOkBzMxMoVrCjGuJnRyCtMzRwWqRgZrCmLqRiYsAyGyMzOtWiNvBlPyMmZyXdBuIjSvPnJzLtVjMgMzEaFtTmImQaCpKoOaPiRdAbRxEbDcWiFmKeGnXuRrZfDcGlRaLrLtKtGgKiTwIoLjVlOjGxEiAoFxLqUhM</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">JlPqFiDyXxJcVdRdUmKsJwJgOwLfYyCfJxGpAqNoCkBoIpKuIuXiFuXgHrKoVoVjQtZxUmUjCqBrTsYyDmIuAiMnZtKwSdFaWmIaRyKkMcJzLoQlMcCcUjGzEcTwGrNlJtMlEkBsVyInZdTvJxZjMeAiZoNzGbZvZvLfCfXmQyKiAmLfCcSeNyVaMnYoBmOkKiBwQrHiHoAxEwFqGdPqOeGePqYvMsZzYmJgBiGiQjUfMmPlWmNlVsAbXvAuKzX</value>
+    </row>
+    <row>
+        <value description="idactivities">-2</value>
+        <value description="description">HbHgYgJvNmQbKvAvEaPmLdXiNeNgHcOnErFnSuLiMpJnVuYcHgDsZwRaWrEsSsKdLiYsIcPsNqGhToRxXuJvHmLuUyCaOrZhKxMxObLpJuCyCkCpQoWpZuTjWwKeKwPyJgLzNoVdHgQdTcLjZqLiGhNmBwGpErQzRkSsBmImCaEeMsGgWbLjSsIoJkLnOjLxRwEySeKgPgWcDqUnFqDuYxBbEvBoVuYxDaWwPpOhKlCvVyJhBfJpFySuGhQoRiE</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">AyIgSuEwUtEaOqVkLtEoVgMoQnAhPkZkTvXtTuXpPsZoRiMhQoXzCmHlNwUhKqWyOrHsFgJiSqKpMqAtUfAzLkDmMbUvYtTaEtQkXdIeCvKdLlYhPdJaIgYuGeNaFzCaMgVgSxJbWnCdUjKfMnNhVwBsSbAcHrDuKnKpPdZsHyLiDtIlQvNbHvWbChObToHkHsVhQcTpQzPjJoEwIsSgYbRwWdEiEtYzCnEcObSyWoAgAxHyUtCvAdUbKuVvAmE</value>
+    </row>
+    <row>
+        <value description="idactivities">-3</value>
+        <value description="description">BpQwQfIgLqWkVnNoLrZpCbNxToCnEtKaStSuGpZyXsJiWdOcPnCvPhMnMoHyGcBxLrIpSyJwHiFnBrXhFyNcVpQdWgYeYpPgCmNfHfMzUhCbNyGaHhBmSiOyJmMqEoTjWlJtCnZaNsBiGzUjYoKiRsRoOvPlCbYsYrToRiUgBmPnGzEgGiPbVjKhJkDtShYfXsSmViZvOwIaLcLnQiPwLzPgTeAtPeKyYqNlRzPfYdNsFrJgMaNcNkDgKjUmUdZ</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">CuDpHxCbZiUyPzSfGuItQyYxHbAyBiGkBfGdXoVuTvTiSdRjViXjQmUxCtCvKmMbWtUlJpQuHoZnDcGoWvJcIlWtZkLvTpKpWpPbSeXsDsDiOsVeFrAdLcVaYtLjUhYaPrSqQxLiKhYjUzQwXmSnKyKqZiOvYkLuAdTrNjItLoCiQxRiJlWlFsRoTzGcTuAkVdTqYzHnJhDjCnRkCgWfHvEmKjGrRyGyGnDjZeVkKtAtRmEnDzTdSeRkRvVdFyV</value>
+    </row>
+    </table>
+    <!--Activities-END-->
+    <!--Channes-START-->
+    <table name="channes">
+        <column>idchannes</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idchannes">-1</value>
+        <value description="description">LnUmYrIdXdAhXdAdWxRiUaMiZgBhLuNuRgHvRiPgJdNyUoOlVfEsPyPaAmFyCeDiYhSsKnMwLoLbKjJgHzVmVyNjDfLmNkMeYzPeNuAtHeAbCjCzBgNpQiSyAhFlDdBaIaJiFyPkAaNgZkEhLmDkJhHtEzTjBzTaXvQqCuCmAtMqVnVzJlLwUpMdGvNhHhJkYyIqTiErSoQqZkBgYfCwFbRkViFfPhFjWxQyAcSvEaPoWfCxWpXsHwPlOjVcDjJ</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">UwYsFvWvFqQmZgEbDzRnYwPsUkHwVbPrVdLaVcKvZoCyMkCuIsRyHzRyPzYcQlPmGfGmIfQnIpFiPsSxHgBvCjKqKoBkUlNeDmMmMbBuGbYgFmGkMrUqWzRsOaCtFtMjAbLmJjIlXqPfTaMcVkDfXwHeHaYpXiZbFvXiVcCiKeKoFvWmMzEmMhPsXpBqBeUdAxMpDeFnKxHwXhBbAvEqDdBrGaCjTsZeVbIkAoCyHtXgYjLmWuWhEmIiIpHlUaJ</value>
+    </row>
+    <row>
+        <value description="idchannes">-2</value>
+        <value description="description">JaOhAnLeGmByDjTeJuFwClLnEkEqXwOuYbKxKvRaVbNpIhZkBzYuNmKpUyMtSuHeLfNaHqPjBlDiAmGpVaFcVqFhQlAmUiNnSjKjAdAiCqVaMyBgFjRqKvVyJuZmXsPdQsWsLgLhKmZdSdEyRzDaIcKvDiReGbLgRiHwBcNpBeJgKwEiMeBsCxAsKcWuUpPxEqUiIlTtWfFxBfVsTtRxQfMjVhPxHhFwFzVxOwQrEiSoSrWtZmYyTcMwOvIzKrT</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">AoWfQpSvOlZpYkVgEnQjZkRwPlOcIwZjXyByEbSnLlUaNiXeHrWjSuWnXzCzGhMaPoGqAvMjPoLuIxXxEmNmMdBuUcQbNwCqQwPfNqQhUiRrXlSiKmSjRbGbVkKfVqIkLnApNyRwThSbQrPeDbJmIfDrQpTpXoFrUrFuWdRvLbUyIwZhAmQoXwBcAhFaNlVsSlHjRaUoRoZyYxMeYyNuIeHbCrEuBnTvNsNwDiHlZsGtOzZsLzVvOgPnBbIqYsC</value>
+    </row>
+    <row>
+        <value description="idchannes">-3</value>
+        <value description="description">BbCkTlTqVuFvUuBfJwDeKwWxDlAtDsXlOiFsJaAxPrNtCdBmHiTpYyCrRsGdDeNiTiGhMbKmYeGsLyZsCkEvPvMvIzLfLrMuIzNrRbGcJkTbWiJnNnDrIiHlDyOiCxEeTpUaEaAsUmXfClCuLfHoMoXqCeDpIqYkBjDpDlJfHnDfObGlJaFoNwWlDpCzJcOcMdWbTxQzMuVpPkNjTcLlVvRgNgRtYeBlYmYiZwJsWwWhTyLqZwZdBqFfLkOeNdZ</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">UgCeRfLjTxPjEmZiAiVsEmQgEyNiOnOpZaGjVqSvLlPvMxYcShZnWwHeQyZhHtLoPgQxNgEqSoRlRhGoGbBfFhCdAsVeMgTtNvLlLrNfFnAqQzLxYoGbIhEfIiPnNiTjWwQzWwOgEbYzSlFkAdEjGmMbUrVcAsHgEeQcKhIzDuRbQzDlTfEhPhDpBoFnChRmNoWiBfUoKzNzCxLnCpKbUqAdJaRfWrFhJpCfHdHsCnDvWwYcClZiOlMoFwErYgU</value>
+    </row>
+    </table>
+    <!--Channes-END-->
+    <!--Coststructure-START-->
+    <table name="coststructure">
+        <column>idcoststructure</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idcoststructure">-1</value>
+        <value description="description">XnCkQpTmCaPkGpQrGuEgYeKiKeKsKbRkMvEaZyEzToDsNfKkKuYpOkBfLwJdXrLfHgVoHhBtUwDoZeTqZeBoSbXrIzXpSoDwMqXpIeBwBiKkFoCoCbFsXhSzIaMnXcArWzMoRvEmMeInXbWyQxNmUzFjZtTrVmCvPyOoTmPvSiHiSkKdDfDeDdVmMyWrTaHzLrEfEkFvRfKvYrPrDoUyOfRaJiHoFsBuZuTyJxDxJtIhZvMdLnCgCuVnSxYsAvG</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">AgUtJpSuTfVnMoWgEzJhDiStLiKjZyFeLoOmCsKrSfYnTlRjRrOfOlCdQdAiBoIvNlFcLxPfGtZtMlTaMrTnUxYyWeKnCcXnXgAdYbOvQmKhClNuBtBfKzTmPlXuSaSqJnXzKsBkVjPbUyLsPeIfGzNbEgDcVhLvBvWrEdLwZdOkArFhFlXoYhArHrNjLkEdUzVdJrYbOyNlWpWbPrOjDxEaIkPcYfVsVeSlTmGuKfKhVxWgVwPmQgStLqXiEmX</value>
+    </row>
+    <row>
+        <value description="idcoststructure">-2</value>
+        <value description="description">OrTqIoEnMmVzXvRnReUlEgAhZmNvFnFnQkXrHxDfJfLnTnInYtYfZiNqBnLbEfNsCwUlJxTqUxGqKsSeYsMpDcEzLhBrBdTyZnYiSrBiBmUoHgEbNgBfWrDtDgCnUoQvWjQqBbSeYoBhBwBwHpGtDaKpCkRnAhYgAxAiRzVeFnZiWpHsBgPbTjAqXwXmIdIrVuWrJvPaQbZoCdJlAqVqJqMsZkPcImFkBiFjVdWpZyZiDtOfPrIeEkNlPgEeKdF</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">TzLrWjMuUmAkVtEeNjDtUkYdUoIfFeOpQgYlVnUgPjGpQiXmFfRaRnLvQvLpZyFhHhTjBhVzNwKqVpSkDsLrGfTaAqYrRpDoKwTcNpPfCgTzTlKvJyXbBdAtVpRwAkWrCvMxPpSqSfXuRhVxPjXfLiWwZkXiXpRfAfPjQuFlRnEeGdEwXyWuCjTzKjVeZqSaJqAmXyHsTvAyKrIyItKgZpLgQoCkVeWcRrSaLmSzKxTnPvWhNlCgOmVvLaRtZaP</value>
+    </row>
+    <row>
+        <value description="idcoststructure">-3</value>
+        <value description="description">CjWqAmEcByZnZyAxUnJnMgMdCxGzGpJzQzSvUyVuJmGnMaRhKbSoNaWcQnZdKfLdIhWvSkNoZgYoWrSkHxWxBkZpAqDtFmFzPxYmXxVcLgIrUeQoVmGxKpWlIiEoAuLwFaCpNlMeRbBdLnOgFsCmCaRnEeMrXlXyRmFiSlGoWwZtHaPjAkSoWvYaZpDyDoAlByEpSoXuZwThQjQqBiAqAyRcMiAlXbPhBoMnCuTpKyEcJnElSbAjQhTqJyYlLwX</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">BjQzPlUaYsGmHhFmUiYyUkCuGiAeJeKtAzSaSbIxHuPyVlMaPrBgNoPaViIhIiHkQiUrRfDmAgMwCpQaGdSiJfCnWaFaQqNyDbWjShBfZaZnMlHpFwBvBmZsLoHoPkMoGmVqMmEjRdJsNnUqFyBzHnGaDmNeRsPwSbFgJqNbGyHhApTkKiQlBjEyOzHvXaXeFfUoPeWfBlBaOlAcUsXzDaFeTmBdKwInKjWwEqRyIxHuGqUxGoAcXcFdBgWvFxR</value>
+    </row>
+    </table>
+    <!--Coststructure-END-->
+    <!--Customerrelationship-START-->
+    <table name="customerrelationship">
+        <column>idcustomerrelationship</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idcustomerrelationship">-1</value>
+        <value description="description">HiEjTqOpJtPeKeFcIsTpEtJgQjQyAyKxMzCgSoRiUbWfDzZsZzBbXuFbUpSnKzHjVcGaLeJmTfUrVkYgXuNdUjKdRzXyPyOqRxGfShNpJbWgAvDxEfUbGaOxJrEzUsScHrMyBjYuArShKrVdQpMdJxXuXtNwDrNqTyCpNmYiGjHjUdYrOfDlVjBmIlCbHzJmIpNwKcRrLoUbDxBoFvFdSoLjQxPeGaPsUcDxOtAkSzNcDnPcIwMtXhLkKvVfIeK</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">SfLcAqGrVtDgOwMbTbTiSlMlDiUnVnUwCwVqZsToOdDmMrCtAxHwJmHnYcInGcOaUoXjRgThHaOnOkFsUgQrYzAsMpVeZiWqGyGaQbIzErRbMvMuOsEiZhZoOjEtArQtFiXhBvVkAsAtThObLkWtBhTrFdWnMxHvJsLdErPiYhYlVtZkUiUgKpNtUuNrYvAzPuXcRbCyLoVbIuVmTpZgGzVuNoFwQaKkDpKyJvExKpDoPfXuJeHvBfMnNiPpPyW</value>
+    </row>
+    <row>
+        <value description="idcustomerrelationship">-2</value>
+        <value description="description">GhFuRgRtFkIvBqRgEtJwFeBvDlJvIyDcRgQkPuRkPpViNyQnGjLqNsLdCbGxIrYxWdBjXgFsFmWgGyKeOzLbUqZgOoVlGpEyViJzDpDjIzStAoUiMoEcIeUqRnZhOjEnAcSgGmBvIxAaHyQhSjTsGiKmJsWuOdIiIiRcSiZdIrJwRoWeZnZcGwBdDnEcJbJbKuJdYyGxLbLxQmNrUrIuSkEwLnAtGhGoEgXlAhPvUmEoNaIjPyZmVqDwBaMmLcJ</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">XoHcYoHnAnGnRsIhZiFeKjDfFwGfKtKsCnYlMuIxYbJvFhRtZtLvThDyMoRkJtJjQgUmYgOzNvGjFnOkPrOgRyQmMfHxJfInTwNzQdQiJbBbAaMwWxGmCfTlAjSmQqZlGyDwYjViIqApTwNiXpFiDeLvIaXsRdVrQsFcJwErMuYpAfLkVzSePtEiFjPuNoWsEdOyMtYlAjIiXwFlGiDuTaGvBeUpIrLwOrYkMdLaPtKfFlEwUwCiJdZdNaNfJdN</value>
+    </row>
+    <row>
+        <value description="idcustomerrelationship">-3</value>
+        <value description="description">EpUiYwBzOyBnDyLdZfInTcGlXwGvNaZbUcDzJePdPtGuLySkScPfKvBiZjReDcYqPlTjGlIeYnVaTxLxYuMlVqWyYyAtMpSmVsNqEgYvTcTvOsUzYkYaWrArQfClKiOqJsDbOsGhZeIaGtKwAkMkBrIpLqUsMeHhXxUxQeHnWaOjMsReJaTiBeWjIwUyHjFoOnTqQlSnZsYhRmRtKhLfUqCeJqWzGdOiQjSbFiOjEhYcTpYoDbKkEfCiPmKuHmC</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">NrHnCgZcYcKjOeLyIuLcHsFbSxDyQiKyLyIkKuEyKtCpEhAiQxLeSzOfRiUfEeCtLrWxReEqJiAbLtEsEhWhToNuHoXkEuQzAeJrVqIfAjLfTlNvJrInOzYiLrFlCrVnTtTdRyRbVfDlYhAnDfSjReGeTaQwEkHqXzVlPiVfWlBqUuSjZqXtOcGiEsBrVrUzYjEwXvDrIzInDiUmEdMqBkUoIxVoZhWxScYeWpEfGySoScPfNdYgPtSnQrSjYvP</value>
+    </row>
+    </table>
+    <!--Customerrelationship-END-->
+    <!--Customersegment-START-->
+    <table name="customersegment">
+        <column>idcustomersegment</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idcustomersegment">-1</value>
+        <value description="description">BkCrXgFyIcMuHaYtPnNbJzNwCjBqCpPqLcWhVgShHlToGhOqAfRcYiHfBtTfOsJdJbRjHlAzBrPiYgTeGkWjAiOhIcGyPjJfTnYdSgBkYtBdNcKhIaUaCjIuHrVmSxNqGhLiDrIoHtAoIgDvUyMtFdLpBiWfQwMhLtGiBjNkPmUqVqFeIsZcLlFnCwJhPzYcIkTeFpTzXbBnZcBsGrYlHtAaIhJlNvYiGnByYtOzIzGbRzRqThQuScEmJmVrVmV</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">AxCsMlStQzMsVoDrFpQiEbLzRxAsKgVbRqAnEtVyPcVoEaWdAaGpEjCmGoKiPbJmIzMqDmZtJlGoZmRhOcDhPdKrZtFtViHuRmSaQeZbWuTlYxOsDwFkOaRwNdBwJsUgTtVaToZkAwOeYpErBhSiRxMkFwCeAgKsIrDfAnPzBnMsWcUqTyBmRiCnKmMkWpBvHdOsZxRoPxRbLtXfSjZvByEpRuMuFhXjNsDhFrYtKkTgNvQfYkSfFnUjVgEbDpS</value>
+    </row>
+    <row>
+        <value description="idcustomersegment">-2</value>
+        <value description="description">GqTdFdPjPyDuZkQyYmZqGpVpWjIkNwEfFnPiZvPbIoHdFvImZlWbDgCgBcHwGsJcGlGcPhCnLwNxBlHeVuYhGoQgHcFkUdPzXiDkUrZrYaJcCnNvCdRxElNuIaErWbXqGzEqVaBvXvHtVaTbXvSjYhUaMeUcNjZlMdYuGcXcEmTpDoViHkVuQsToApXuJyFkPgNxZnSyPdNqNdUnHbEbAiOdUqPeHkDyLuXsVhOeCfHhDoPnYoOaOoBnFhLkCvA</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">HsQlQdFvPhLpMgPoApMgFuCwWjQaLqZwAwYvYkXxBjQzHxCvXnIxMrHpCmLoWfIlUgCxDuZeGzDfPzKeJwGqFlBsRnAaOaDsIrVfUeIfIqMzDfFyUnAoOrSbKbPjEaRnWeVhGyUgFcVtSwHlNuXiZhJcYpOvBaUlMvItBwCvRiKwRdViDrGhCjIhYvEzHaWzZbJbFeXwJnNaTjWnSyWjSrAnAjMlDqVyXfQeWzHtAeHqXaAbOdBuEvVbOrOgTdK</value>
+    </row>
+    <row>
+        <value description="idcustomersegment">-3</value>
+        <value description="description">YwDhOmXiXgXhYuHjNdWsMxJlPaDtItIuPyFlSqXaKfBsBaTqLeOoFeMlPjPqHsXlKpNjLuLjZwUoHbEtDbFvShPxWtVqGhDeFoKoXwYtEcJhReXlUoKdZqLnKoRiHxMjAgFfMaGtYpSmBrEhNoWpCpGtKqCxSqXuNhDdEdRtDjDbBlWvBmXaEbKpSoNtAjXdSdNmEzBiRcKlLrKzPmIvJqZaIqQlSaLhWgIfNbBlQkAbVvZyMeKoLyZeGrGvQlI</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">PkJyJkLyHsHwHjXaVyLmHmClQqEiOjZrKvYyZeBkXaHtLcYvFfUjTpQxXzAqQdUyApAnZcBrQyErAbVmHmOfAkMiBuYfJqEsOxExJdLvFjQzFdEeUzQqMeHaAnPjRhDkMaXyVyCqPdRzWuQmTzMcSsYtMkWvHwIfChAiIcBeVwOrJfKhXtAmCdPmTaCdNbEtHhOpDwQdAsUvZpXkYvHxFgJbIuCiHoFgThRtDuLfAuOeMyYbIkZxVrYbWuUuBhR</value>
+    </row>
+    </table>
+    <!--Customersegment-END-->
+    <!--Revenuestream-START-->
+    <table name="revenuestream">
+        <column>idrevenuestream</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idrevenuestream">-1</value>
+        <value description="description">MnAbNsDbJaHnFnPkMtWbEsVqDwByAiDiQjBwEuDnYaWcVwHtWmOvZyEsTfVmMjZaNdPjDmPcJkFuDsZqYtNlXmSlFxYtRrMsJnOrKqWeLiKlFoGpLdYkKeJgZxWfVaPnBdOhQlMqHbIgWpQqWjNdTnKaQeXqKdRdUoCxUuUhIqUpHcPoSsDeItQzJeSeZqSeSpLzBzQpDeXkMsKrUeSqCaVdNrQwWaHbYaJeXtRxWcDhQnZnWqEzLgMcPrCyGgP</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">RvBpPnNmNrTxPvTcZkCvBcQuVlRaUnIsDiUwKnQiIqKeAyHqTvQyLjYtWqCyAyCaMuEcUrJyQuEvDxEpUuBjQvWuUdFzSfPcIcRuZeRoEgOiLdDjHuGyExKkTfVgBwGtZpGsTyLkGyXvOgXqPzPkLzZcMqWmEjOfGuBxXkZdOkLjOzJeVjNiZqGpLdOyAtDuObCtHeSrSqEjTkCyFdPpZcQlExJkAmQlZmOoWiCmKpMlQiZmCgPsZeSmCtXsInJ</value>
+    </row>
+    <row>
+        <value description="idrevenuestream">-2</value>
+        <value description="description">CxIpBcTzRqQpIbEnUaGyZzAiCgBfItOsPpIpNnWvUiJkCpSxWyLlDqQjDnIfEwThNeKhUuIpOaPuUlInEaHdBtGhRfWlTkKvUyVhVqJqXzTtZbNwYjVmYcCsLjNbNnDtUxHbJhZzMmIeZqQlScUyNiLcBaDdPyFsNfLvVdTpDfRpWlQcKwKiRiWyBcRzNvYpIlQyMqQjRhDkElOlJeCcFpUdLbDeMhUnLsUjZjEuEcIeOiRuVnUgZdCmHiHeMqE</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">KeAxOwMsKdQnHsRnAmGyYdKiNyLzWhNbMfGfLtGfDdEqRsJnYoCpBpMxSzZlZbVgGzVcWhAeXrVfFpKjUsRsCdSoPvCaRlAmPpFbYrImXhRqSxQnYsHwNdMcPlFeTeThEtFvXkHfLvEwXvEtAwEzZbYnQfXjSmRkDeUdJbCwObNyBjSeDbTmFaRhJhYwJaIlYyYaIrDoWpNhDxDnKvGtTnXpMaXcNcWmNkAeXzZzGxQyHySjRvLnEoGmEnStZwD</value>
+    </row>
+    <row>
+        <value description="idrevenuestream">-3</value>
+        <value description="description">LrDeZbHrWhRdAhAbDqLaZqVzPeXmUtCwDtJaDsGoQnHxNnBsUaSpRkNyMsGwCpZoZnGtFaCcEkYzMaUsEdMqZwWkHtEjYrGwViVeTxEwEaMqDyPrJqTzSqJmFvQxYsObAjCiLuLcGjUtQzHwMoMhWcBkVrRyIbEbQpCeTwQgWzMiPnSsPrHbVyAoDkXlFeRgGiPnIfExAjRfHkWmXsTlTgGeDsRkKoHzOqWgJhWvKeBeArYfEoTaBnSzRrCmFnB</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">ApOnZpZjLyHhGmVcXmYdYkDpHiLuVtPrMyWdKvMjLgHmBrYwZdVqEsCyBsGeLdXdUkWkSrNmOpHgYxRpZwYaFoZlQaXxJlYbBwQfKoExWaSnSbPfLiNlWtXmJvJqLiOwPdJnCyLbBuQeZhYdGuIfJgFjSxLaJlHpUoZoAuHjBxEiVoIqVzZoSfZcIuZuMtQqFmCrChFsZeGnMxXhBmKxJjByTaEhPdBxUxDrFwKpDdKkJqVsCyPdWpDqBbBhKlS</value>
+    </row>
+    </table>
+    <!--Revenuestream-END-->
+    <!--Valueproposition-START-->
+    <table name="valueproposition">
+        <column>idvalueproposition</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idvalueproposition">-1</value>
+        <value description="description">JtUmLbMaFxEgJzIfFuEuMzSxQpZcOoKxXhZjEhLvSfUgIkApBmTmRmPhAmZtApXgDvZrVmNyAjUyNyNpDmTxKgThTvPqBwSyRuBwOiZqGyXzIhHeNpKzWyZqHoBkXvNfDhWjXmZfBsNvTyZlDlPmGnLgKdAxFlYoStWsBwNgNvFeYcWoRaLyFrGyOsGtNiFwPvIqRgZaMeQpWaTuTzGbUwOqZwMiExBgAsEiPlDeShNrFjFrNtPdGfLoHnTrKfB</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">VeFeLdFqWwCaDtAsNhCsZlUsXjVtBnWcYwTqRkXlQgLfIpEjJsZcWlJdNgRmKsWaJsBcGxCoDcEbCfLuUsNmXbBsIpHiJuIqInMfBqLdUwEkNzKdFjGxOcLrEgXdEfVaYxEeObBvPbGhMtMlNjTcLoWxVvBuGmLxTdAeMnRfOcFmTeThTaIbJbBoNaWsRuWlShHcHyQoXmOkCjFsBrCbPvUdHvOaZtSfJmBqHtPbZgAcByObDcIuMmFoZzKoNnF</value>
+    </row>
+    <row>
+        <value description="idvalueproposition">-2</value>
+        <value description="description">IdUhLoYvYdSqQfGmQpEuOgMwMfZtNnDyBzTwSrNrBwEyRrSdDtZsCyPmEtZkXxFgNkTdXzEbSkLlDxRzOrBvJvRoEdBgSdOhPjGjUcEtQfYhOoGoGoRkSyQtTlAaZdKwFzMzRjLgHfPiCuRfIyZeHuUxBiWkFyTgVxHfXzBjMuRfJtPwEuOrPmJqYnElGaXgBhFcRcWwDgAzDjXqNjZsMbHjUeEcAkItUaXqYfIlEqKuHeSzFlDgDxDdUwIcXoU</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">CkZtBuVtWbQgSlSlSxYdHqRnBfSiBzWoFcWrQxNpNcSrDgXkTkRbJlHlWeLxSyHbNtUjOgXgXkQkEhXkSqHkUjGjSmHgSvCwLxSnZfFwTwGnJgXxBsPnUqExDzPpGnCmCxRnQvWjElEwQdPzBkBjCiOgOpZaHtVzWlOjHcNeZsJdPuKxToOlTbYuUlRkYgLiYhTqRdDmNoHbYxMyDzLbDsBrQkCuWkGlJePbWsJmPmTsCxNdTtTxEsMbJlSaKnD</value>
+    </row>
+    <row>
+        <value description="idvalueproposition">-3</value>
+        <value description="description">EuEnXiYjHnPtIkJaQjHvRzJjFpZxLiIpOjBwByMpMtHvDeOuFaCwEnKoBdRsAoQrQvCpAqLcPlBmPdIsSgSfKtBvBuCxOlHoByYpHrKuFjMsWhBrKrOlIwBlDeCiItHxHzZaAbNfYgNfHtBuWnMxGvYbBiEoYwJbYvSxXbHoZaCkPbCaNyJmEbZnTdClFuQpHuNbDjAoOsUyXpHsOzXtSrRlHeWqRfLlGiRgZbDgCfAmEjDsOfQaXoFoXrUmYxS</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">ThKmOiAcJcMgNaUvQyOnAqBrSbAbZrCiIwNuAlQgLsClRjEuGlDiPyPtPeEgFoUtIaTvNhTjViXcCyCpDqOqSzXoKjMkWpDdYfFzYtSsJmVzFmXyZaNtUsDwEkWaCtQjTiNfPfXiSaHrRnCaMhKiCoNiOaZnOpYnTdWkUqHmPmKzOiDdArKtTlAiAlXaVoIuJuBcSmKnTsWtTzFjIrUaJyLqAeVdXcFaXsVqSbLvLvSwUyUuNcHyTxUsOaIeZhD</value>
+    </row>
+    </table>
+    <!--Valueproposition-END-->
+    <!--Partners-START-->
+    <table name="partners">
+        <column>idpartners</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+        <column>role</column>
+    <row>
+        <value description="idpartners">-1</value>
+        <value description="description">CmVzQnYlVbJxNpEvVuZuJsZsDaVnCrPmHvWpVmYyPwJxKnXoWwYtSwXfXpNvDpPfDcIaLwYfBgHrApYnFjIoKpRvGpGwPtYaTfOfElAiNdEtPiMbXkNfFkPhQhMkRpBnPfDuWnLhQrRpGeVrEcCbZoTtUfMpMvDmEsPxNtCyCrMqDoLnEuUoUrMjBkHsXfTzJeSkZjBsKlOcOlKyPvVzYlCgVuUlMxErPvWmPmLsJyAmXcCmOgPmLoXsKvCfSlK</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">IqMwCkVrDcXeUbWbAbCiLnHhUcNhVjQuMgBrGfRmWbQrQyRgFhQiCsRlAlQaLjGzVnUxWfXwEvQeWkEjDmCcIvMsHuYzMpDpCbCyLsLrEgTwGeSmFwJaRnHbEeCcHePyYsSxShYvTzJuMlFaLvKfRsPuJgOcOxXfMkPiMuStQaFsPaHzQnHnPsLkKpPoKbFkNeVrCfTsRtXzGuXfJoDtBgEbRlZyIdRjTsBjMcFzQbDaQaXcQaQmFvMuSfKaRhR</value>
+        <value description="role">CiSqAiWfQvUyOmOePdQqRbLsKmUrLjQmFqCuTqWkElJjSgPqEtIxVyNiKkRsQpCcVkSfYcAlWsVbMtCvNbWmGoXrEzSaYdFjKxCtGpOgXqYpQuNsXlBtQwMcNkQmCpKgHmTkRsBqCvNpSfLmHbSjZkPfJsJcPgMmDoHpCxQhRnHiBiUuJjJxMyAgQrEjYqIjPkHpYnPwMaToRcDiCxWbYkFeSwGpKzUwNoWkCkClBkIpQgFmGwMbKrOiPrPqSkA</value>
+    </row>
+    <row>
+        <value description="idpartners">-2</value>
+        <value description="description">ZcLgPcMfCsBtOiAvHjTaFvDdAxYyUmPtHnAmRpRdXwDvYoNxPzIlWgFnXrRcBcVeYsWuOeIxBnUjOeIwSxOlJcDzStXpLzWvLiPsHzIxFgPeLuDeWzNqRsAvLzEhUyMuHcGxAfEbEjSvDrUeKxLqUfHeOhSsPqFeLiCvHlObWzUzJePcWoFoQnDqKiKzHqAtEtUaOhWvKyKnXdSpMgByJtKsFzQuQmObCjQiWlLkNmPrKqCcYkJmLqPzXoRvIdM</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">MrBzSyTjWgGvNwBkUgOaJpOkVoVwAbKgUqWfVhTjStZyLfHgRcMrXjJyItRsVrBuTxTrLwIcDoRtHbGsUeMlBlXxMnOqUnXuDqYbMsPnExTjLrPfAzHwOaMlLhXgHgCcAqUuAyFnIlDgHnWiSuTbCgQoHeVwOqSeDwRaTdTcEeIgWoOgVsCeUjKrVlAeCvUgNkOnKqKiRjJzUfTdHlJzZqKmXjFkGwLfPkEaZkXyZiKlKlVbQtYuFrMwOjKfTcC</value>
+        <value description="role">DlMeVjBtAoTaTgYmVsNrTmIqNwYqNdMfYaHtMfYpWhThKvUyIvYvDqGyGtPcBtLfEbMlWbXbGdBsRgFnAdArBgGyXeJfJlNmFyPcPrUnYxHvYvSjVbGaKkNeNlYeBiZwQyPfIrNjGcTkWaFkYjQcZgHaMyWrGxQhWtHkVmKmBlEsGoWsFzVyWfVvGaDuJfGoAzHiWgOyDfBhQbQxQpRoIvHcDbBhBnWnFkBoLkSwIbXpQjLyDyVrJtJcIaCfNbM</value>
+    </row>
+    <row>
+        <value description="idpartners">-3</value>
+        <value description="description">NqVhZnEcSlBzEaXpDmZvRgZtThYfHuDwXnYkHqJvOhXdDsJbLsPhUqIcQgVmGtJbBvQmScTjBoOcNdRqVnHhIlEcJeYvUwGmIkFjGeEeCpXrJwCpFbNdQtNtZqDzEnYuQlPvRqGvGyVpQnTmIyQkRtCfBjJtZnLvVbPmIrEeZgMiRtGeAoYbNnXlMoTuAtRrXgVgStByNqSdUsPcVlAwMjCoAbTaMfFeWxNsRcYiSaBtBpIaPhKgXzRzRaIxPhA</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">SeIvLoBsDfVlRlMcMpReHcJaDoPuQfDoWkVeLxBvZyXuLfOeJsMiQlPfKdHsTuLyZfOeCaOkTvXgMjInQzMyKtDvDiWyUtMrFfSgEfIsJsNgQsHuKjYuMdYwCbKaIsFhMpWfIaBqVmGfYtVzJrRfWrQdBiPyKlXoHtSmOqErKoKbGeGxFyIcMrWoRzKxWrUpYyTuBwRyDrHqPkFfLwYjBdZaPhVqHmZrAqSiJcUoQrQnPlDpNmRlOjZkWhZnWoX</value>
+        <value description="role">SyVqSpLcKbUgZyZlDdItDfUrQmRkNxEnQaPvRfOrTfBbHmSgBtQuQvKdKiBrXcXiMoCjOrEzMiZgHiZzOlRjZcTgUjXfLmBcXkQqMrIdQqQtBdQxDxWqPlAtFuMjVhAfGnBlHjKnQhOxAzByWvLmAzRjSvLsIoAfIxJtJaZoMuNkEzPwClVsFrSgNqYrMfDlVxOpYxKtUkYqPsBpOfEoPsAnQgZhQgMbXmXdIfUxAwBvHoTvGdEmXnEkYcAkYmQ</value>
+    </row>
+    </table>
+    <!--Partners-END-->
+    <!--Resources-START-->
+    <table name="resources">
+        <column>idresources</column>
+        <column>description</column>
+        <column>idea_ididea</column>
+        <column>name</column>
+    <row>
+        <value description="idresources">-1</value>
+        <value description="description">OkIfBiRmMvKrFnVvWcZcQeQyYsTbZkSqUpMvZuXjMcGkNyUoEbByOxMfUdYgLbDdPdZrEmOgJyMjZbJfTdOaVwWxLoMlMmPnCxZhLlJiTrYqGwPuBtLiYvZxWtFiBfNdNwEqCjMaMbXbMcUmZyHlNhNeEaKrWkQqXiVvYeVlVhFmMgToWkXkDbGqYjWtDyPnMkOiKxPfMzBiVfRcTkVxRkObLsZfEzRfUyTfXrAtCqRrNrRkYpMsTyIgDhFaAsT</value>
+        <value description="idea_ididea">-1</value>
+        <value description="name">JmLcSqCpKaGmEmDeArFxNsJjQqMwSbLpNfLhAhWfHcBkPqZcVgMtPoCpTrSbVhWhMrCaKkNuUbToHfZsNcIeGgDxNnTwUtLaYaWkNuRbZtVuGcWeFnImCeIxFkGvWxHcFnPjYyBrUcEgAqCwJhUsUbWgBmIqJrFdDmZmWgJkRtYfGoIvWsEmAzYaYvRbEmVoQhTzLaBvKnQbHhLcRvXeRpQmHvRiMpHkYvXyXxGzFrMvAjJxDbEiDrHuMqBjWsW</value>
+    </row>
+    <row>
+        <value description="idresources">-2</value>
+        <value description="description">GqEjBcOfOcVbQxDzNeUdHeZuMbCmRkXaMlIpDkPzEkNeNoVhThOhDwHjPrUrDiNtUuOyFtTzWuXxPfQpQbDgVpQoPxHkLqUaWaPmZzFiYeTaKsKkCrEqNrUiFpWhJfHoNmLbAgKaCcKoKnDfGbWeGzFpOfDiMzTvTiAsXdTpNkQsXdEnRtAfAxBySrIxIlIjJyPaYjBwSaWwAuEnDoJjPkGnFfLbImTgSkXcOkTcCdPdGgXlHbXkGtIhDsYaNhB</value>
+        <value description="idea_ididea">-2</value>
+        <value description="name">YpHyJyUpHfJdUuXqQxNtKeXaKgAkWbRlDrRuGpEoTvNmDnHmNhEgHlOmBiVuLiKgFrMsInEdAtKpTcOfGsNaKiKgHaOqVcHnRmXrKkXpTjXuSfMdEnYrMkNfGqQuPwUjXwJvKgHrEzGmIgKnQaVlTkZbTkVxPwPaCvJmUzBoTvUzVdVtKcLeLbYnUvEwDrWvUdWeYsVaUwPzRiYmTnMtLhSlNlSxWtFoDaTcFsFvTlWsTfKcKdVjDnGrSsYgOpN</value>
+    </row>
+    <row>
+        <value description="idresources">-3</value>
+        <value description="description">FqBtTqEpKjLzWdSrNcSgNsJuLvFbYtThQmPhVoZySkNfGuDfDaOqVmPwUbByUqOdUjGxFzNqNkQpKtEdZaWoJoElNbOvYnJlXmKsPkFbSsYaPnIfIiWrGwUkYhGuFzFnKvNfXyVzYyWmWsKuHjTuHgIdShYzZyGuLoCiImLlSjGwVsNkWaAaZwYqPqGpInXfDcKrHjIwIzCpVaZgFzGbWwDnBtEpGcAbAtBaZcGfMlGtMmSzAgYcZmCoQzEcKcJ</value>
+        <value description="idea_ididea">-3</value>
+        <value description="name">CkIbHbObTtHlPgYzChFmLqWnJvJeUsNeOmHdIfZjSrVtZpBxBiTrUkWgJyAeRoAlWfZcJqWsKxQzFyNwDzOhTiNrVsJuZbBsFxBoLhMrNlVoFgGsBzTwJqYbMlChKrNzSoMcGkClTnKoXtDiGyZbYeOaEfUqQcHaOxGlEoGtMjRaRsXlJaGsMtPtSoNaAdIoOnVuNtFpAmGoHxDwPlQrTcQvCyXqNeYmWbRvDtVwTaZzZsQrTrRpHrOvBhEkZtE</value>
+    </row>
+    </table>
+    <!--Resources-END-->
 </dataset>
+
+
+
+
+
+
+
+
+
 
 
 

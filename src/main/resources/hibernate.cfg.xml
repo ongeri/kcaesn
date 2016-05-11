@@ -17,5 +17,14 @@
         <mapping class="com.ubuniworks.model.Tag"/>
         <mapping class="com.ubuniworks.model.Pastproject"/>
         <mapping class="com.ubuniworks.model.Experience"/>
+        <mapping class="com.ubuniworks.model.Activities"/>
+        <mapping class="com.ubuniworks.model.Channes"/>
+        <mapping class="com.ubuniworks.model.Coststructure"/>
+        <mapping class="com.ubuniworks.model.Customerrelationship"/>
+        <mapping class="com.ubuniworks.model.Customersegment"/>
+        <mapping class="com.ubuniworks.model.Revenuestream"/>
+        <mapping class="com.ubuniworks.model.Valueproposition"/>
+        <mapping class="com.ubuniworks.model.Partners"/>
+        <mapping class="com.ubuniworks.model.Resources"/>
     </session-factory>
 </hibernate-configuration>

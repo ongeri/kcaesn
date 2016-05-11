@@ -38,6 +38,33 @@
     <!--Summary-START-->
     <%--<menu:displayMenu name="SummaryMenu"/>--%>
     <!--Summary-END-->
+    <!--Activities-START-->
+    <menu:displayMenu name="ActivitiesMenu"/>
+    <!--Activities-END-->
+    <!--Channes-START-->
+    <menu:displayMenu name="ChannesMenu"/>
+    <!--Channes-END-->
+    <!--Coststructure-START-->
+    <menu:displayMenu name="CoststructureMenu"/>
+    <!--Coststructure-END-->
+    <!--Customerrelationship-START-->
+    <menu:displayMenu name="CustomerrelationshipMenu"/>
+    <!--Customerrelationship-END-->
+    <!--Customersegment-START-->
+    <menu:displayMenu name="CustomersegmentMenu"/>
+    <!--Customersegment-END-->
+    <!--Revenuestream-START-->
+    <menu:displayMenu name="RevenuestreamMenu"/>
+    <!--Revenuestream-END-->
+    <!--Valueproposition-START-->
+    <menu:displayMenu name="ValuepropositionMenu"/>
+    <!--Valueproposition-END-->
+    <!--Partners-START-->
+    <menu:displayMenu name="PartnersMenu"/>
+    <!--Partners-END-->
+    <!--Resources-START-->
+    <menu:displayMenu name="ResourcesMenu"/>
+    <!--Resources-END-->
 </ul>
     </div>
 </menu:useMenuDisplayer>

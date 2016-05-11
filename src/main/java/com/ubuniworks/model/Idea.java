@@ -1,9 +1,6 @@
 package com.ubuniworks.model;
 // Generated May 1, 2016 2:35:49 PM by Hibernate Tools 5.1.0.Alpha1
 
-import com.ubuniworks.model.Ideabody;
-import com.ubuniworks.model.Milestone;
-import com.ubuniworks.model.Tag;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.search.annotations.DocumentId;
@@ -27,157 +24,260 @@ import static javax.persistence.GenerationType.IDENTITY;
 @XmlRootElement
 public class Idea implements java.io.Serializable {
 
-	private Integer ididea;
-	private User user;
-	private com.ubuniworks.model.Ideabody ideabody;
-	private String description;
-	private String title;
-	private boolean published;
-	private Set<com.ubuniworks.model.Comment> comments = new HashSet<com.ubuniworks.model.Comment>(0);
-	private Set<com.ubuniworks.model.Milestone> milestones = new HashSet<com.ubuniworks.model.Milestone>(0);
-	private Set<User> likers = new HashSet<User>(0);
-	private Date datecreated;
-	private Set<com.ubuniworks.model.Tag> tags = new HashSet<com.ubuniworks.model.Tag>(0);
+    private Integer ididea;
+    private User user;
+    private Ideabody ideabody;
+    private String description;
+    private String title;
+    private Date datecreated;
+    private boolean published;
+    private Set<Comment> comments = new HashSet<Comment>(0);
+    private Set<Customersegment> customersegments = new HashSet<Customersegment>(0);
+    private Set<Activities> activitieses = new HashSet<Activities>(0);
+    private Set<Channes> channeses = new HashSet<Channes>(0);
+    private Set<Customerrelationship> customerrelationships = new HashSet<Customerrelationship>(0);
+    private Set<Resources> resourceses = new HashSet<Resources>(0);
+    private Set<Milestone> milestones = new HashSet<Milestone>(0);
+    private Set<Valueproposition> valuepropositions = new HashSet<Valueproposition>(0);
+    private Set<Revenuestream> revenuestreams = new HashSet<Revenuestream>(0);
+    private Set<User> likers = new HashSet<User>(0);
+    private Set<Tag> tags = new HashSet<Tag>(0);
+    private Set<Partners> partnerses = new HashSet<Partners>(0);
+    private Set<Coststructure> coststructures = new HashSet<Coststructure>(0);
 
-	public Idea() {
-	}
+    public Idea() {
+    }
 
-	public Idea(User user, String description, String title, Date datecreated, boolean published) {
-		this.user = user;
-		this.description = description;
-		this.title = title;
-		this.datecreated = datecreated;
-		this.published = published;
-	}
+    public Idea(User user, String description, String title, Date datecreated, boolean published) {
+        this.user = user;
+        this.description = description;
+        this.title = title;
+        this.datecreated = datecreated;
+        this.published = published;
+    }
 
-	public Idea(User user, com.ubuniworks.model.Ideabody ideabody, String description, String title, Date datecreated,
-				boolean published, Set<com.ubuniworks.model.Comment> comments, Set<com.ubuniworks.model.Milestone> milestones, Set<User> likers, Set<com.ubuniworks.model.Tag> tags) {
-		this.user = user;
-		this.ideabody = ideabody;
-		this.description = description;
-		this.title = title;
-		this.datecreated = datecreated;
-		this.published = published;
-		this.comments = comments;
-		this.milestones = milestones;
-		this.likers = likers;
-		this.tags = tags;
-	}
+    public Idea(User user, Ideabody ideabody, String description, String title, Date datecreated,
+                boolean published, Set<Comment> comments, Set<Customersegment> customersegments,
+                Set<Activities> activitieses, Set<Channes> channeses, Set<Customerrelationship> customerrelationships,
+                Set<Resources> resourceses, Set<Milestone> milestones, Set<Valueproposition> valuepropositions,
+                Set<Revenuestream> revenuestreams, Set<User> likers, Set<Tag> tags, Set<Partners> partnerses,
+                Set<Coststructure> coststructures) {
+        this.user = user;
+        this.ideabody = ideabody;
+        this.description = description;
+        this.title = title;
+        this.datecreated = datecreated;
+        this.published = published;
+        this.comments = comments;
+        this.customersegments = customersegments;
+        this.activitieses = activitieses;
+        this.channeses = channeses;
+        this.customerrelationships = customerrelationships;
+        this.resourceses = resourceses;
+        this.milestones = milestones;
+        this.valuepropositions = valuepropositions;
+        this.revenuestreams = revenuestreams;
+        this.likers = likers;
+        this.tags = tags;
+        this.partnerses = partnerses;
+        this.coststructures = coststructures;
+    }
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     @DocumentId
-	@Column(name = "ididea", unique = true, nullable = false)
-	public Integer getIdidea() {
-		return this.ididea;
-	}
+    @Column(name = "ididea", unique = true, nullable = false)
+    public Integer getIdidea() {
+        return this.ididea;
+    }
 
-	public void setIdidea(Integer ididea) {
-		this.ididea = ididea;
-	}
+    public void setIdidea(Integer ididea) {
+        this.ididea = ididea;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-	public User getUser() {
-		return this.user;
-	}
+    public User getUser() {
+        return this.user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)
-	@JoinColumn(name = "idideabody")
-	public com.ubuniworks.model.Ideabody getIdeabody() {
-		return this.ideabody;
-	}
+    @JoinColumn(name = "idideabody")
+    public Ideabody getIdeabody() {
+        return this.ideabody;
+    }
 
-	public void setIdeabody(Ideabody ideabody) {
-		this.ideabody = ideabody;
-	}
+    public void setIdeabody(Ideabody ideabody) {
+        this.ideabody = ideabody;
+    }
 
-	@Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false)
     @Field
-	public String getDescription() {
-		return this.description;
-	}
+    public String getDescription() {
+        return this.description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	@Column(name = "title", nullable = false, length = 45)
+    @Column(name = "title", nullable = false, length = 45)
     @Field
-	public String getTitle() {
-		return this.title;
-	}
+    public String getTitle() {
+        return this.title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	@Column(name = "published", nullable = false)
-	@Field
-	public boolean isPublished() {
-		return this.published;
-	}
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "datecreated", nullable = false, length = 19)
+    @Field
+    public Date getDatecreated() {
+        return this.datecreated;
+    }
 
-	public void setPublished(boolean published) {
-		this.published = published;
-	}
+    public void setDatecreated(Date datecreated) {
+        this.datecreated = datecreated;
+    }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
-	public Set<com.ubuniworks.model.Comment> getComments() {
-		return this.comments;
-	}
+    @Column(name = "published", nullable = false)
+    @Field
+    public boolean isPublished() {
+        return this.published;
+    }
 
-	public void setComments(Set<com.ubuniworks.model.Comment> comments) {
-		this.comments = comments;
-	}
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
-	public Set<com.ubuniworks.model.Milestone> getMilestones() {
-		return this.milestones;
-	}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Comment> getComments() {
+        return this.comments;
+    }
 
-	public void setMilestones(Set<Milestone> milestones) {
-		this.milestones = milestones;
-	}
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_likes_idea", catalog = "kcaesn", joinColumns = {
-			@JoinColumn(name = "ididea", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "user_id", nullable = false, updatable = false) })
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Customersegment> getCustomersegments() {
+        return this.customersegments;
+    }
+
+    public void setCustomersegments(Set<Customersegment> customersegments) {
+        this.customersegments = customersegments;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Activities> getActivitieses() {
+        return this.activitieses;
+    }
+
+    public void setActivitieses(Set<Activities> activitieses) {
+        this.activitieses = activitieses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Channes> getChanneses() {
+        return this.channeses;
+    }
+
+    public void setChanneses(Set<Channes> channeses) {
+        this.channeses = channeses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Customerrelationship> getCustomerrelationships() {
+        return this.customerrelationships;
+    }
+
+    public void setCustomerrelationships(Set<Customerrelationship> customerrelationships) {
+        this.customerrelationships = customerrelationships;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Resources> getResourceses() {
+        return this.resourceses;
+    }
+
+    public void setResourceses(Set<Resources> resourceses) {
+        this.resourceses = resourceses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Milestone> getMilestones() {
+        return this.milestones;
+    }
+
+    public void setMilestones(Set<Milestone> milestones) {
+        this.milestones = milestones;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Valueproposition> getValuepropositions() {
+        return this.valuepropositions;
+    }
+
+    public void setValuepropositions(Set<Valueproposition> valuepropositions) {
+        this.valuepropositions = valuepropositions;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Revenuestream> getRevenuestreams() {
+        return this.revenuestreams;
+    }
+
+    public void setRevenuestreams(Set<Revenuestream> revenuestreams) {
+        this.revenuestreams = revenuestreams;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_likes_idea", catalog = "kcaesn", joinColumns = {
+            @JoinColumn(name = "ididea", nullable = false, updatable = false)}, inverseJoinColumns = {
+            @JoinColumn(name = "user_id", nullable = false, updatable = false)})
     public Set<User> getLikers() {
         return this.likers;
-	}
+    }
 
     public void setLikers(Set<User> users) {
         this.likers = users;
-	}
+    }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "datecreated", length = 19)
-	@Field
-	public Date getDatecreated() {
-		return this.datecreated;
-	}
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "idea_has_tag", catalog = "kcaesn", joinColumns = {
+            @JoinColumn(name = "idea_ididea", nullable = false, updatable = false)}, inverseJoinColumns = {
+            @JoinColumn(name = "tag_idtag", nullable = false, updatable = false)})
+    public Set<Tag> getTags() {
+        return this.tags;
+    }
 
-	public void setDatecreated(Date datecreated) {
-		this.datecreated = datecreated;
-	}
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "idea_has_tag", catalog = "kcaesn", joinColumns = {
-			@JoinColumn(name = "idea_ididea", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "tag_idtag", nullable = false, updatable = false) })
-	public Set<com.ubuniworks.model.Tag> getTags() {
-		return this.tags;
-	}
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Partners> getPartnerses() {
+        return this.partnerses;
+    }
 
-	public void setTags(Set<Tag> tags) {
-		this.tags = tags;
-	}
+    public void setPartnerses(Set<Partners> partnerses) {
+        this.partnerses = partnerses;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
+    public Set<Coststructure> getCoststructures() {
+        return this.coststructures;
+    }
+
+    public void setCoststructures(Set<Coststructure> coststructures) {
+        this.coststructures = coststructures;
+    }
 
 }

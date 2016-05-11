@@ -90,6 +90,96 @@
     </bean>
     <!--SummaryManager-END-->
 
+    <!--ActivitiesManager-START-->
+    <bean id="activitiesManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Activities"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--ActivitiesManager-END-->
+
+    <!--ChannesManager-START-->
+    <bean id="channesManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Channes"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--ChannesManager-END-->
+
+    <!--CoststructureManager-START-->
+    <bean id="coststructureManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Coststructure"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--CoststructureManager-END-->
+
+    <!--CustomerrelationshipManager-START-->
+    <bean id="customerrelationshipManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Customerrelationship"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--CustomerrelationshipManager-END-->
+
+    <!--CustomersegmentManager-START-->
+    <bean id="customersegmentManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Customersegment"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--CustomersegmentManager-END-->
+
+    <!--RevenuestreamManager-START-->
+    <bean id="revenuestreamManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Revenuestream"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--RevenuestreamManager-END-->
+
+    <!--ValuepropositionManager-START-->
+    <bean id="valuepropositionManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Valueproposition"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--ValuepropositionManager-END-->
+
+    <!--PartnersManager-START-->
+    <bean id="partnersManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Partners"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--PartnersManager-END-->
+
+    <!--ResourcesManager-START-->
+    <bean id="resourcesManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Resources"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--ResourcesManager-END-->
+
     <!-- Add new Managers here -->
 
     <!-- Configure and Alternative PasswordTokenManager -->
