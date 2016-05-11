@@ -53,6 +53,7 @@
         <constructor-arg>
             <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Experience"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
@@ -63,6 +64,7 @@
         <constructor-arg>
             <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Tag"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
@@ -73,108 +75,118 @@
         <constructor-arg>
             <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Pastproject"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--PastprojectManager-END-->
 
-    
 
     <!--SummaryManager-START-->
-    <bean id="summaryManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="summaryManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Summary"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--SummaryManager-END-->
 
     <!--ActivitiesManager-START-->
-    <bean id="activitiesManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="activitiesManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Activities"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--ActivitiesManager-END-->
 
     <!--ChannesManager-START-->
-    <bean id="channesManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="channesManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Channes"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--ChannesManager-END-->
 
     <!--CoststructureManager-START-->
-    <bean id="coststructureManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="coststructureManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Coststructure"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--CoststructureManager-END-->
 
     <!--CustomerrelationshipManager-START-->
-    <bean id="customerrelationshipManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="customerrelationshipManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Customerrelationship"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--CustomerrelationshipManager-END-->
 
     <!--CustomersegmentManager-START-->
-    <bean id="customersegmentManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="customersegmentManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Customersegment"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--CustomersegmentManager-END-->
 
     <!--RevenuestreamManager-START-->
-    <bean id="revenuestreamManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="revenuestreamManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Revenuestream"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--RevenuestreamManager-END-->
 
     <!--ValuepropositionManager-START-->
-    <bean id="valuepropositionManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="valuepropositionManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Valueproposition"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--ValuepropositionManager-END-->
 
     <!--PartnersManager-START-->
-    <bean id="partnersManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="partnersManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Partners"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>
     <!--PartnersManager-END-->
 
     <!--ResourcesManager-START-->
-    <bean id="resourcesManager" class="org.appfuse.service.impl.GenericManagerImpl">
+    <bean id="resourcesManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
         <constructor-arg>
-            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
                 <constructor-arg value="com.ubuniworks.model.Resources"/>
+                <property name="sessionFactory" ref="sessionFactory"/>
             </bean>
         </constructor-arg>
     </bean>

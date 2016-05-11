@@ -39,53 +39,38 @@
         <!--Pastproject-START-->
         <!--<Menu name="PastprojectMenu" title="pastprojectList.title" page="/pastprojects"/>-->
         <!--Pastproject-END-->
-        
+
         <!--Summary-START-->
         <!--<Menu name="SummaryMenu" title="summaryList.title" page="/summaries"/>-->
         <!--Summary-END-->
         <!--Activities-START-->
-        <Menu name="ActivitiesMenu" title="activitiesList.title" page="/activitiess"/>
+        <!--<Menu name="ActivitiesMenu" title="activitiesList.title" page="/activitiess"/>-->
         <!--Activities-END-->
         <!--Channes-START-->
-        <Menu name="ChannesMenu" title="channesList.title" page="/channess"/>
+        <!--<Menu name="ChannesMenu" title="channesList.title" page="/channess"/>-->
         <!--Channes-END-->
         <!--Coststructure-START-->
-        <Menu name="CoststructureMenu" title="coststructureList.title" page="/coststructures"/>
+        <!--<Menu name="CoststructureMenu" title="coststructureList.title" page="/coststructures"/>-->
         <!--Coststructure-END-->
         <!--Customerrelationship-START-->
-        <Menu name="CustomerrelationshipMenu" title="customerrelationshipList.title" page="/customerrelationships"/>
+        <!--<Menu name="CustomerrelationshipMenu" title="customerrelationshipList.title" page="/customerrelationships"/>-->
         <!--Customerrelationship-END-->
         <!--Customersegment-START-->
-        <Menu name="CustomersegmentMenu" title="customersegmentList.title" page="/customersegments"/>
+        <!--<Menu name="CustomersegmentMenu" title="customersegmentList.title" page="/customersegments"/>-->
         <!--Customersegment-END-->
         <!--Revenuestream-START-->
-        <Menu name="RevenuestreamMenu" title="revenuestreamList.title" page="/revenuestreams"/>
+        <!--<Menu name="RevenuestreamMenu" title="revenuestreamList.title" page="/revenuestreams"/>-->
         <!--Revenuestream-END-->
         <!--Valueproposition-START-->
-        <Menu name="ValuepropositionMenu" title="valuepropositionList.title" page="/valuepropositions"/>
+        <!--<Menu name="ValuepropositionMenu" title="valuepropositionList.title" page="/valuepropositions"/>-->
         <!--Valueproposition-END-->
         <!--Partners-START-->
-        <Menu name="PartnersMenu" title="partnersList.title" page="/partnerss"/>
+        <!--<Menu name="PartnersMenu" title="partnersList.title" page="/partnerss"/>-->
         <!--Partners-END-->
         <!--Resources-START-->
-        <Menu name="ResourcesMenu" title="resourcesList.title" page="/resourcess"/>
+        <!--<Menu name="ResourcesMenu" title="resourcesList.title" page="/resourcess"/>-->
         <!--Resources-END-->
     </Menus>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </MenuConfig>

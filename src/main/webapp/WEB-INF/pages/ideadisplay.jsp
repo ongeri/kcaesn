@@ -53,26 +53,70 @@
                         <!-- Upper part -->
                         <tr>
                             <td colspan="2" rowspan="2">
-                                <h4>Key Partners</h4>
-                                </p>
+                                <h4>Key Partners<a class="btn btn-success btn-xs pull-right" role="button"
+                                                   href="partnerform${idea.ididea}" id="addpartnerbtn"
+                                                   data-toggle="modal"
+                                                   data-target="#myModal"><i
+                                        class="fa fa-plus-circle"></i></a>
+                                    <script type="text/javascript">
+                                        $(document).ready(function () {
+                                            $("#addpartnerbtn").click(function () {
+                                                $.ajax({
+                                                    url: '/partnersform?ajax=true&ididea=${idea.ididea}',
+                                                    success: function (data) {
+                                                        $("#myModal").html(data)
+                                                    },
+                                                    type: 'GET'
+                                                });
+                                            });
+                                        });
+                                    </script>
+                                </h4>
+
+
+                                <p></p>
                             </td>
                             <td colspan="2">
-                                <h4>Key Activities</h4>
+                                <h4>Key Activities<a class="btn btn-success btn-xs pull-right" role="button"
+                                                     data-toggle="collapse"
+                                                     href="partnerform${idea.ididea}"
+                                                     id="addpartnerbtn"
+                                                     aria-expanded="false"
+                                                     aria-controls="collapseExample"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2" rowspan="2">
-                                <h4>Value Proposition</h4>
+                                <h4>Value Proposition<a class="btn btn-success btn-xs pull-right" role="button"
+                                                        data-toggle="collapse"
+                                                        href="partnerform${idea.ididea}"
+                                                        id="addpartnerbtn"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseExample"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2">
-                                <h4>Customer Relationship</h4>
+                                <h4>Customer Relationship<a class="btn btn-success btn-xs pull-right" role="button"
+                                                            data-toggle="collapse"
+                                                            href="partnerform${idea.ididea}"
+                                                            id="addpartnerbtn"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapseExample"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2" rowspan="2">
-                                <h4>Customer Segments</h4>
+                                <h4>Customer Segments<a class="btn btn-success btn-xs pull-right" role="button"
+                                                        data-toggle="collapse"
+                                                        href="partnerform${idea.ididea}"
+                                                        id="addpartnerbtn"
+                                                        aria-expanded="false"
+                                                        aria-controls="collapseExample"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
@@ -81,24 +125,48 @@
                         <!-- Lower part -->
                         <tr>
                             <td colspan="2">
-                                <h4>Key Resources</h4>
+                                <h4>Key Resources<a class="btn btn-success btn-xs pull-right" role="button"
+                                                    data-toggle="collapse"
+                                                    href="partnerform${idea.ididea}"
+                                                    id="addpartnerbtn"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapseExample"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2">
-                                <h4>Channels</h4>
+                                <h4>Channels<a class="btn btn-success btn-xs pull-right" role="button"
+                                               data-toggle="collapse"
+                                               href="partnerform${idea.ididea}"
+                                               id="addpartnerbtn"
+                                               aria-expanded="false"
+                                               aria-controls="collapseExample"><i class="fa fa-plus-circle"></i></a>
+                                </h4>
 
                                 <p>...</p>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5">
-                                <h4>Cost Structure</h4>
+                                <h4>Cost Structure<a class="btn btn-success btn-xs pull-right" role="button"
+                                                     data-toggle="collapse"
+                                                     href="partnerform${idea.ididea}"
+                                                     id="addpartnerbtn"
+                                                     aria-expanded="false"
+                                                     aria-controls="collapseExample"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="5">
-                                <h4>Revenue Streams</h4>
+                                <h4>Revenue Streams<a class="btn btn-success btn-xs pull-right" role="button"
+                                                      data-toggle="collapse"
+                                                      href="partnerform${idea.ididea}"
+                                                      id="addpartnerbtn"
+                                                      aria-expanded="false"
+                                                      aria-controls="collapseExample"><i class="fa fa-plus-circle"></i></a>
+                                </h4>
 
                                 <p>...</p>
                             </td>
