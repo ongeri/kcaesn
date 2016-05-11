@@ -1,6 +1,8 @@
 package com.ubuniworks.service.impl;
 
 import com.ubuniworks.dao.UserDao;
+import com.ubuniworks.model.Experience;
+import com.ubuniworks.model.Pastproject;
 import com.ubuniworks.model.User;
 import com.ubuniworks.service.MailEngine;
 import com.ubuniworks.service.UserExistsException;
@@ -19,6 +21,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 /**
@@ -266,5 +269,15 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         }
         // or throw exception
         return null;
+    }
+
+    @Override
+    public Set<Pastproject> getPastprojects(User user) {
+        return userDao.getPastprojects(user);
+    }
+
+    @Override
+    public Set<Experience> getExperiences(User user) {
+        return userDao.getExperiences(user);
     }
 }

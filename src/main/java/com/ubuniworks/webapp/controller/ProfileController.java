@@ -61,6 +61,9 @@ public class ProfileController extends BaseFormController {
         } else {
             user = getUserUtil().getCurrentUser();
         }
+        user.setPastprojects(getUserManager().getPastprojects(user));
+        user.setExperiences(getUserManager().getExperiences(user));
+//        user.setSummary(getUserManager().getSummary(user));
         return user;
     }
 

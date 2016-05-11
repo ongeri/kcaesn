@@ -23,7 +23,7 @@ public class Ideabody implements java.io.Serializable {
 
 	private Integer idideabody;
 	private String content;
-	private Set<Idea> ideas = new HashSet<Idea>(0);
+	private Set<com.ubuniworks.model.Idea> ideas = new HashSet<com.ubuniworks.model.Idea>(0);
 
 	public Ideabody() {
 	}
@@ -33,7 +33,7 @@ public class Ideabody implements java.io.Serializable {
 		this.content = content;
 	}
 
-    public Ideabody(int idideabody, String content, Set<Idea> ideas) {
+    public Ideabody(int idideabody, String content, Set<com.ubuniworks.model.Idea> ideas) {
         this.idideabody = idideabody;
 		this.content = content;
 		this.ideas = ideas;
@@ -62,11 +62,11 @@ public class Ideabody implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "ideabody")
-	public Set<Idea> getIdeas() {
+	public Set<com.ubuniworks.model.Idea> getIdeas() {
 		return this.ideas;
 	}
 
-	public void setIdeas(Set<Idea> ideas) {
+	public void setIdeas(Set<com.ubuniworks.model.Idea> ideas) {
 		this.ideas = ideas;
 	}
 

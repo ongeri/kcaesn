@@ -24,7 +24,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests"
-            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,MilestoneTests,CommentTests,IdeaTests"
+            depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,SummaryTests,PastprojectTests,TagTests,BiographyTests,ExperienceTests,MilestoneTests,CommentTests,IdeaTests"
             description="Call and executes all test cases (targets)"/>
 
     <!-- runs user-related tests -->
@@ -547,7 +547,403 @@
             </steps>
         </webtest>
     </target>    <!--Milestone-END-->
+    <!--Experience-START-->
+    <!-- runs experience-related tests -->
+    <target name="ExperienceTests"
+            depends="SearchExperiences,EditExperience,SaveExperience,AddExperience,DeleteExperience"
+            description="Call and executes all experience test cases (targets)">
+        <echo>Successfully ran all Experience UI tests!</echo>
+    </target>
+
+    <!-- Verify the experiences list screen displays without errors -->
+    <target name="SearchExperiences" description="Tests search for and displaying all experiences">
+        <webtest name="searchExperiences">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Experience link" url="/experiences"/>
+                <verifytitle description="we should see the experienceList title"
+                    text=".*${experienceList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the experienceList title"
+                    text=".*${experienceList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit experience screen displays without errors -->
+    <target name="EditExperience" description="Tests editing an existing Experience's information">
+        <webtest name="editExperience">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Experience List" url="/experiences"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the experienceDetail title"
+                    text=".*${experienceDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a experience and then save -->
+    <target name="SaveExperience" description="Tests editing and saving a experience">
+        <webtest name="saveExperience">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Experience link" url="/experienceform?idexperience=-1"/>
+                <verifytitle description="we should see the experienceDetail title"
+                    text=".*${experienceDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set activity" name="activity" value="SxGuJyWyQkVxFzKwCiVhIpLoCfIcHuZiRqHsKpLuHsJdMoElVhQiMtGwNmHzOoFlYdLuYfRnTfQvDjPoEvZsDjXvTmAfIjIgAjFpCsBeMyTfLfMoRdTtUcCsFjThDeArIwOcVoJmGtRqMeXnZyQmMeSiEcYhKcJpOaOcGlWbPqCkJzNyFuVjAcMdOlBiXsElCvGwEzSrIsAcXhZxLzAyTsEzFgPoMtQpUrWaRcNeGsFyLpRbTpTyKpNuCcMzXyC"/>
+                <setInputField description="set description" name="description" value="PwObSgKkEeUpPwCqKcQuNcOeUjDlEfZcTfLpBeVzMjJvDwYxYxRwXxJeRrCaLbEyCvXgRrMwIyHhFtVtMlNtXkXdDcQoFkTxMpAvTdBiFuLiNxQpGwJkJoJiYtAlKnYlAdOqDqAbTjKnRgJvDfVoYwYoRdVtQeXaOeHzSrJnXiHpWgNdLsSmDsLlGpAyZzIqSyReCgOeKuBcLrMxBnQtScMaJtLbNhSgXzSqMzQgLgYtDhGxPnCvWjSjLsEwVwO"/>
+                <setInputField description="set place" name="place" value="StAfBxVtNpOeXvBnJvJsGoNlVnZnPxJiUrFaIqNuQaHxBoJuZoXsPxJhBuAbOdQrQwTsEqBfHzGkXuQzPoTvHcMkVxWxJvJjEiJoJuKiBjFoMsEzUyCcAkTpNaDiDpCwCeOoBtMrGsAnQfCwXkXkDjTcHqZqClNnXnQzMqPtYlWsRoWzEfHrKkAbIfTeHqRbGcFuSlRvPhWaGvSlGdWzZqRyLjKrWcYyLkBtUbFfMwRfPiMxXqYhSuJoRyTxBdT"/>
+                <setInputField description="set startdate" name="startdate" value="05/11/2016"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${experienceDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${experience.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Experience -->
+    <target name="AddExperience" description="Adds a new Experience">
+        <webtest name="addExperience">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/experienceform"/>
+                <verifytitle description="we should see the experienceDetail title"
+                    text=".*${experienceDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set activity" name="activity" value="NlHzKfMjQtUvQbFsOyMkVoQkSnCfJaDvWuKzOkAxYmQsHnRcInKcRkJcZbKqMnTsJaZzYrHbZdSjWnXsIoCnJbNjVlNqXzFnDhHfAiRzWcIdImUgShOoBjXsUxCuAtVqAeRmEzZzFvDrNyJtNoMqUvXhDmTmXuCdQqJhCeKsBrAjFjEcCtBeUjBiMpIqHkKeUoIfLkMpOoStGeBqIiBzOfVsDgOeZfVpZhJwQaUtIlLlYpYuPpXgPfOyEdUbJqH"/>
+                <setInputField description="set description" name="description" value="BlIlOeRiVuItZzNkJpRiSxIxEyIfJhIsZzOmWyBtIuJwHdVrStObTjHeSbWzSbXaHqPzVrOaEqGbDqMxHoTuHmShMjCuYxFkVcHkXgNlKfYiYoToRjYmNnIrDcMxBkOaNpOkSjPsGlJgVoNeKiWxWsKrAsOxJnCuJcOlLiJkGvWkYsAiKtQgQsKzOjKiXkVnEnZuHlEoXpInVyUvPkEgImIkYhAyCxQeXmPmEzEoKqYmLgViPkVlSeNbDsBuQfN"/>
+                <setInputField description="set place" name="place" value="QxBeUpKxKoCfXbPbTzEmPtOlLrVyAsNfIzBmYdOsDeZwRrRxPkPsKcJiDkGeLjCvLuCrTsPsGlBlChGjXhOdSqEgLxEuYgVgHrNwZhNyWvDvVcQbVoRiNhLgOlUaJjObWnAaPbSoVyJhQcGuLvJqPePvScQpLmBiRzXyLlYrYxWnRuTdMrXlIzVwWdOuIhDkWxJqAuIcYvYzXhAjUeAoNnPjJrQaZfSwOaDaTvAlBmWtSpWsRrSbTpTxYmPqBjU"/>
+                <setInputField description="set startdate" name="startdate" value="05/11/2016"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Experience List appears if save successful"
+                    text=".*${experienceList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${experience.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing experience -->
+    <target name="DeleteExperience" description="Deletes existing Experience">
+        <webtest name="deleteExperience">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Experience link" url="/experienceform?idexperience=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Experience List" text=".*${experienceList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${experience.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Experience-END-->
+    
+    <!--Tag-START-->
+    <!-- runs tag-related tests -->
+    <target name="TagTests"
+            depends="SearchTags,EditTag,SaveTag,AddTag,DeleteTag"
+            description="Call and executes all tag test cases (targets)">
+        <echo>Successfully ran all Tag UI tests!</echo>
+    </target>
+
+    <!-- Verify the tags list screen displays without errors -->
+    <target name="SearchTags" description="Tests search for and displaying all tags">
+        <webtest name="searchTags">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Tag link" url="/tags"/>
+                <verifytitle description="we should see the tagList title"
+                    text=".*${tagList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the tagList title"
+                    text=".*${tagList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit tag screen displays without errors -->
+    <target name="EditTag" description="Tests editing an existing Tag's information">
+        <webtest name="editTag">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Tag List" url="/tags"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the tagDetail title"
+                    text=".*${tagDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a tag and then save -->
+    <target name="SaveTag" description="Tests editing and saving a tag">
+        <webtest name="saveTag">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Tag link" url="/tagform?idtag=-1"/>
+                <verifytitle description="we should see the tagDetail title"
+                    text=".*${tagDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="ApWbVyNyPtWtGwCfJgRqTwSkYbAnNsAvNtCpYvEsDiFnIeLaIrKwUkOoAjGgUjNbRtZwRxNpEgMeXwPnHfOgEbOsHyXkAsOnGpPvDiPhCkZtUgJqKsFyPjWoKmWsJkXjXaNbAgUzBaZuUvGoCdPwHsUhHuHmNlDmByMqWeKxAwKwJbWlDmZwUwJyHiGzUeKmCqVkUqMpYvOhEvXjUsHwNwHaHoVmKvMtRqYiKeUsDoFcCvHqLcKnZcEiMyBiIyY"/>
+                <setInputField description="set name" name="name" value="XhIbFwOaXaJyFlFjHfUmAxNwWbCsHoLqIeNeOjCoBcQtC"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${tagDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${tag.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Tag -->
+    <target name="AddTag" description="Adds a new Tag">
+        <webtest name="addTag">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/tagform"/>
+                <verifytitle description="we should see the tagDetail title"
+                    text=".*${tagDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="NyQwAnRzXgDnGyQdZrLgNlMuUmCtZbSjCpOlXqWaAlOhSlZnXuDrSrPsNoRxXoGuPeRxGnWzChUgYkHeJgVyAvSbSsCwLeJnFuXkWwXzQkXtHqWcJaFhKcEnOcJlKfEqKqGfTtBkShZnWePhLiOsSbCyBoLnZwUuOdOrKkJcMfFlVyWqOgIeZaQqWiLqHuJiZrRlHsUzIfWfBqSwFjTzDgYcJjTzXeLhDfTcRqQyCoWpWtGdRmCkRvVaGtRqVxM"/>
+                <setInputField description="set name" name="name" value="FaFxWnXfRqCiQbXnKqWoQcHqHaLeZvBsPaAzPtHsEoGqE"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Tag List appears if save successful"
+                    text=".*${tagList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${tag.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing tag -->
+    <target name="DeleteTag" description="Deletes existing Tag">
+        <webtest name="deleteTag">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Tag link" url="/tagform?idtag=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Tag List" text=".*${tagList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${tag.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Tag-END-->
+    <!--Pastproject-START-->
+    <!-- runs pastproject-related tests -->
+    <target name="PastprojectTests"
+            depends="SearchPastprojects,EditPastproject,SavePastproject,AddPastproject,DeletePastproject"
+            description="Call and executes all pastproject test cases (targets)">
+        <echo>Successfully ran all Pastproject UI tests!</echo>
+    </target>
+
+    <!-- Verify the pastprojects list screen displays without errors -->
+    <target name="SearchPastprojects" description="Tests search for and displaying all pastprojects">
+        <webtest name="searchPastprojects">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Pastproject link" url="/pastprojects"/>
+                <verifytitle description="we should see the pastprojectList title"
+                    text=".*${pastprojectList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the pastprojectList title"
+                    text=".*${pastprojectList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit pastproject screen displays without errors -->
+    <target name="EditPastproject" description="Tests editing an existing Pastproject's information">
+        <webtest name="editPastproject">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Pastproject List" url="/pastprojects"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the pastprojectDetail title"
+                    text=".*${pastprojectDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a pastproject and then save -->
+    <target name="SavePastproject" description="Tests editing and saving a pastproject">
+        <webtest name="savePastproject">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Pastproject link" url="/pastprojectform?idpastproject=-1"/>
+                <verifytitle description="we should see the pastprojectDetail title"
+                    text=".*${pastprojectDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set description" name="description" value="OiLjDfRqTnPgScGaEwNcFeExXhBzKbJtVjTkTeQzXiCdIlYxDyTxSqPcOcDxXwRsNmAqOmHnXyKkSaGlJjHaKmTcFkNkMbMmDdOuFqDzEiZtKaDzRrBwDdEdQcSgZlZfMlPuDoEcLaFiLiAsJcPeAoCcWlZdJsLzSeXxIxBvEeMcEzUyLjHaXuYnSnIfQxEcKrHuCsNlFtDxFwLiPcHcWqQaNePgTjNlUjOcMiXcSqAbOoNjUdOkYpNzIrIiCvG"/>
+                <setInputField description="set projectname" name="projectname" value="EnGnFfJiPiSiFcQmLdIxDbJjJbNmWcNgTmRlCwFoJrJgIkAlOnJsSoYrYcKkRvXeZwPqRfQqUxXjYlPgAhFnCkTcNbOgKiLsSoSmFyOiPqUzTcJlTiIcMdIiTaClHuOuEvHhBnIhThJzLjJbFcOvEvUeVmCpYgDiIzSwQfXyIiUlPdHbNlAwOkFqWfHoPhTxSrWdQpPdYyBfEfClPvIhObJtBzOqKeYaDfEyRiXpBdOcWmVnYaAtFfTzJmLhIfT"/>
+                <setInputField description="set startdate" name="startdate" value="05/11/2016"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${pastprojectDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${pastproject.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Pastproject -->
+    <target name="AddPastproject" description="Adds a new Pastproject">
+        <webtest name="addPastproject">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/pastprojectform"/>
+                <verifytitle description="we should see the pastprojectDetail title"
+                    text=".*${pastprojectDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set description" name="description" value="IfCnFrRsAxRqOyIbEjPhAmFxRlSuWwHmGkYsIdAnBkSkUkIdWzYcHmXrZwOxOfTxWeQySiAaVmIeTeHuItRaYqBfQhOtZuJhZlOwVpKhOmNmSnKhZtZdSlAwOfZnOxWlKhJeChTnMcIbYdRlGgJmTiVkCxZjImGvSyRsOoRoYeGnOxSdLqRzEoOlAlKlBmWhXvJfDtEqYcBqUjMyPxHxWwQjIeHgNeHxPeRxYvJzQhMsKdWaUxQaMwTeXhEzCtU"/>
+                <setInputField description="set projectname" name="projectname" value="UkQeYzZjFjYpDjVrLmOxNqWxVpSgNqJxUkHgHuUgLsAdLuXtNjQdAlFnQiGxHkHeOdTmWaJsDzPcHfFsLiFfMhKdBxArQkFgVnRwSgTnTxEyBvHcHoGrAsUzSqBbGbZjClLnVeUmBhSkHkGbFcGdKwJfOiCyByPqGcCkUyAoLpKeScZvWoOnBvBzLsVfDuFeWzQpXtYhKyAnKrBuYdQdIkUcXwIlDzQzByEoRvKjQzLaCvRsIqKeXhJqYaNzOwB"/>
+                <setInputField description="set startdate" name="startdate" value="05/11/2016"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Pastproject List appears if save successful"
+                    text=".*${pastprojectList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${pastproject.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing pastproject -->
+    <target name="DeletePastproject" description="Deletes existing Pastproject">
+        <webtest name="deletePastproject">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Pastproject link" url="/pastprojectform?idpastproject=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Pastproject List" text=".*${pastprojectList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${pastproject.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Pastproject-END-->
+    
+    <!--Summary-START-->
+    <!-- runs summary-related tests -->
+    <target name="SummaryTests"
+            depends="SearchSummaries,EditSummary,SaveSummary,AddSummary,DeleteSummary"
+            description="Call and executes all summary test cases (targets)">
+        <echo>Successfully ran all Summary UI tests!</echo>
+    </target>
+
+    <!-- Verify the summaries list screen displays without errors -->
+    <target name="SearchSummaries" description="Tests search for and displaying all summaries">
+        <webtest name="searchSummaries">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View Summary link" url="/summaries"/>
+                <verifytitle description="we should see the summaryList title"
+                    text=".*${summaryList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the summaryList title"
+                    text=".*${summaryList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit summary screen displays without errors -->
+    <target name="EditSummary" description="Tests editing an existing Summary's information">
+        <webtest name="editSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="View Summary List" url="/summaries"/>
+                <clicklink label="-1" description="Click edit link"/>
+                <verifytitle description="we should see the summaryDetail title"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a summary and then save -->
+    <target name="SaveSummary" description="Tests editing and saving a summary">
+        <webtest name="saveSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Summary link" url="/summaryform?idsummary=-1"/>
+                <verifytitle description="we should see the summaryDetail title"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set aboutme" name="aboutme" value="AxNkEcFmHqYmAcPfKhNpKrIiIwZfGbGsRjZjOrZhGgOhJvRwXxXmGlToUiZsWvDsXdBfGaPtFqHmLuMaZtFpMaRkFpXuEiAzCgVhAfScVrJqDiIaQiKgDuCqBcOsPtEpVtJdTzTaDvKkIgZeJxToWqTlTdNlRaAkCfCxHnOvCqRxPoTlOcNdIqDsLoFfSpTeUrPbWcOnWsDrAeGxBdVuLcPfJsIrTpVyNrQjMjViBvEkDlBiCqVuYuQhBxPvTaB"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summary.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new Summary -->
+    <target name="AddSummary" description="Adds a new Summary">
+        <webtest name="addSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/summaryform"/>
+                <verifytitle description="we should see the summaryDetail title"
+                    text=".*${summaryDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set aboutme" name="aboutme" value="ViNgCrNuLdHiMjFzYfLzAkHuVdPqMzHrYdWkMnCxBhOhJnSeKuCqShZeDdNbAtCaLdPrLzPrRlFhMrJxInVaGjRyPrIbBiLaDoWdMgXxIoZpBbYjPiTfDfEnBzEzVdVgAmKsBoHhRfFiPsCoHkIpMhOhVjAfMgWcGhBrVhFdSfLnHpXvUpCkNvWlTgMlSzBgLzTgNaGhEwIiWvWlYyNqMnIdOfSbRvXlXwIsVgXpZzSsMlXgSpHePtGzNqXuEuB"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="Summary List appears if save successful"
+                    text=".*${summaryList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summary.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing summary -->
+    <target name="DeleteSummary" description="Deletes existing Summary">
+        <webtest name="deleteSummary">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit Summary link" url="/summaryform?idsummary=-1"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifytitle description="display Summary List" text=".*${summaryList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${summary.deleted}"/>
+            </steps>
+        </webtest>
+    </target>    <!--Summary-END-->
 </project>
+
+
+
+
+
+
 
 
 

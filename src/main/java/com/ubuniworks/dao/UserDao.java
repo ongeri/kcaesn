@@ -1,5 +1,7 @@
 package com.ubuniworks.dao;
 
+import com.ubuniworks.model.Experience;
+import com.ubuniworks.model.Pastproject;
 import com.ubuniworks.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * User Data Access Object (GenericDao) interface.
@@ -50,4 +53,8 @@ public interface UserDao extends GenericDao<User, Long> {
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     String getUserPassword(Long userId);
 
+
+    Set<Pastproject> getPastprojects(User idea);
+
+    Set<Experience> getExperiences(User user);
 }

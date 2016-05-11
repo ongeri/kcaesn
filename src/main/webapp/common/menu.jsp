@@ -22,6 +22,22 @@
             <!--Milestone-START-->
                 <%--<menu:displayMenu name="MilestoneMenu"/>--%>
             <!--Milestone-END-->
-        </ul>
+            <!--Experience-START-->
+    <%--<menu:displayMenu name="ExperienceMenu"/>--%>
+    <!--Experience-END-->
+    <!--Biography-START-->
+    <%--<menu:displayMenu name="BiographyMenu"/>--%>
+    <!--Biography-END-->
+    <!--Tag-START-->
+    <%--<menu:displayMenu name="TagMenu"/>--%>
+    <!--Tag-END-->
+    <!--Pastproject-START-->
+    <%--<menu:displayMenu name="PastprojectMenu"/>--%>
+    <!--Pastproject-END-->
+    
+    <!--Summary-START-->
+    <%--<menu:displayMenu name="SummaryMenu"/>--%>
+    <!--Summary-END-->
+</ul>
     </div>
 </menu:useMenuDisplayer>

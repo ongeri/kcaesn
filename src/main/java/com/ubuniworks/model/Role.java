@@ -88,11 +88,11 @@ public class Role extends BaseObject implements Serializable, GrantedAuthority {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Role)) {
+        if (!(o instanceof com.ubuniworks.model.Role)) {
             return false;
         }
 
-        final Role role = (Role) o;
+        final com.ubuniworks.model.Role role = (com.ubuniworks.model.Role) o;
 
         return !(name != null ? !name.equals(role.name) : role.name != null);
 

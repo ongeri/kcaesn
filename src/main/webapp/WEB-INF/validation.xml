@@ -84,5 +84,53 @@
             </field>
         </form>
         <!--Milestone-END-->
+        <!--Experience-START-->
+        <form name="experience">
+            <field property="activity" depends="required">
+                <arg key="experience.activity"/>
+            </field>
+            <field property="description" depends="required">
+                <arg key="experience.description"/>
+            </field>
+            <field property="place" depends="required">
+                <arg key="experience.place"/>
+            </field>
+            <field property="startdate" depends="required">
+                <arg key="experience.startdate"/>
+            </field>
+        </form>
+        <!--Experience-END-->
+        
+        <!--Tag-START-->
+        <form name="tag">
+            <field property="description" depends="required">
+                <arg key="tag.description"/>
+            </field>
+            <field property="name" depends="required">
+                <arg key="tag.name"/>
+            </field>
+        </form>
+        <!--Tag-END-->
+        <!--Pastproject-START-->
+        <form name="pastproject">
+            <field property="description" depends="required">
+                <arg key="pastproject.description"/>
+            </field>
+            <field property="projectname" depends="required">
+                <arg key="pastproject.projectname"/>
+            </field>
+            <field property="startdate" depends="required">
+                <arg key="pastproject.startdate"/>
+            </field>
+        </form>
+        <!--Pastproject-END-->
+        
+        <!--Summary-START-->
+        <form name="summary">
+            <field property="aboutme" depends="required">
+                <arg key="summary.aboutme"/>
+            </field>
+        </form>
+        <!--Summary-END-->
     </formset>
 </form-validation>

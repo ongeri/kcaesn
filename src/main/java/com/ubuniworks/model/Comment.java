@@ -20,10 +20,10 @@ public class Comment implements java.io.Serializable {
 
 	private Integer idcomment;
     private User user;
-	private Comment comment;
-	private Idea idea;
+	private com.ubuniworks.model.Comment comment;
+	private com.ubuniworks.model.Idea idea;
 	private String commenttext;
-    private Set<Comment> comments = new HashSet<Comment>(0);
+    private Set<com.ubuniworks.model.Comment> comments = new HashSet<com.ubuniworks.model.Comment>(0);
 	private String title;
 	private Date datecreated;
 
@@ -37,8 +37,8 @@ public class Comment implements java.io.Serializable {
 		this.datecreated = datecreated;
 	}
 
-	public Comment(User user, Comment comment, Idea idea, String commenttext, String title, Date datecreated,
-			Set<Comment> comments) {
+	public Comment(User user, com.ubuniworks.model.Comment comment, com.ubuniworks.model.Idea idea, String commenttext, String title, Date datecreated,
+				   Set<com.ubuniworks.model.Comment> comments) {
 		this.user = user;
 		this.comment = comment;
 		this.idea = idea;
@@ -72,21 +72,21 @@ public class Comment implements java.io.Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idparentcomment")
-	public Comment getComment() {
+	public com.ubuniworks.model.Comment getComment() {
 		return this.comment;
 	}
 
-	public void setComment(Comment comment) {
+	public void setComment(com.ubuniworks.model.Comment comment) {
 		this.comment = comment;
 	}
 
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ididea")
-	public Idea getIdea() {
+	public com.ubuniworks.model.Idea getIdea() {
 		return this.idea;
 	}
 
-	public void setIdea(Idea idea) {
+	public void setIdea(com.ubuniworks.model.Idea idea) {
 		this.idea = idea;
 	}
 
@@ -101,11 +101,11 @@ public class Comment implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "comment")
-	public Set<Comment> getComments() {
+	public Set<com.ubuniworks.model.Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(Set<com.ubuniworks.model.Comment> comments) {
 		this.comments = comments;
 	}
 

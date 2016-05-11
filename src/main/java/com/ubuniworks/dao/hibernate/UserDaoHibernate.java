@@ -1,6 +1,8 @@
 package com.ubuniworks.dao.hibernate;
 
 import com.ubuniworks.dao.UserDao;
+import com.ubuniworks.model.Experience;
+import com.ubuniworks.model.Pastproject;
 import com.ubuniworks.model.User;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
@@ -13,7 +15,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Table;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * This class interacts with Hibernate session to save/delete and
@@ -92,5 +97,19 @@ public class UserDaoHibernate extends GenericDaoHibernate<User, Long> implements
         Table table = AnnotationUtils.findAnnotation(User.class, Table.class);
         return jdbcTemplate.queryForObject(
                 "select password from " + table.name() + " where id=?", String.class, userId);
+    }
+
+    @Override
+    public Set<Pastproject> getPastprojects(User user) {
+        Collection<Pastproject> pastprojects = getSession().createCriteria(Pastproject.class).add(Restrictions.eq("user", user)).list();
+        Set<Pastproject> pastprojectSet = new HashSet<>(pastprojects);
+        return pastprojectSet;
+    }
+
+    @Override
+    public Set<Experience> getExperiences(User user) {
+        Collection<Experience> experiences = getSession().createCriteria(Experience.class).add(Restrictions.eq("user", user)).list();
+        Set<Experience> experienceSet = new HashSet<>(experiences);
+        return experienceSet;
     }
 }

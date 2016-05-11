@@ -1,6 +1,9 @@
 package com.ubuniworks.model;
 // Generated May 1, 2016 2:35:49 PM by Hibernate Tools 5.1.0.Alpha1
 
+import com.ubuniworks.model.Ideabody;
+import com.ubuniworks.model.Milestone;
+import com.ubuniworks.model.Tag;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.search.annotations.DocumentId;
@@ -26,15 +29,15 @@ public class Idea implements java.io.Serializable {
 
 	private Integer ididea;
 	private User user;
-	private Ideabody ideabody;
+	private com.ubuniworks.model.Ideabody ideabody;
 	private String description;
 	private String title;
 	private boolean published;
-	private Set<Comment> comments = new HashSet<Comment>(0);
-	private Set<Milestone> milestones = new HashSet<Milestone>(0);
+	private Set<com.ubuniworks.model.Comment> comments = new HashSet<com.ubuniworks.model.Comment>(0);
+	private Set<com.ubuniworks.model.Milestone> milestones = new HashSet<com.ubuniworks.model.Milestone>(0);
 	private Set<User> likers = new HashSet<User>(0);
 	private Date datecreated;
-	private Set<Tag> tags = new HashSet<Tag>(0);
+	private Set<com.ubuniworks.model.Tag> tags = new HashSet<com.ubuniworks.model.Tag>(0);
 
 	public Idea() {
 	}
@@ -47,8 +50,8 @@ public class Idea implements java.io.Serializable {
 		this.published = published;
 	}
 
-	public Idea(User user, Ideabody ideabody, String description, String title, Date datecreated,
-			boolean published, Set<Comment> comments, Set<Milestone> milestones, Set<User> likers, Set<Tag> tags) {
+	public Idea(User user, com.ubuniworks.model.Ideabody ideabody, String description, String title, Date datecreated,
+				boolean published, Set<com.ubuniworks.model.Comment> comments, Set<com.ubuniworks.model.Milestone> milestones, Set<User> likers, Set<com.ubuniworks.model.Tag> tags) {
 		this.user = user;
 		this.ideabody = ideabody;
 		this.description = description;
@@ -86,7 +89,7 @@ public class Idea implements java.io.Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     @Cascade(CascadeType.ALL)
 	@JoinColumn(name = "idideabody")
-	public Ideabody getIdeabody() {
+	public com.ubuniworks.model.Ideabody getIdeabody() {
 		return this.ideabody;
 	}
 
@@ -125,16 +128,16 @@ public class Idea implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
-	public Set<Comment> getComments() {
+	public Set<com.ubuniworks.model.Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(Set<Comment> comments) {
+	public void setComments(Set<com.ubuniworks.model.Comment> comments) {
 		this.comments = comments;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idea")
-	public Set<Milestone> getMilestones() {
+	public Set<com.ubuniworks.model.Milestone> getMilestones() {
 		return this.milestones;
 	}
 
@@ -169,7 +172,7 @@ public class Idea implements java.io.Serializable {
 	@JoinTable(name = "idea_has_tag", catalog = "kcaesn", joinColumns = {
 			@JoinColumn(name = "idea_ididea", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "tag_idtag", nullable = false, updatable = false) })
-	public Set<Tag> getTags() {
+	public Set<com.ubuniworks.model.Tag> getTags() {
 		return this.tags;
 	}
 

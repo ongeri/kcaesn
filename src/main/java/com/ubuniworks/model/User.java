@@ -43,17 +43,17 @@ public class User extends BaseObject implements Serializable, UserDetails {
     private String website;
     private Address address = new Address();
     private Integer version;
-    private Set<Role> roles = new HashSet<Role>();
+    private Set<com.ubuniworks.model.Role> roles = new HashSet<com.ubuniworks.model.Role>();
     private boolean enabled;
     private boolean accountExpired;
     private boolean accountLocked;
     private boolean credentialsExpired;
-    private Set<Idea> ideas;
-    private Set<Idea> likedIdeas;
-    private Set<Pastproject> pastprojects = new HashSet<Pastproject>(0);
-    private Set<Experience> experiences = new HashSet<Experience>(0);
-    private Set<Biography> biographies = new HashSet<Biography>(0);
+    private Set<com.ubuniworks.model.Idea> ideas;
+    private Set<com.ubuniworks.model.Idea> likedIdeas;
+    private Set<com.ubuniworks.model.Pastproject> pastprojects = new HashSet<com.ubuniworks.model.Pastproject>(0);
+    private Set<com.ubuniworks.model.Experience> experiences = new HashSet<com.ubuniworks.model.Experience>(0);
     private String profilepic;
+    private String aboutme;
 
     /**
      * Default constructor - creates a new instance with no values set.
@@ -199,11 +199,11 @@ public class User extends BaseObject implements Serializable, UserDetails {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    public Set<Role> getRoles() {
+    public Set<com.ubuniworks.model.Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<com.ubuniworks.model.Role> roles) {
         this.roles = roles;
     }
 
@@ -217,7 +217,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
         List<LabelValue> userRoles = new ArrayList<LabelValue>();
 
         if (this.roles != null) {
-            for (Role role : roles) {
+            for (com.ubuniworks.model.Role role : roles) {
                 // convert the user's roles to LabelValue Objects
                 userRoles.add(new LabelValue(role.getName(), role.getName()));
             }
@@ -231,7 +231,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
      *
      * @param role the fully instantiated role
      */
-    public void addRole(Role role) {
+    public void addRole(com.ubuniworks.model.Role role) {
         getRoles().add(role);
     }
 
@@ -320,16 +320,16 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<Idea> getIdeas() {
+    public Set<com.ubuniworks.model.Idea> getIdeas() {
         return this.ideas;
     }
 
-    public void setIdeas(Set<Idea> ideas_1) {
+    public void setIdeas(Set<com.ubuniworks.model.Idea> ideas_1) {
         this.ideas = ideas_1;
     }
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "likers")
-    public Set<Idea> getLikedIdeas() {
+    public Set<com.ubuniworks.model.Idea> getLikedIdeas() {
         return this.likedIdeas;
     }
 
@@ -338,7 +338,7 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<Pastproject> getPastprojects() {
+    public Set<com.ubuniworks.model.Pastproject> getPastprojects() {
         return pastprojects;
     }
 
@@ -347,21 +347,22 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<Experience> getExperiences() {
+    public Set<com.ubuniworks.model.Experience> getExperiences() {
         return experiences;
     }
 
-    public void setExperiences(Set<Experience> experiences) {
+    public void setExperiences(Set<com.ubuniworks.model.Experience> experiences) {
         this.experiences = experiences;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    public Set<Biography> getBiographies() {
-        return biographies;
+
+    @Column(name = "aboutme")
+    public String getAboutme() {
+        return this.aboutme;
     }
 
-    public void setBiographies(Set<Biography> biographies) {
-        this.biographies = biographies;
+    public void setAboutme(String aboutme) {
+        this.aboutme = aboutme;
     }
 
     @Column(name = "profilepic")

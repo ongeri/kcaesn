@@ -48,6 +48,48 @@
     </bean>
     <!--MilestoneManager-END-->
 
+    <!--ExperienceManager-START-->
+    <bean id="experienceManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Experience"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--ExperienceManager-END-->
+
+    <!--TagManager-START-->
+    <bean id="tagManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Tag"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--TagManager-END-->
+
+    <!--PastprojectManager-START-->
+    <bean id="pastprojectManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Pastproject"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--PastprojectManager-END-->
+
+    
+
+    <!--SummaryManager-START-->
+    <bean id="summaryManager" class="org.appfuse.service.impl.GenericManagerImpl">
+        <constructor-arg>
+            <bean class="org.appfuse.dao.hibernate.GenericDaoHibernate">
+                <constructor-arg value="com.ubuniworks.model.Summary"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <!--SummaryManager-END-->
+
     <!-- Add new Managers here -->
 
     <!-- Configure and Alternative PasswordTokenManager -->

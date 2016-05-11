@@ -24,7 +24,7 @@ public class Tag implements java.io.Serializable {
 	private Integer idtag;
 	private String name;
 	private String description;
-	private Set<Idea> ideas = new HashSet<Idea>(0);
+	private Set<com.ubuniworks.model.Idea> ideas = new HashSet<com.ubuniworks.model.Idea>(0);
 
 	public Tag() {
 	}
@@ -34,7 +34,7 @@ public class Tag implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public Tag(String name, String description, Set<Idea> ideas) {
+	public Tag(String name, String description, Set<com.ubuniworks.model.Idea> ideas) {
 		this.name = name;
 		this.description = description;
 		this.ideas = ideas;
@@ -74,11 +74,11 @@ public class Tag implements java.io.Serializable {
 	@JoinTable(name = "idea_has_tag", catalog = "kcaesn", joinColumns = {
 			@JoinColumn(name = "tag_idtag", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "idea_ididea", nullable = false, updatable = false) })
-	public Set<Idea> getIdeas() {
+	public Set<com.ubuniworks.model.Idea> getIdeas() {
 		return this.ideas;
 	}
 
-	public void setIdeas(Set<Idea> ideas) {
+	public void setIdeas(Set<com.ubuniworks.model.Idea> ideas) {
 		this.ideas = ideas;
 	}
 

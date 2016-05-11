@@ -27,7 +27,29 @@
         <!--Milestone-START-->
         <!--<Menu name="MilestoneMenu" title="milestoneList.title" page="/milestones"/>-->
         <!--Milestone-END-->
+        <!--Experience-START-->
+        <!--<Menu name="ExperienceMenu" title="experienceList.title" page="/experiences"/>-->
+        <!--Experience-END-->
+        <!--Biography-START-->
+        <!--<Menu name="BiographyMenu" title="biographyList.title" page="/biographies"/>-->
+        <!--Biography-END-->
+        <!--Tag-START-->
+        <!--<Menu name="TagMenu" title="tagList.title" page="/tags"/>-->
+        <!--Tag-END-->
+        <!--Pastproject-START-->
+        <!--<Menu name="PastprojectMenu" title="pastprojectList.title" page="/pastprojects"/>-->
+        <!--Pastproject-END-->
+        
+        <!--Summary-START-->
+        <!--<Menu name="SummaryMenu" title="summaryList.title" page="/summaries"/>-->
+        <!--Summary-END-->
     </Menus>
+
+
+
+
+
+
 
 
 </MenuConfig>

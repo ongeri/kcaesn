@@ -23,19 +23,19 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Milestone implements java.io.Serializable {
 
 	private Integer idmilestone;
-	private Idea idea;
-	private Milestone parentMilestone;
+	private com.ubuniworks.model.Idea idea;
+	private com.ubuniworks.model.Milestone parentMilestone;
 	private String description;
 	private Date duedate;
 	private Date datecreated;
-	private Set<Milestone> dependentMilestones = new HashSet<Milestone>(0);
+	private Set<com.ubuniworks.model.Milestone> dependentMilestones = new HashSet<com.ubuniworks.model.Milestone>(0);
 	private String name;
 	private String status;
 
 	public Milestone() {
 	}
 
-	public Milestone(Idea idea, String description, Date duedate, Date datecreated, String name, String status) {
+	public Milestone(com.ubuniworks.model.Idea idea, String description, Date duedate, Date datecreated, String name, String status) {
 		this.idea = idea;
 		this.description = description;
 		this.duedate = duedate;
@@ -44,8 +44,8 @@ public class Milestone implements java.io.Serializable {
 		this.status = status;
 	}
 
-	public Milestone(Idea idea, Milestone parentMilestone, String description, Date duedate, Date datecreated, String name,
-			String status, Set<Milestone> dependentMilestones) {
+	public Milestone(com.ubuniworks.model.Idea idea, com.ubuniworks.model.Milestone parentMilestone, String description, Date duedate, Date datecreated, String name,
+					 String status, Set<com.ubuniworks.model.Milestone> dependentMilestones) {
 		this.idea = idea;
 		this.parentMilestone = parentMilestone;
 		this.description = description;
@@ -70,21 +70,21 @@ public class Milestone implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ididea", nullable = false)
-	public Idea getIdea() {
+	public com.ubuniworks.model.Idea getIdea() {
 		return this.idea;
 	}
 
-	public void setIdea(Idea idea) {
+	public void setIdea(com.ubuniworks.model.Idea idea) {
 		this.idea = idea;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "iddependencymilestone")
-    public Milestone getParentMilestone() {
+    public com.ubuniworks.model.Milestone getParentMilestone() {
 		return this.parentMilestone;
 	}
 
-    public void setParentMilestone(Milestone milestone) {
+    public void setParentMilestone(com.ubuniworks.model.Milestone milestone) {
         this.parentMilestone = milestone;
 	}
 
@@ -129,11 +129,11 @@ public class Milestone implements java.io.Serializable {
 		this.status = status;
 	}
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parentMilestone")
-	public Set<Milestone> getDependentMilestones() {
+	public Set<com.ubuniworks.model.Milestone> getDependentMilestones() {
 		return this.dependentMilestones;
 	}
 
-	public void setDependentMilestones(Set<Milestone> milestones) {
+	public void setDependentMilestones(Set<com.ubuniworks.model.Milestone> milestones) {
 		this.dependentMilestones = milestones;
 	}
 

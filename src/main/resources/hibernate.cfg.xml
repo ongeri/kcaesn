@@ -17,6 +17,5 @@
         <mapping class="com.ubuniworks.model.Tag"/>
         <mapping class="com.ubuniworks.model.Pastproject"/>
         <mapping class="com.ubuniworks.model.Experience"/>
-        <mapping class="com.ubuniworks.model.Biography"/>
     </session-factory>
 </hibernate-configuration>

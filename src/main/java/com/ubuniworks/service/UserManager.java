@@ -1,11 +1,14 @@
 package com.ubuniworks.service;
 
 import com.ubuniworks.dao.UserDao;
+import com.ubuniworks.model.Experience;
+import com.ubuniworks.model.Pastproject;
 import com.ubuniworks.model.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -135,4 +138,8 @@ public interface UserManager extends GenericManager<User, Long> {
      * @throws UserExistsException
      */
     User updatePassword(String username, String currentPassword, String recoveryToken, String newPassword, String applicationUrl) throws UserExistsException;
+
+    Set<Pastproject> getPastprojects(User user);
+
+    Set<Experience> getExperiences(User user);
 }
