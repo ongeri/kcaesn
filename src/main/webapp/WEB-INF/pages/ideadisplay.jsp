@@ -78,44 +78,39 @@
                             </td>
                             <td colspan="2">
                                 <h4>Key Activities<a class="btn btn-success btn-xs pull-right" role="button"
-                                                     data-toggle="collapse"
-                                                     href="partnerform${idea.ididea}"
-                                                     id="addpartnerbtn"
-                                                     aria-expanded="false"
-                                                     aria-controls="collapseExample"><i
+                                                     href="activityform${idea.ididea}" id="addactivitybtn"
+                                                     data-toggle="modal"
+                                                     data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2" rowspan="2">
                                 <h4>Value Proposition<a class="btn btn-success btn-xs pull-right" role="button"
-                                                        data-toggle="collapse"
-                                                        href="partnerform${idea.ididea}"
-                                                        id="addpartnerbtn"
-                                                        aria-expanded="false"
-                                                        aria-controls="collapseExample"><i
+                                                        href="valuepropositionform${idea.ididea}"
+                                                        id="addvaluepropositionbtn"
+                                                        data-toggle="modal"
+                                                        data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2">
                                 <h4>Customer Relationship<a class="btn btn-success btn-xs pull-right" role="button"
-                                                            data-toggle="collapse"
-                                                            href="partnerform${idea.ididea}"
-                                                            id="addpartnerbtn"
-                                                            aria-expanded="false"
-                                                            aria-controls="collapseExample"><i
+                                                            href="custpmerrelationshipform${idea.ididea}"
+                                                            id="addcustomerrelationshipbtn"
+                                                            data-toggle="modal"
+                                                            data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2" rowspan="2">
                                 <h4>Customer Segments<a class="btn btn-success btn-xs pull-right" role="button"
-                                                        data-toggle="collapse"
-                                                        href="partnerform${idea.ididea}"
-                                                        id="addpartnerbtn"
-                                                        aria-expanded="false"
-                                                        aria-controls="collapseExample"><i
+                                                        href="customersegmentform${idea.ididea}"
+                                                        id="addcustomersegmentbtn"
+                                                        data-toggle="modal"
+                                                        data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
@@ -126,22 +121,19 @@
                         <tr>
                             <td colspan="2">
                                 <h4>Key Resources<a class="btn btn-success btn-xs pull-right" role="button"
-                                                    data-toggle="collapse"
-                                                    href="partnerform${idea.ididea}"
-                                                    id="addpartnerbtn"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapseExample"><i
+                                                    href="resourceform${idea.ididea}" id="addresourcebtn"
+                                                    data-toggle="modal"
+                                                    data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="2">
                                 <h4>Channels<a class="btn btn-success btn-xs pull-right" role="button"
-                                               data-toggle="collapse"
-                                               href="partnerform${idea.ididea}"
-                                               id="addpartnerbtn"
-                                               aria-expanded="false"
-                                               aria-controls="collapseExample"><i class="fa fa-plus-circle"></i></a>
+                                               href="channelsform${idea.ididea}" id="addchannelsbtn"
+                                               data-toggle="modal"
+                                               data-target="#myModal"><i
+                                        class="fa fa-plus-circle"></i></a><i class="fa fa-plus-circle"></i></a>
                                 </h4>
 
                                 <p>...</p>
@@ -150,23 +142,19 @@
                         <tr>
                             <td colspan="5">
                                 <h4>Cost Structure<a class="btn btn-success btn-xs pull-right" role="button"
-                                                     data-toggle="collapse"
-                                                     href="partnerform${idea.ididea}"
-                                                     id="addpartnerbtn"
-                                                     aria-expanded="false"
-                                                     aria-controls="collapseExample"><i
+                                                     href="coststructureform${idea.ididea}" id="coststructurebtn"
+                                                     data-toggle="modal"
+                                                     data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>
                             <td colspan="5">
                                 <h4>Revenue Streams<a class="btn btn-success btn-xs pull-right" role="button"
-                                                      data-toggle="collapse"
-                                                      href="partnerform${idea.ididea}"
-                                                      id="addpartnerbtn"
-                                                      aria-expanded="false"
-                                                      aria-controls="collapseExample"><i class="fa fa-plus-circle"></i></a>
-                                </h4>
+                                                      href="revenusestreamsform${idea.ididea}" id="revenuestreamsbtn"
+                                                      data-toggle="modal"
+                                                      data-target="#myModal"><i
+                                        class="fa fa-plus-circle"></i></a></h4>
 
                                 <p>...</p>
                             </td>

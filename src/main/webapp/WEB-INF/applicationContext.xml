@@ -83,14 +83,14 @@
 
 
     <!--SummaryManager-START-->
-    <bean id="summaryManager" class="com.ubuniworks.service.impl.GenericManagerImpl">
-        <constructor-arg>
-            <bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">
-                <constructor-arg value="com.ubuniworks.model.Summary"/>
-                <property name="sessionFactory" ref="sessionFactory"/>
-            </bean>
-        </constructor-arg>
-    </bean>
+    <!--<bean id="summaryManager" class="com.ubuniworks.service.impl.GenericManagerImpl">-->
+        <!--<constructor-arg>-->
+            <!--<bean class="com.ubuniworks.dao.hibernate.GenericDaoHibernate">-->
+                <!--<constructor-arg value="com.ubuniworks.model.Summary"/>-->
+                <!--<property name="sessionFactory" ref="sessionFactory"/>-->
+            <!--</bean>-->
+        <!--</constructor-arg>-->
+    <!--</bean>-->
     <!--SummaryManager-END-->
 
     <!--ActivitiesManager-START-->

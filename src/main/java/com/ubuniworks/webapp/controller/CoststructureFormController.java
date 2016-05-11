@@ -1,7 +1,7 @@
 package com.ubuniworks.webapp.controller;
 
 import org.apache.commons.lang.StringUtils;
-import org.appfuse.service.GenericManager;
+import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Coststructure;
 import com.ubuniworks.webapp.controller.BaseFormController;
 
