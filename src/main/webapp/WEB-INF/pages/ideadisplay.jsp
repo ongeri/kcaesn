@@ -54,13 +54,14 @@
                         <tr>
                             <td colspan="2" rowspan="2">
                                 <h4>Key Partners<a class="btn btn-success btn-xs pull-right" role="button"
-                                                   href="partnerform${idea.ididea}" id="addpartnerbtn"
+                                                   id="addpartnerbtn"
                                                    data-toggle="modal"
                                                    data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a>
                                     <script type="text/javascript">
                                         $(document).ready(function () {
                                             $("#addpartnerbtn").click(function () {
+                                                $("#modaltitle").html("Add partner")
                                                 $.ajax({
                                                     url: '/partnersform?ajax=true&ididea=${idea.ididea}',
                                                     success: function (data) {
@@ -83,42 +84,123 @@
                             </td>
                             <td colspan="2">
                                 <h4>Key Activities<a class="btn btn-success btn-xs pull-right" role="button"
-                                                     href="activityform${idea.ididea}" id="addactivitybtn"
+                                                     id="addactivitybtn"
                                                      data-toggle="modal"
                                                      data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#addactivitybtn").click(function () {
+                                            $("#modaltitle").html("Add activity")
+                                            $.ajax({
+                                                url: '/activitiesform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <p>
+                                    <c:forEach items="${idea.activitieses}" var="activity" varStatus="loop">
 
-                                <p>...</p>
+                                <div> ${activity.name} </div>
+                                </c:forEach>
+                                </p>
                             </td>
                             <td colspan="2" rowspan="2">
                                 <h4>Value Proposition<a class="btn btn-success btn-xs pull-right" role="button"
-                                                        href="valuepropositionform${idea.ididea}"
                                                         id="addvaluepropositionbtn"
                                                         data-toggle="modal"
                                                         data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#addvaluepropositionbtn").click(function () {
+                                            $("#modaltitle").html("Add Value Proposition")
+                                            $.ajax({
+                                                url: '/valuepropositionform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.valuepropositions}" var="proposition" varStatus="loop">
 
-                                <p>...</p>
+                                        <div><b>${proposition.name}</b> <br/>
+
+                                            <p>${proposition.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                             <td colspan="2">
                                 <h4>Customer Relationship<a class="btn btn-success btn-xs pull-right" role="button"
-                                                            href="custpmerrelationshipform${idea.ididea}"
                                                             id="addcustomerrelationshipbtn"
                                                             data-toggle="modal"
                                                             data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
-                                <p>...</p>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#addcustomerrelationshipbtn").click(function () {
+                                            $("#modaltitle").html("Add Customer Relationship")
+                                            $.ajax({
+                                                url: '/customerrelationshipform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.customerrelationships}" var="customerrelationship"
+                                               varStatus="loop">
+
+                                        <div><b>${customerrelationship.name}</b> <br/>
+
+                                            <p>${customerrelationship.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                             <td colspan="2" rowspan="2">
                                 <h4>Customer Segments<a class="btn btn-success btn-xs pull-right" role="button"
-                                                        href="customersegmentform${idea.ididea}"
                                                         id="addcustomersegmentbtn"
                                                         data-toggle="modal"
                                                         data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#addcustomersegmentbtn").click(function () {
+                                            $("#modaltitle").html("Add Customer Segment")
+                                            $.ajax({
+                                                url: '/customersegmentform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.customersegments}" var="customresegment"
+                                               varStatus="loop">
 
-                                <p>...</p>
+                                        <div><b>${customresegment.name}</b> <br/>
+
+                                            <p>${customresegment.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                         </tr>
 
@@ -126,42 +208,134 @@
                         <tr>
                             <td colspan="2">
                                 <h4>Key Resources<a class="btn btn-success btn-xs pull-right" role="button"
-                                                    href="resourceform${idea.ididea}" id="addresourcebtn"
+                                                    id="addresourcebtn"
                                                     data-toggle="modal"
                                                     data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
-                                <p>...</p>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#addresourcebtn").click(function () {
+                                            $("#modaltitle").html("Add Resource")
+                                            $.ajax({
+                                                url: '/resourcesform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.resourceses}" var="resource"
+                                               varStatus="loop">
+
+                                        <div><b>${resource.name}</b> <br/>
+
+                                            <p>${resource.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                             <td colspan="2">
                                 <h4>Channels<a class="btn btn-success btn-xs pull-right" role="button"
-                                               href="channelsform${idea.ididea}" id="addchannelsbtn"
+                                               id="addchannelsbtn"
                                                data-toggle="modal"
                                                data-target="#myModal"><i
-                                        class="fa fa-plus-circle"></i></a><i class="fa fa-plus-circle"></i></a>
+                                        class="fa fa-plus-circle"></i></a>
                                 </h4>
 
-                                <p>...</p>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#addchannelsbtn").click(function () {
+                                            $("#modaltitle").html("Add Channel")
+                                            $.ajax({
+                                                url: '/channesform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.channeses}" var="channel"
+                                               varStatus="loop">
+
+                                        <div><b>${channel.name}</b> <br/>
+
+                                            <p>${channel.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="5">
                                 <h4>Cost Structure<a class="btn btn-success btn-xs pull-right" role="button"
-                                                     href="coststructureform${idea.ididea}" id="coststructurebtn"
+                                                     id="coststructurebtn"
                                                      data-toggle="modal"
                                                      data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
-                                <p>...</p>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#coststructurebtn").click(function () {
+                                            $("#modaltitle").html("Add Cost Structure")
+                                            $.ajax({
+                                                url: '/coststructureform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.coststructures}" var="coststructure"
+                                               varStatus="loop">
+
+                                        <div><b>${coststructure.name}</b> <br/>
+
+                                            <p>${coststructure.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                             <td colspan="5">
                                 <h4>Revenue Streams<a class="btn btn-success btn-xs pull-right" role="button"
-                                                      href="revenusestreamsform${idea.ididea}" id="revenuestreamsbtn"
+                                                      id="revenuestreamsbtn"
                                                       data-toggle="modal"
                                                       data-target="#myModal"><i
                                         class="fa fa-plus-circle"></i></a></h4>
 
-                                <p>...</p>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        $("#revenuestreamsbtn").click(function () {
+                                            $("#modaltitle").html("Add Revenue Stream")
+                                            $.ajax({
+                                                url: '/revenuestreamform?ajax=true&ididea=${idea.ididea}',
+                                                success: function (data) {
+                                                    $("#modalbody").html(data)
+                                                },
+                                                type: 'GET'
+                                            });
+                                        });
+                                    });
+                                </script>
+                                <div>
+                                    <c:forEach items="${idea.revenuestreams}" var="revenuestream"
+                                               varStatus="loop">
+
+                                        <div><b>${revenuestream.name}</b> <br/>
+
+                                            <p>${revenuestream.description}</p>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </td>
                         </tr>
                     </table>
@@ -363,6 +537,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 id="modaltitle"></h5>
             </div>
             <div class="modal-body" id="modalbody"></div>
         </div>

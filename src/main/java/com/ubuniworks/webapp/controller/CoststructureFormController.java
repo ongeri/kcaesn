@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Coststructure;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import java.util.Locale;
 @RequestMapping("/coststructureform*")
 public class CoststructureFormController extends BaseFormController {
     private GenericManager<Coststructure, Integer> coststructureManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setCoststructureManager(@Qualifier("coststructureManager") GenericManager<Coststructure, Integer> coststructureManager) {
@@ -28,27 +28,36 @@ public class CoststructureFormController extends BaseFormController {
     }
 
     public CoststructureFormController() {
-        setCancelView("redirect:coststructures");
-        setSuccessView("redirect:coststructures");
+        setCancelView("redirect:ideas");
+        setSuccessView("redirect:ideas");
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Coststructure showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idcoststructure = request.getParameter("idcoststructure");
+        String ididea = request.getParameter("ididea");
 
+        Coststructure customerrelationship = new Coststructure();
         if (!StringUtils.isBlank(idcoststructure)) {
-            return coststructureManager.get(new Integer(idcoststructure));
+            customerrelationship = coststructureManager.get(new Integer(idcoststructure));
+        } else if (!StringUtils.isBlank(ididea)) {
+            customerrelationship.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Coststructure();
+        return customerrelationship;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Coststructure coststructure, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,12 @@ public class CoststructureFormController extends BaseFormController {
             coststructureManager.remove(coststructure.getIdcoststructure());
             saveMessage(request, getText("coststructure.deleted", locale));
         } else {
-            coststructureManager.save(coststructure);
+            coststructure = coststructureManager.save(coststructure);
             String key = (isNew) ? "coststructure.added" : "coststructure.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:coststructureform?idcoststructure=" + coststructure.getIdcoststructure();
-            }
+            success = "redirect:ideadisplay?ididea=" + coststructure.getIdea().getIdidea() + "#businesscanvas";
+
         }
 
         return success;

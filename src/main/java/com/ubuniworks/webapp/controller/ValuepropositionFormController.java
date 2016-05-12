@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Valueproposition;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,10 +20,16 @@ import java.util.Locale;
 @RequestMapping("/valuepropositionform*")
 public class ValuepropositionFormController extends BaseFormController {
     private GenericManager<Valueproposition, Integer> valuepropositionManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setValuepropositionManager(@Qualifier("valuepropositionManager") GenericManager<Valueproposition, Integer> valuepropositionManager) {
         this.valuepropositionManager = valuepropositionManager;
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     public ValuepropositionFormController() {
@@ -35,20 +40,24 @@ public class ValuepropositionFormController extends BaseFormController {
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Valueproposition showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idvalueproposition = request.getParameter("idvalueproposition");
+        String ididea = request.getParameter("ididea");
 
+        Valueproposition valueproposition = new Valueproposition();
         if (!StringUtils.isBlank(idvalueproposition)) {
-            return valuepropositionManager.get(new Integer(idvalueproposition));
+            valueproposition = valuepropositionManager.get(new Integer(idvalueproposition));
+        } else if (!StringUtils.isBlank(ididea)) {
+            valueproposition.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Valueproposition();
+        return valueproposition;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Valueproposition valueproposition, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,11 @@ public class ValuepropositionFormController extends BaseFormController {
             valuepropositionManager.remove(valueproposition.getIdvalueproposition());
             saveMessage(request, getText("valueproposition.deleted", locale));
         } else {
-            valuepropositionManager.save(valueproposition);
+            valueproposition = valuepropositionManager.save(valueproposition);
             String key = (isNew) ? "valueproposition.added" : "valueproposition.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:valuepropositionform?idvalueproposition=" + valueproposition.getIdvalueproposition();
-            }
+            success = "redirect:ideadisplay?ididea=" + valueproposition.getIdea().getIdidea() + "#businesscanvas";
         }
 
         return success;

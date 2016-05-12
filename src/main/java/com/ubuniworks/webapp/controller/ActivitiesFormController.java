@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Activities;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import java.util.Locale;
 @RequestMapping("/activitiesform*")
 public class ActivitiesFormController extends BaseFormController {
     private GenericManager<Activities, Integer> activitiesManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setActivitiesManager(@Qualifier("activitiesManager") GenericManager<Activities, Integer> activitiesManager) {
@@ -28,27 +28,36 @@ public class ActivitiesFormController extends BaseFormController {
     }
 
     public ActivitiesFormController() {
-        setCancelView("redirect:activitiess");
-        setSuccessView("redirect:activitiess");
+        setCancelView("redirect:ideas");
+        setSuccessView("redirect:ideas");
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Activities showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idactivities = request.getParameter("idactivities");
+        String ididea = request.getParameter("ididea");
 
+        Activities activity = new Activities();
         if (!StringUtils.isBlank(idactivities)) {
-            return activitiesManager.get(new Integer(idactivities));
+            activity = activitiesManager.get(new Integer(idactivities));
+        } else if (!StringUtils.isBlank(ididea)) {
+            activity.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Activities();
+        return activity;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Activities activities, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,12 @@ public class ActivitiesFormController extends BaseFormController {
             activitiesManager.remove(activities.getIdactivities());
             saveMessage(request, getText("activities.deleted", locale));
         } else {
-            activitiesManager.save(activities);
+            activities = activitiesManager.save(activities);
             String key = (isNew) ? "activities.added" : "activities.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:activitiesform?idactivities=" + activities.getIdactivities();
-            }
+            success = "redirect:ideadisplay?ididea=" + activities.getIdea().getIdidea() + "#businesscanvas";
+
         }
 
         return success;

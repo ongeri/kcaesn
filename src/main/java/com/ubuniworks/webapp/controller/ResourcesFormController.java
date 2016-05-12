@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Resources;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import java.util.Locale;
 @RequestMapping("/resourcesform*")
 public class ResourcesFormController extends BaseFormController {
     private GenericManager<Resources, Integer> resourcesManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setResourcesManager(@Qualifier("resourcesManager") GenericManager<Resources, Integer> resourcesManager) {
@@ -28,27 +28,36 @@ public class ResourcesFormController extends BaseFormController {
     }
 
     public ResourcesFormController() {
-        setCancelView("redirect:resourcess");
-        setSuccessView("redirect:resourcess");
+        setCancelView("redirect:ideas");
+        setSuccessView("redirect:ideas");
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Resources showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idresources = request.getParameter("idresources");
+        String ididea = request.getParameter("ididea");
 
+        Resources resources = new Resources();
         if (!StringUtils.isBlank(idresources)) {
-            return resourcesManager.get(new Integer(idresources));
+            resources = resourcesManager.get(new Integer(idresources));
+        } else if (!StringUtils.isBlank(ididea)) {
+            resources.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Resources();
+        return resources;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Resources resources, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,12 @@ public class ResourcesFormController extends BaseFormController {
             resourcesManager.remove(resources.getIdresources());
             saveMessage(request, getText("resources.deleted", locale));
         } else {
-            resourcesManager.save(resources);
+            resources = resourcesManager.save(resources);
             String key = (isNew) ? "resources.added" : "resources.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:resourcesform?idresources=" + resources.getIdresources();
-            }
+            success = "redirect:ideadisplay?ididea=" + resources.getIdea().getIdidea() + "#businesscanvas";
+
         }
 
         return success;

@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Channes;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import java.util.Locale;
 @RequestMapping("/channesform*")
 public class ChannesFormController extends BaseFormController {
     private GenericManager<Channes, Integer> channesManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setChannesManager(@Qualifier("channesManager") GenericManager<Channes, Integer> channesManager) {
@@ -28,27 +28,36 @@ public class ChannesFormController extends BaseFormController {
     }
 
     public ChannesFormController() {
-        setCancelView("redirect:channess");
-        setSuccessView("redirect:channess");
+        setCancelView("redirect:ideas");
+        setSuccessView("redirect:ideas");
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Channes showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idchannes = request.getParameter("idchannes");
+        String ididea = request.getParameter("ididea");
 
+        Channes customerrelationship = new Channes();
         if (!StringUtils.isBlank(idchannes)) {
-            return channesManager.get(new Integer(idchannes));
+            customerrelationship = channesManager.get(new Integer(idchannes));
+        } else if (!StringUtils.isBlank(ididea)) {
+            customerrelationship.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Channes();
+        return customerrelationship;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Channes channes, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,12 @@ public class ChannesFormController extends BaseFormController {
             channesManager.remove(channes.getIdchannes());
             saveMessage(request, getText("channes.deleted", locale));
         } else {
-            channesManager.save(channes);
+            channes = channesManager.save(channes);
             String key = (isNew) ? "channes.added" : "channes.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:channesform?idchannes=" + channes.getIdchannes();
-            }
+            success = "redirect:ideadisplay?ididea=" + channes.getIdea().getIdidea() + "#businesscanvas";
+
         }
 
         return success;

@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Customerrelationship;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import java.util.Locale;
 @RequestMapping("/customerrelationshipform*")
 public class CustomerrelationshipFormController extends BaseFormController {
     private GenericManager<Customerrelationship, Integer> customerrelationshipManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setCustomerrelationshipManager(@Qualifier("customerrelationshipManager") GenericManager<Customerrelationship, Integer> customerrelationshipManager) {
@@ -28,27 +28,36 @@ public class CustomerrelationshipFormController extends BaseFormController {
     }
 
     public CustomerrelationshipFormController() {
-        setCancelView("redirect:customerrelationships");
-        setSuccessView("redirect:customerrelationships");
+        setCancelView("redirect:ideas");
+        setSuccessView("redirect:ideas");
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Customerrelationship showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idcustomerrelationship = request.getParameter("idcustomerrelationship");
+        String ididea = request.getParameter("ididea");
 
+        Customerrelationship customerrelationship = new Customerrelationship();
         if (!StringUtils.isBlank(idcustomerrelationship)) {
-            return customerrelationshipManager.get(new Integer(idcustomerrelationship));
+            customerrelationship = customerrelationshipManager.get(new Integer(idcustomerrelationship));
+        } else if (!StringUtils.isBlank(ididea)) {
+            customerrelationship.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Customerrelationship();
+        return customerrelationship;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Customerrelationship customerrelationship, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,12 @@ public class CustomerrelationshipFormController extends BaseFormController {
             customerrelationshipManager.remove(customerrelationship.getIdcustomerrelationship());
             saveMessage(request, getText("customerrelationship.deleted", locale));
         } else {
-            customerrelationshipManager.save(customerrelationship);
+            customerrelationship = customerrelationshipManager.save(customerrelationship);
             String key = (isNew) ? "customerrelationship.added" : "customerrelationship.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:customerrelationshipform?idcustomerrelationship=" + customerrelationship.getIdcustomerrelationship();
-            }
+            success = "redirect:ideadisplay?ididea=" + customerrelationship.getIdea().getIdidea() + "#businesscanvas";
+
         }
 
         return success;

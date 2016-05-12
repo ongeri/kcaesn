@@ -1,10 +1,9 @@
 package com.ubuniworks.webapp.controller;
 
-import org.apache.commons.lang.StringUtils;
-import com.ubuniworks.service.GenericManager;
 import com.ubuniworks.model.Revenuestream;
-import com.ubuniworks.webapp.controller.BaseFormController;
-
+import com.ubuniworks.service.GenericManager;
+import com.ubuniworks.service.IdeaManager;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import java.util.Locale;
 @RequestMapping("/revenuestreamform*")
 public class RevenuestreamFormController extends BaseFormController {
     private GenericManager<Revenuestream, Integer> revenuestreamManager = null;
+    private IdeaManager ideaManager = null;
 
     @Autowired
     public void setRevenuestreamManager(@Qualifier("revenuestreamManager") GenericManager<Revenuestream, Integer> revenuestreamManager) {
@@ -28,27 +28,36 @@ public class RevenuestreamFormController extends BaseFormController {
     }
 
     public RevenuestreamFormController() {
-        setCancelView("redirect:revenuestreams");
-        setSuccessView("redirect:revenuestreams");
+        setCancelView("redirect:ideas");
+        setSuccessView("redirect:ideas");
+    }
+
+    @Autowired
+    public void setIdeaManager(IdeaManager ideaManager) {
+        this.ideaManager = ideaManager;
     }
 
     @ModelAttribute
     @RequestMapping(method = RequestMethod.GET)
     protected Revenuestream showForm(HttpServletRequest request)
-    throws Exception {
+            throws Exception {
         String idrevenuestream = request.getParameter("idrevenuestream");
+        String ididea = request.getParameter("ididea");
 
+        Revenuestream customerrelationship = new Revenuestream();
         if (!StringUtils.isBlank(idrevenuestream)) {
-            return revenuestreamManager.get(new Integer(idrevenuestream));
+            customerrelationship = revenuestreamManager.get(new Integer(idrevenuestream));
+        } else if (!StringUtils.isBlank(ididea)) {
+            customerrelationship.setIdea(ideaManager.get(Integer.valueOf(ididea)));
         }
 
-        return new Revenuestream();
+        return customerrelationship;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String onSubmit(Revenuestream revenuestream, BindingResult errors, HttpServletRequest request,
                            HttpServletResponse response)
-    throws Exception {
+            throws Exception {
         if (request.getParameter("cancel") != null) {
             return getCancelView();
         }
@@ -71,13 +80,12 @@ public class RevenuestreamFormController extends BaseFormController {
             revenuestreamManager.remove(revenuestream.getIdrevenuestream());
             saveMessage(request, getText("revenuestream.deleted", locale));
         } else {
-            revenuestreamManager.save(revenuestream);
+            revenuestream = revenuestreamManager.save(revenuestream);
             String key = (isNew) ? "revenuestream.added" : "revenuestream.updated";
             saveMessage(request, getText(key, locale));
 
-            if (!isNew) {
-                success = "redirect:revenuestreamform?idrevenuestream=" + revenuestream.getIdrevenuestream();
-            }
+            success = "redirect:ideadisplay?ididea=" + revenuestream.getIdea().getIdidea() + "#businesscanvas";
+
         }
 
         return success;
