@@ -1,9 +1,7 @@
 package com.ubuniworks.service.impl;
 
 import com.ubuniworks.dao.IdeaDao;
-import com.ubuniworks.model.Comment;
-import com.ubuniworks.model.Idea;
-import com.ubuniworks.model.Milestone;
+import com.ubuniworks.model.*;
 import com.ubuniworks.service.IdeaManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +36,51 @@ public class IdeaManagerImpl extends GenericManagerImpl<Idea, Integer> implement
     @Override
     public Idea getWithIdeabody(Integer ididea) {
         return ideaDao.getWithIdeabody(ididea);
+    }
+
+    @Override
+    public Set<Activities> getActivities(Idea idea) {
+        return ideaDao.getActivities(idea);
+    }
+
+    @Override
+    public Set<Channes> getChannels(Idea idea) {
+        return ideaDao.getChannels(idea);
+    }
+
+    @Override
+    public Set<Coststructure> getCostStructures(Idea idea) {
+        return ideaDao.getCostStructures(idea);
+    }
+
+    @Override
+    public Set<Customerrelationship> getCustomerRelationships(Idea idea) {
+        return ideaDao.getCustomerRelationships(idea);
+    }
+
+    @Override
+    public Set<Customersegment> getCustomerSegments(Idea idea) {
+        return ideaDao.getCustomerSegments(idea);
+    }
+
+    @Override
+    public Set<Revenuestream> getRevenueStreams(Idea idea) {
+        return ideaDao.getRevenueStreams(idea);
+    }
+
+    @Override
+    public Set<Valueproposition> getValuePropositions(Idea idea) {
+        return ideaDao.getValuePropositions(idea);
+    }
+
+    @Override
+    public Set<Partners> getPartners(Idea idea) {
+        return ideaDao.getPartners(idea);
+    }
+
+    @Override
+    public Set<Resources> getResources(Idea idea) {
+        return ideaDao.getResources(idea);
     }
 
 }

@@ -64,7 +64,7 @@
                                                 $.ajax({
                                                     url: '/partnersform?ajax=true&ididea=${idea.ididea}',
                                                     success: function (data) {
-                                                        $("#myModal").html(data)
+                                                        $("#modalbody").html(data)
                                                     },
                                                     type: 'GET'
                                                 });
@@ -74,7 +74,12 @@
                                 </h4>
 
 
-                                <p></p>
+                                <p>
+                                    <c:forEach items="${idea.partnerses}" var="partner" varStatus="loop">
+
+                                <div> ${partner.name} </div>
+                                </c:forEach>
+                                </p>
                             </td>
                             <td colspan="2">
                                 <h4>Key Activities<a class="btn btn-success btn-xs pull-right" role="button"
@@ -353,7 +358,15 @@
 </div>
 <!-- Modal<%--#FEFA5A--%>-->
 <div id="myModal" class="modal fade" role="dialog">
-
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalbody"></div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

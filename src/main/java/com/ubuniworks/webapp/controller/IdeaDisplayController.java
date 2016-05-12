@@ -44,6 +44,15 @@ public class IdeaDisplayController extends BaseFormController {
             Idea idea = ideaManager.get(new Integer(ididea));
             idea.setComments(ideaManager.getTopLevelComments(idea));
             idea.setMilestones(ideaManager.getMilestones(idea));
+            idea.setActivitieses(ideaManager.getActivities(idea));
+            idea.setChanneses(ideaManager.getChannels(idea));
+            idea.setCoststructures(ideaManager.getCostStructures(idea));
+            idea.setCustomerrelationships(ideaManager.getCustomerRelationships(idea));
+            idea.setCustomersegments(ideaManager.getCustomerSegments(idea));
+            idea.setRevenuestreams(ideaManager.getRevenueStreams(idea));
+            idea.setValuepropositions(ideaManager.getValuePropositions(idea));
+            idea.setPartnerses(ideaManager.getPartners(idea));
+            idea.setResourceses(ideaManager.getResources(idea));
             return idea;
         }
 

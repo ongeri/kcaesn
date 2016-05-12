@@ -1,9 +1,7 @@
 package com.ubuniworks.dao.hibernate;
 
 import com.ubuniworks.dao.IdeaDao;
-import com.ubuniworks.model.Comment;
-import com.ubuniworks.model.Idea;
-import com.ubuniworks.model.Milestone;
+import com.ubuniworks.model.*;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -46,5 +44,50 @@ public class IdeaDaoHibernate extends GenericDaoHibernate<Idea, Integer> impleme
         Idea idea = this.get(ididea);
         idea.getIdeabody();
         return idea;
+    }
+
+    @Override
+    public Set<Activities> getActivities(Idea idea) {
+        return new HashSet<Activities>(getSession().createCriteria(Activities.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Channes> getChannels(Idea idea) {
+        return new HashSet<Channes>(getSession().createCriteria(Channes.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Coststructure> getCostStructures(Idea idea) {
+        return new HashSet<Coststructure>(getSession().createCriteria(Coststructure.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Customerrelationship> getCustomerRelationships(Idea idea) {
+        return new HashSet<Customerrelationship>(getSession().createCriteria(Customerrelationship.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Customersegment> getCustomerSegments(Idea idea) {
+        return new HashSet<Customersegment>(getSession().createCriteria(Customersegment.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Revenuestream> getRevenueStreams(Idea idea) {
+        return new HashSet<Revenuestream>(getSession().createCriteria(Revenuestream.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Valueproposition> getValuePropositions(Idea idea) {
+        return new HashSet<Valueproposition>(getSession().createCriteria(Valueproposition.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Partners> getPartners(Idea idea) {
+        return new HashSet<Partners>(getSession().createCriteria(Partners.class).add(Restrictions.eq("idea", idea)).list());
+    }
+
+    @Override
+    public Set<Resources> getResources(Idea idea) {
+        return new HashSet<Resources>(getSession().createCriteria(Resources.class).add(Restrictions.eq("idea", idea)).list());
     }
 }
